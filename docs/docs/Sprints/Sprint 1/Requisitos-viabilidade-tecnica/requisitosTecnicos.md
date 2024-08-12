@@ -1,5 +1,5 @@
 ---
-title: Requisitos técnicos
+title: Requisitos de viabilidade técnica
 sidebar_position: 1
 description : Levantamento de requisitos técnicos para o projeto
 ---
@@ -55,3 +55,14 @@ description : Levantamento de requisitos técnicos para o projeto
 **Métrica associada**: A usabilidade da interface será avaliada pelo número de etapas (cliques) necessárias para concluir uma tarefa, limitado a no máximo 3 cliques. Além disso, espera-se que 90% das funcionalidades estejam disponíveis ou indicadas diretamente na tela inicial, facilitando o acesso às ferramentas necessárias.
 
 &emsp;&emsp;Segurança não foi mencionado como um requisito do projeto dado que esse não é o foco do projeto. Apesar disso, é fortemente sugerido que seja desenvolvido um sistema de segurança para esse projeto dado que contém dados confidenciais.
+
+## Diagrama de blocos
+
+&emsp;&emsp;A arquitetura da solução desenvolvida é estruturada em três fases principais: ETL (Extração, Transformação e Carga), Aprendizado de Máquina (Machine Learning) e Dashboard. Todo o sistema é hospedado na nuvem, utilizando os serviços da AWS.
+
+&emsp;&emsp;O processo inicia-se na fase de ETL, onde os dados são cuidadosamente tratados para otimizar o desempenho do modelo preditivo. Durante essa etapa, os dados são também divididos em conjuntos de treino e teste, permitindo a validação eficaz do modelo com base em novos dados inseridos.
+
+&emsp;&emsp;Na fase de aprendizado de máquina, os dados de treino são submetidos ao processo de treinamento do modelo, visando a geração de novos dados que possibilitem prever a ocorrência de falhas.
+
+&emsp;&emsp;Finalmente, na fase do Dashboard, os dados gerados pelo modelo são armazenados em uma nova tabela. Essa tabela alimenta o servidor backend, que, por sua vez, apresenta essas informações em uma interface interativa e intuitiva, facilitando a visualização e interpretação dos resultados.
+
