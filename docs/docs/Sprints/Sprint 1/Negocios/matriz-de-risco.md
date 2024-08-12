@@ -1,14 +1,14 @@
 ---
 title: Matriz de Risco
 sidebar_position: 1
-description : Apresentação da analise de risco do projeto
+description : Apresentação da análise de risco do projeto
 ---
 
 # Matriz de Risco
 
 ## Introdução
 
- A matriz de riscos é uma ferramenta de análise de negócios e projeto, onde organiamos os riscos e oportunidadesem uma tabela, onde as linhas são os riscos, e as colunas são os impactos e probabilidades. A partir disso, é possível identificar os riscos mais críticos e que requerem maior atenção e alocação de recursos para serem gerenciados. A matriz de risco que desenvolvemos considera o protótipo e o produto final do projeto.
+A matriz de riscos é uma ferramenta de análise de negócios e projeto, onde organizamos os riscos e oportunidades em uma tabela, onde as linhas são os riscos, e as colunas são os impactos e probabilidades. A partir disso, é possível identificar os riscos mais críticos e que requerem maior atenção e alocação de recursos para serem gerenciados. A matriz de risco que desenvolvemos considera o protótipo e o produto final do projeto.
 
 
 <p align="center"><b> Figura 1 - Matriz de Risco</b></p>
@@ -67,3 +67,7 @@ description : Apresentação da analise de risco do projeto
 
 ### 9. Vazamentos dos dados
 - **Ação:** Manter os dados em ambientes seguros e não subir dados sensíveis para repositórios públicos.
+
+## Conclusão
+
+A matriz de riscos é uma ferramenta essencial para o gerenciamento de riscos em projeto e durante as próximas sprints, será utilizada para monitorar e controlar os riscos identificados. O plano de ação proposto visa mitigar os riscos e aproveitar as oportunidades identificadas, garantindo um proejto eficiente e que gere valor para o cliente.
