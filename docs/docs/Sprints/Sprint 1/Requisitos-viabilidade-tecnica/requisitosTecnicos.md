@@ -31,9 +31,16 @@ description : Levantamento de requisitos técnicos para o projeto
 - Sendo assim, deve permitir o ajuste e re-treinamento do modelo para melhorar a precisão com base em dados atualizados.
 
 &emsp;&emsp;RF3 - Utilização em Cloud
-- A aplicação deve ser migrada para a nuvem, utilizando a infraestrutura da AWS. 
+- A aplicação deve ser migrada para a nuvem, utilizando a infraestrutura da AWS.
+- A arquitetura em cloud deve ter a capacidade de armazenar o modelo preditivo previamente treinado. 
 - O sistema deve integrar um dashboard interativo para a visualização dos resultados do modelo e métricas associadas. 
 - Deve ser feito o deploy da API do projeto.
+
+&emsp;&emsp;RF4 - Integração entre tecnologias
+- Deve ser estabelecida uma integração completa entre o modelo de predição, o banco de dados e o sistema de coleta de dados, permitindo um fluxo contínuo e eficiente de informações entre esses elementos.
+
+&emsp;&emsp;RF4 - Documentação
+- A documentação do projeto precisa explicar em detalhes como o sistema funciona, as técnicas empregadas no modelo preditivo, os processos de integração e o uso da interface de usuário, visando assegurar a compreensão e a manutenção apropriadas do projeto.
 
 &emsp;&emsp;Esses requisitos funcionais cobrem as principais necessidades do projeto e garantem que o modelo preditivo seja eficaz e fácil de usar, atendendo às expectativas da fábrica.
 
@@ -49,6 +56,7 @@ description : Levantamento de requisitos técnicos para o projeto
 - O modelo deve apresentar uma acurácia de 95%.
 **Métrica associada** - a seguinte métrica foi definida para que o modelo funcione de forma apropriada:
 - A precisão deve ser superior a 95% 
+- O modelo deve possuir testes contínuos de modelo e pipeline para garantir a integridade.
 
 &emsp;&emsp;RNF2 - Usabilidade da Interface Gráfica
 - A interface gráfica deve ser projetada para ser fácil de usar e entender, permitindo que os operadores rapidamente compreendam a classe do defeito identificado e o tipo de inspeção que deve ser feita.
