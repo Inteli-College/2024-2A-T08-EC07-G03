@@ -8,38 +8,61 @@ description : Apresentação da análise de risco do projeto
 
 ## Introdução
 
-A matriz de riscos é uma ferramenta de análise de negócios e projeto, onde organizamos os riscos e oportunidades em uma tabela, onde as linhas são os riscos, e as colunas são os impactos e probabilidades. A partir disso, é possível identificar os riscos mais críticos e que requerem maior atenção e alocação de recursos para serem gerenciados. A matriz de risco que desenvolvemos considera o protótipo e o produto final do projeto.
-
+A matriz de riscos é uma ferramenta de análise de negócios e projetos, onde organizamos os riscos e oportunidades em uma tabela, onde as linhas são os riscos, e as colunas são os impactos e probabilidades. A partir disso, é possível identificar os riscos mais críticos e que requerem maior atenção e alocação de recursos para serem gerenciados. A matriz de risco que desenvolvemos considera o protótipo e o produto final do projeto.
 
 <p align="center"><b> Figura 1 - Matriz de Risco</b></p>
 <div align="center">
-  ![Matriz de risco](../../../../static/img/MatrizRiscoGrupo03.png)
-  <p><b>Fonte:</b> Elaborado por Grupo3</p>
+  <img src={require('../../../../static/img/MatrizRiscoGrupo03.png').default} alt="Matriz de risco"/>
+  <p><b>Fonte:</b> Elaborado por Grupo 3</p>
 </div>
 
+## Ameaças
 
-### Ameaças
+### 1. Acurácia do modelo final inferior a 95%
+- **Detalhamento:** Caso o modelo não atinja a acurácia mínima desejada, os resultados das previsões podem ser comprometidos, levando a inspeções ineficazes ou incorretas, o que pode impactar negativamente a eficiência do processo.
 
-- **Desempenho do modelo inferior ao esperado:** Probabilidade 70%, Impacto Alto
-- **Baixa qualidade dos dados:** Probabilidade 50%, Impacto Muito Alto
-- **Modelo gerar falsos positivos:** Probabilidade 50%, Impacto Alto
-- **Modelo não se adaptar a novos dados:** Probabilidade 30%, Impacto Muito Alto
-- **Falhas na inserção de novos dados no modelo:** Probabilidade 50%, Impacto Moderado
-- **Mudanças nos parâmetros de atuais em produção, afetando o modelo:** Probabilidade 30%, Impacto Moderado
-- **Modelo gerar muitos falsos positivos:** Probabilidade 30%, Impacto Alto
-- **Falta de engajamento do parceiro:** Probabilidade 10%, Impacto Baixo
-- **Limitações de recursos computacionais:** Probabilidade 30%, Impacto Moderado
-- **Vazamentos dos dados:** Probabilidade 30%, Impacto Alto
+### 2. Falhas na inserção de novos dados no modelo, impactando negativamente nos resultados
+- **Detalhamento:** Se novos dados não forem incorporados corretamente ou se o modelo não estiver preparao para isso, o modelo pode se desatualizar e não refletir as mudanças na produção, reduzindo a eficácia do processo de predição.
 
-### Oportunidades
+### 3. Falta de features (colunas) nos dados usados no treinamento do modelo
+- **Detalhamento:** Se os dados que foram fornecidos para a gente não tiverem informações suficientes pode limitar o treinamento do modelo assim reduzindo a capacidade de realizar predições precisas, resultando em uma classificação inadequada dos veículos.
 
-- **Diminuir o custo e tempo no processo de inspeção e testagem:** Probabilidade 90%, Impacto Moderado
-- **Gerar insights de melhoria em alguma etapa:** Probabilidade 70%, Impacto Alto
-- **Implementar e testar a solução para ter um maior TRL-3:** Probabilidade 50%, Impacto Muito Alto
-- **Melhoria na qualidade dos veículos:** Probabilidade 50%, Impacto Alto
-- **Automatização na geração de relatórios e insights a partir do modelo:** Probabilidade 30%, Impacto Alto
+### 4. Mudanças nos parâmetros atuais em produção, afetando o modelo
+- **Detalhamento:** Alterações nos parâmetros de produção podem exigir ajustes no treinamento modelo preditivo para que ele continue fornecendo resultados precisos e relevantes.
 
-# Plano de Ação para Riscos
+### 5. Modelo gerar muitos falsos positivos, ocasionando em possíveis decisões erradas
+- **Detalhamento:** Falsos positivos podem levar a ações desnecessárias ou incorretas, como a realização de inspeções em veículos que não necessitam, desperdiçando tempo e recursos.
+
+### 6. Modelo não se adaptar a novos dados quando for implementado
+- **Detalhamento:** A incapacidade do modelo de se ajustar a novos dados pode reduzir sua utilidade ao longo do tempo, necessitando de re-treinamento frequente ou ajustes constantes.
+
+### 7. Falta de engajamento do parceiro no desenvolvimento do projeto
+- **Detalhamento:** A falta de envolvimento do parceiro pode dificultar o progresso do projeto, afetando a comunicação, alinhamento de expectativas e entrega dos resultados.
+
+### 8. Limitações de recursos computacionais em relação a hardware
+- **Detalhamento:** Restrições de hardware podem limitar a capacidade de processamento do modelo, impactando o tempo de treinamento e a eficiência geral do sistema. Atualmente, temos acesso a supercomputadores no laboratório que podem ser utilizados para mitigar esse risco.
+
+### 9. Vazamentos dos dados fornecidos pela VW
+- **Detalhamento:** A exposição de dados sensíveis pode acarretar em problemas legais e de reputação, além de comprometer a segurança das informações do projeto.
+
+## Oportunidades
+
+### 1. Diminuir o custo e tempo no processo de inspeção e testagem
+- **Detalhamento:** Implementar o modelo preditivo pode reduzir significativamente o tempo e os custos associados à inspeção, aumentando a eficiência do processo de fabricação.
+
+### 2. Gerar insights de melhoria em alguma etapa da fabricação dos carros
+- **Detalhamento:** A análise dos dados pode revelar oportunidades de otimização em várias etapas da produção, melhorando a qualidade do produto final.
+
+### 3. Automatização na geração de relatórios e insights a partir do modelo
+- **Detalhamento:** A integração do modelo com sistemas de BI pode automatizar a geração de relatórios, facilitando a tomada de decisões e aumentando a agilidade da equipe.
+
+### 4. Implementar e testar a solução para ter um maior TRL-3
+- **Detalhamento:** Avançar a maturidade tecnológica da solução pode abrir novas possibilidades para sua aplicação em larga escala, tanto na VW quanto em outras indústrias.
+
+### 5. Melhoria na qualidade dos veículos a partir do modelo desenvolvido
+- **Detalhamento:** Ao identificar e corrigir possíveis falhas de produção antes que os veículos saiam da fábrica, a qualidade final pode ser significativamente aprimorada.
+
+## Plano de Ação para Riscos
 
 ### 1. Desempenho do modelo inferior ao esperado
 - **Ação:** Realizar validações contínuas e ajustes no modelo utilizando diferentes técnicas de machine learning, como ajuste de hiperparâmetros, validação cruzada e teste com diferentes algoritmos.
@@ -60,7 +83,7 @@ A matriz de riscos é uma ferramenta de análise de negócios e projeto, onde or
 - **Ação:** Criar um mecanismo de feedback para capturar mudanças nos parâmetros de produção e ajustar o modelo em tempo real ou durante o re-treinamento.
 
 ### 7. Falta de engajamento do parceiro
-- **Ação:** Manter uma comunicação constante e transparente com o parceiro e tirar o maximo das reuniões de alinhamento de cada sprints.
+- **Ação:** Manter uma comunicação constante e transparente com o parceiro e tirar o máximo das reuniões de alinhamento de cada sprint.
 
 ### 8. Limitações de recursos computacionais
 - **Ação:** Utilizar os supercomputadores do laboratório.
@@ -70,4 +93,4 @@ A matriz de riscos é uma ferramenta de análise de negócios e projeto, onde or
 
 ## Conclusão
 
-A matriz de riscos é uma ferramenta essencial para o gerenciamento de riscos em projeto e durante as próximas sprints, será utilizada para monitorar e controlar os riscos identificados. O plano de ação proposto visa mitigar os riscos e aproveitar as oportunidades identificadas, garantindo um proejto eficiente e que gere valor para o cliente.
+A matriz de riscos é uma ferramenta essencial para o gerenciamento de riscos em projetos, e durante as próximas sprints, será utilizada para monitorar e controlar os riscos identificados. O plano de ação proposto visa mitigar os riscos e aproveitar as oportunidades identificadas, garantindo um projeto eficiente e que gere valor para o cliente.
