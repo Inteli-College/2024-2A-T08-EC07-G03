@@ -66,11 +66,17 @@ description : Levantamento de requisitos técnicos para o projeto
 
 ## Diagrama de blocos
 
-&emsp;&emsp;A arquitetura da solução desenvolvida é estruturada em três fases principais: ETL (Extração, Transformação e Carga), Aprendizado de Máquina (Machine Learning) e Dashboard. Todo o sistema é hospedado na nuvem, utilizando os serviços da AWS.
+&emsp;&emsp;A arquitetura da solução desenvolvida é estruturada em três fases principais: ETL (Extração, Transformação e Carga), Storage e Aprendizado de Máquina (Machine Learning - ML). Todo o sistema é hospedado na nuvem, utilizando os serviços da AWS.
 
-&emsp;&emsp;O processo inicia-se na fase de ETL, onde os dados são cuidadosamente tratados para otimizar o desempenho do modelo preditivo. Durante essa etapa, os dados são também divididos em conjuntos de treino e teste, permitindo a validação eficaz do modelo com base em novos dados inseridos.
+&emsp;&emsp;O processo inicia-se na fase de ETL, onde os dados são cuidadosamente tratados para otimizar o desempenho do modelo preditivo. Durante essa etapa, os dados também são separados em conjuntos de treino e teste, permitindo a validação eficaz do modelo com base em novos dados inseridos.
 
-&emsp;&emsp;Na fase de aprendizado de máquina, os dados de treino são submetidos ao processo de treinamento do modelo, visando a geração de novos dados que possibilitem prever a ocorrência de falhas.
+&emsp;&emsp;Seguindo para a próxima etapa, como o nome sugere, storage é o momento que ocorre o armazenamento dos dados inseridos juntamente com o retreino do modelo e o backend.
 
-&emsp;&emsp;Finalmente, na fase do Dashboard, os dados gerados pelo modelo são armazenados em uma nova tabela. Essa tabela alimenta o servidor backend, que, por sua vez, apresenta essas informações em uma interface interativa e intuitiva, facilitando a visualização e interpretação dos resultados.
+&emsp;&emsp;Na fase de aprendizado de máquina (ML), os dados de separados são submetidos ao processo de retreino do modelo, visando a atualização frequente de dados, possibilitando prever, precisamente, a ocorrência de falhas. Também, durante essa fase, os dados gerados pelo modelo são armazenados em uma nova tabela. Essa tabela alimenta o servidor backend, que, por sua vez, apresenta essas informações em uma interface interativa e intuitiva, facilitando a visualização e interpretação dos resultados.
+
+<p align="center"><b> Figura 1 - Diagrama de Blocos</b></p>
+<div align="center">
+  ![Diagrama de Blocos](../../../../static/img/DiagramadeBlocos.png)
+  <p><b>Fonte:</b> Elaborado por Grupo3</p>
+</div>
 
