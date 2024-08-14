@@ -1,7 +1,7 @@
 ---
-title: Requisitos de visualização
+title: Analise Econômica
 sidebar_position: 1
-description : Levantamento de requisitos de visualização para o projeto
+description : Análise econômica do projeto
 ---
 
 # Introdução
