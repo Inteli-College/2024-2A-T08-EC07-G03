@@ -55,6 +55,7 @@ description : Levantamento de requisitos técnicos para o projeto
 
 &emsp;&emsp;**RNF2 - Usabilidade da Interface Gráfica**
 - A interface gráfica deve ser projetada para ser fácil de usar e entender, permitindo que os operadores rapidamente compreendam a classe do defeito identificado e o tipo de inspeção que deve ser feita.
+
 **Métrica associada**: A usabilidade da interface será avaliada pelo número de etapas (cliques) necessárias para concluir uma tarefa, limitado a no máximo 3 cliques. Além disso, espera-se que 90% das funcionalidades estejam disponíveis ou indicadas diretamente na tela inicial, facilitando o acesso às ferramentas necessárias.
 
 &emsp;&emsp;Segurança não foi mencionado como um requisito do projeto dado que esse não é o foco do projeto. Apesar disso, é fortemente sugerido que seja desenvolvido um sistema de segurança para esse projeto dado que contém dados confidenciais.
@@ -72,11 +73,20 @@ description : Levantamento de requisitos técnicos para o projeto
 - Interface (FastAPI e React): Uma interface desenvolvida com FastAPI e React é eficiente, combinando a velocidade e simplicidade de FastAPI para criar APIs robustas com a flexibilidade de React para construir interfaces interativas e dinâmicas, resultando em uma aplicação ágil, escalável e de fácil manutenção.
 
 ### Análise de dados
+
 &emsp;&emsp;O parceiro forneceu uma ampla variedade de dados detalhando o processo de fabricação dos carros T-Cross. A grande quantidade de dados permitiu uma exploração e testes abrangentes. No entanto, observa-se que a maioria dos carros apresenta algum defeito em determinado momento do processo de montagem. Isso pode representar um desafio, pois há o risco de enviesar o modelo, resultando na identificação de falhas em todos os veículos, o que foge do objetivo do projeto.
+
+<p align="center"><b> Figura 1 - Gráfico de Falhas por Mês</b></p>
+<div align="center">
+  <img src={require('../../../../static/img/falhas_por_mes.png').default} alt="Gráfico de Falhas por Mês"/>
+  <p><b>Fonte:</b> Elaborado por Grupo 3</p>
+</div>
 
 &emsp;&emsp;Foram realizadas diversas análises e estudos dos dados da Volkswagen para identificar a melhor forma de aproveitá-los. Com base nessas análises, decidiu-se unir as seguintes tabelas: Tabela de Predição de Falhas e Tabela de Resultados. Essas tabelas contêm informações como a identificação do modelo, o status da carroceria e a identificação do grupo de resultados. A partir dos dados das colunas ID, STATUS, UNIT e VALUE_ID, vamos prever a possibilidade de falhas. Para validar essas previsões, será utilizada a tabela com os resultados finais da montagem. Como os dados ainda precisam ser tratados, essas colunas não serão utilizadas no modelo final, mas sim, os dados que essas colunas contem.
 
 &emsp;&emsp;Essas informações permitem desenvolver um modelo robusto, com dados suficientes para analisar o processo de montagem de forma abrangente, aumentando as chances de sucesso nas previsões. É importante destacar que os dados, inicialmente distribuídos em vários arquivos, precisaram ser reunidos em um único arquivo para viabilizar a análise. Durante esse processo, constatou-se que os dados mais impactantes para o modelo em desenvolvimento são aqueles relacionados ao torque no processo de montagem dos carros. Diante dessa constatação, o modelo deve se basear principalmente nessas informações.
+
+As analises apresentadas nesse texto foram obtidas a apartir das informações obtidas nesse notebook:[ Notebook](https://github.com/Inteli-College/2024-2A-T08-EC07-G03/blob/main/notebooks/transform.ipynb)
 
 ## Diagrama de blocos
 
