@@ -69,7 +69,7 @@ description : Levantamento de requisitos técnicos para o projeto
 
 - Serviço de Cloud: A adoção de um serviço de cloud é uma escolha técnica vantajosa para este projeto porque oferece escalabilidade, permitindo ajustar os recursos conforme a demanda, além de garantir alta disponibilidade e segurança. A nuvem facilita a integração com outras ferramentas e serviços, como APIs e bancos de dados, e suporta a implantação e o armazenamento de modelos preditivos, tudo com gerenciamento simplificado e custos otimizados.
 
-- Interface (FastAPI e React): Uma interface desenvolvida com FastAPI e React é eficiente, combinando a velocidade e simplicidade de FastAPI para criar APIs robustas com a flexibilidade de React para construir interfaces interativas e dinâmicas, resultando em uma aplicação ágil, escalável e de fácil manutenção.
+- Interface (FastAPI e React):  Uma interface desenvolvida com FastAPI e React é eficiente, combinando a velocidade e simplicidade de FastAPI para criar APIs robustas com a flexibilidade de React para construir interfaces interativas e dinâmicas, resultando em uma aplicação ágil, escalável e de fácil manutenção.
 
 ### Análise de dados
 &emsp;&emsp;O parceiro forneceu uma ampla variedade de dados detalhando o processo de fabricação dos carros T-Cross. A grande quantidade de dados permitiu uma exploração e testes abrangentes. No entanto, observa-se que a maioria dos carros apresenta algum defeito em determinado momento do processo de montagem. Isso pode representar um desafio, pois há o risco de enviesar o modelo, resultando na identificação de falhas em todos os veículos, o que foge do objetivo do projeto.
