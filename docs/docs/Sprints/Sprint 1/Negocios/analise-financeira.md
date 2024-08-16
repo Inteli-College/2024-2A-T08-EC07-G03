@@ -25,7 +25,7 @@ Para realizar essa análise, o período de tempo de dois meses será considerado
 | Engenheiro de Software | 2 | 2 | R$ 13.885,61 | R$ 55.542,44 |
 | Cientista de Dados | 2 | 2 | R$ 9.009,92 | R$ 36.039,68 |
 | Engenheiro de DevOps | 2 | 2 | R$ 8.371 | R$ 16.742 |
-| Gestor de Projeto | 2 | 2 | R$ 6.303 | R$ 12.606 |
+| Gestor de Projeto | 1 | 2 | R$ 6.303 | R$ 12.606 |
 | Total | | | | **R$ 120.930,12** |
 
 ### Custo da nuvem (Cloud)
@@ -87,7 +87,7 @@ Para efetuar os cálculos e a estimativa do projeto implementado após a valida�
 | Engenheiro de Software | 2 | 4 | R$ 13.885,61 | R$ 111.084,88 |
 | Cientista de Dados | 2 | 4 | R$ 9.009,92 | R$ 72.079,36 |
 | Engenheiro de DevOps | 2 | 4 | R$ 8.371 | R$ 33.484 |
-| Gestor de Projeto | 2 | 4 | R$ 6.303 | R$ 25.212 |
+| Gestor de Projeto | 1 | 4 | R$ 6.303 | R$ 25.212 |
 | Total | | | | **R$ 241.860,24** |
 
 ### Custos da infraestrutura em Cloud
