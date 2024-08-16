@@ -10,11 +10,11 @@ A compreensão das matérias-primas, recursos, processos de fabricação, e seus
 
 # Matérias-Primas
 
-* A extração de matérias-primas não depende diretamente da Volkswagen, mas sim de parceiros confiáveis e homologados. *
+* A extração de matérias-primas não depende diretamente da Volkswagen, mas sim de parceiros confiáveis e homologados. 
 
 ## Aço e Alumínio
 
-Utilizados na estrutura do veículo. A extração e processamento desses materiais têm impacto ambiental significativo devido à mineração e ao consumo de energia.
+Utilizados nas estruturas do veículo. A extração e processamento desses materiais têm impacto ambiental significativo devido à mineração e ao consumo de energia.
 
 ## Plásticos
 
@@ -48,9 +48,11 @@ Ferramentas de manufatura avançada, como robótica e sistemas de controle, que 
 
 #  Processos
 
+Os itens abaixo foram pensados com base na apresentação institucional, realizada em nosso primeiro encontro com o parceiro.
+
 ## Fabricação
 
-Inclui estampagem, soldagem, pintura, vedação e montagem. Esses processos têm impacto direto no consumo de energia e emissões.
+O processo de Fabricação inclui estampagem, soldagem, pintura, vedação e montagem. Esses processos têm impacto direto no consumo de energia e emissões.
 
 ## Logística
 
@@ -62,7 +64,7 @@ Envolve o desempenho do veículo e sua eficiência energética, afetando o consu
 
 ## Reutilização e Reciclagem
 
-A Volkswagen está investindo em processos de reciclagem para reduzir o impacto ambiental e reaproveitar materiais, como baterias de veículos elétricos.
+A Volkswagen está investindo em processos de reciclagem para reduzir o impacto ambiental e reaproveitar materiais.
 
 # Impactos Sociais e Ambientais
 
