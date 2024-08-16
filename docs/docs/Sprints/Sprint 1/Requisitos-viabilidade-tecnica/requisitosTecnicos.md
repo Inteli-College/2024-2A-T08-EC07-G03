@@ -51,7 +51,7 @@ description : Levantamento de requisitos técnicos para o projeto
 
 **Métrica associada** - a seguinte métrica foi definida para que o modelo funcione de forma apropriada:
 - A precisão deve ser superior a 95% 
-- O modelo deve possuir testes contínuos de modelo e pipeline para garantir a integridade.
+- O modelo deve ser amplamente testado e com base nos dados dos testes, definir se atende as expectativas do cliente.
 
 &emsp;&emsp;**RNF2 - Usabilidade da Interface Gráfica**
 - A interface gráfica deve ser projetada para ser fácil de usar e entender, permitindo que os operadores rapidamente compreendam a classe do defeito identificado e o tipo de inspeção que deve ser feita.
@@ -76,9 +76,9 @@ description : Levantamento de requisitos técnicos para o projeto
 
 &emsp;&emsp;O parceiro forneceu uma ampla variedade de dados detalhando o processo de fabricação dos carros T-Cross. A grande quantidade de dados permitiu uma exploração e testes abrangentes. No entanto, observa-se que a maioria dos carros apresenta algum defeito em determinado momento do processo de montagem. Isso pode representar um desafio, pois há o risco de enviesar o modelo, resultando na identificação de falhas em todos os veículos, o que foge do objetivo do projeto.
 
-<p align="center"><b> Figura 1 - Gráfico de Falhas por Mês</b></p>
+<p align="center"><b> Figura 1 - Gráfico de Tipos de Falhas</b></p>
 <div align="center">
-  <img src={require('../../../../static/img/falhas_por_mes.png').default} alt="Gráfico de Falhas por Mês"/>
+  <img src={require('../../../../static/img/10_falhas.png').default} alt="Gráfico de Tipos de Falhas"/>
   <p><b>Fonte:</b> Elaborado por Grupo 3</p>
 </div>
 
