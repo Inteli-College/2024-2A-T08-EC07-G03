@@ -28,7 +28,7 @@ description : Business Model Canvas da solução
 
 <div align="center"> 
 
-![Business Model Canvas](../../../../static/img/sprint1/bmc.png)
+<!-- ![Business Model Canvas](../../../../static/img/sprint1/bmc.png) -->
 Fonte: Elaborado pelo grupo Käfer
 </div>
 
