@@ -1,4 +1,4 @@
---
+---
 title: Levantamento de Matérias-Primas, Recursos, Processos e Impactos
 sidebar_position: 2
 description : Levantamento de requisitos de visualização para o projeto
