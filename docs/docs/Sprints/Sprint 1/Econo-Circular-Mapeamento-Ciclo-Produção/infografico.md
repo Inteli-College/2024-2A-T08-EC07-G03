@@ -14,6 +14,8 @@ Para a melhor compreensão do ciclo produtivo do carro nos desenvolvemos um info
 
 A apresentação pode ser acessada por [aqui](https://prezi.com/view/lEiL65LmUNfYtvM47nes/) também.
 
+Para ter a experiência completa do infográfico interativo recomenda-se seguir etapa por etapa, clicando nos botões de navegação do Prezi ou as setas do teclado.
+
 # Referências
 
 1. **Prezi**  
