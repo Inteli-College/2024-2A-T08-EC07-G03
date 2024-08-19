@@ -6,7 +6,7 @@
 
 # Grupo: Käfer
 
-Para acessar a documentação do projeto, basta clicar [aqui](https://inteli-college.github.io/2024-1B-T08-EC06-G05/). 
+Para acessar a documentação do projeto, basta clicar [aqui](https://inteli-college.github.io/2024-2A-T08-EC07-G03/docs/category/sprint-1). 
 
 ## :student: Integrantes:
 
