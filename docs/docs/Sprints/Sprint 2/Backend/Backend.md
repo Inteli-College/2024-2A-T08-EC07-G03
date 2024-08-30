@@ -1,0 +1,11 @@
+## Porque FastAPI
+
+Escolheu-se o FastAPI para este projeto devido à sua alta performance, que aproveita recursos modernos do Python como tipagem e async/await, facilitando a construção de APIs rápidas e eficientes. A documentação automática e intuitiva proporcionada pelo FastAPI simplifica a integração e o uso do serviço por desenvolvedores e clientes. Além disso, sua escalabilidade permite que o projeto cresça sem comprometer o desempenho. A facilidade de integração com bibliotecas como `pandas` e `sklearn` torna-o especialmente adequado para projetos que envolvem processamento de dados e machine learning.
+
+# Como foi projetado
+
+Optou-se por receber o KNR como input, com a ideia de que os dados associados a esse KNR possam ser recuperados de um bucket de dados, como o S3. Para replicar esse comportamento em um ambiente local, criamos um arquivo Excel contendo os dados de um KNR específico e implementamos uma função que busca esses dados com base no KNR fornecido na rota.
+
+# Estrutura
+
+Optou-se por utilizar a estrutura de controllers e routers no FastAPI para promover uma organização clara e modular do código. Essa abordagem facilita a manutenção e a escalabilidade do projeto, permitindo que a lógica de negócios (controllers) e o mapeamento das rotas (routers) sejam separados de maneira lógica e organizada. Com essa estrutura, é mais fácil adicionar novas funcionalidades e endpoints sem sobrecarregar o código existente, além de melhorar a legibilidade e a testabilidade do sistema. A separação também permite que diferentes membros da equipe trabalhem em diferentes partes do projeto de forma independente e eficiente.
