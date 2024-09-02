@@ -21,5 +21,5 @@ description : Modelos desenvolvidos na sprint 2
 ### Entendimento do Negócio:
 &emsp;&emsp;A fase inicial do processo CRISP-DM, conhecida como Entendimento do Negócio, desempenha um papel crucial ao aprofundar-se na compreensão do panorama e do contexto em que o projeto está envolvido. Essa exploração inicial é fundamental, uma vez que estabelece fundamentos essenciais para a tomada de decisões estratégicas, desde o começo até os momentos futuros do projeto. Durante a sprint 01, o entendimento do negócio foi feito a partir da criação de diversas ferramentas de negócios, como o Business Model Canvas, a Análise Financeira e a Matriz de Riscos.
 
-
+### Entendimento dos Dados:
 
