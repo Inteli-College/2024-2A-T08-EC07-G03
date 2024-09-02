@@ -88,7 +88,7 @@ const config = {
             items: [
               {
                 label: 'Documentação',
-                to: '/docs/intro',
+                to: '/docs/category/sprint-1',
               },
             ],
           },
