@@ -8,12 +8,6 @@ description : Esboço da Interface
 
 Wireframes são essenciais no processo de design e desenvolvimento de qualquer aplicação de software. Eles servem como um esboço que delineia a estrutura, o conteúdo e a funcionalidade da interface antes do início do design ou desenvolvimento real. Wireframes ajudam a visualizar o layout e o fluxo da aplicação, facilitando a compreensão de como o produto final funcionará para desenvolvedores, designers e stakeholders. Ao criar um wireframe, podemos identificar possíveis problemas de usabilidade logo no início, garantindo que o design seja amigável ao usuário e atenda aos requisitos do projeto. Além disso, wireframes fornecem um guia claro para os desenvolvedores seguirem durante a fase de codificação, reduzindo a probabilidade de mal-entendidos e garantindo que o produto final esteja alinhado com o design pretendido.
 
-Neste documento, vamos percorrer o wireframe da interface Käfer, detalhando cada parte da interface conforme apresentado nas imagens fornecidas. Esta documentação é clara e compreensível tanto para leitores técnicos quanto para não técnicos, garantindo que todos os envolvidos no projeto possam acompanhar.
-
-### Visão Geral do Wireframe
-
-O wireframe da aplicação Käfer consiste em várias telas principais, cada uma servindo a uma função específica dentro da aplicação. A aplicação parece se concentrar na análise de dados e no treinamento de modelos, com um fluxo claro guiando o usuário desde a entrada de dados até os resultados do modelo. Abaixo, vamos descrever cada tela em detalhe com base nos wireframes fornecidos.
-
 ### 1. Tela Inicial
 
 ![Tela Inicial](/img/tela_inicial1.png)
