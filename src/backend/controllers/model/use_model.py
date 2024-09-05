@@ -3,7 +3,7 @@ import joblib
 import pandas as pd
 
 
-model = joblib.load("modelo.joblib")
+model = joblib.load("/home/arual/Documentos/Github/faculdade/2024-2A-T08-EC07-G03/src/backend/controllers/model/modelo.joblib")
 
 print(type(model))
 print(model)
