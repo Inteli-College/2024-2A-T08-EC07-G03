@@ -1,16 +1,11 @@
-from fastapi import HTTPException
 import joblib
 import pandas as pd
-
+from fastapi import HTTPException  
+import numpy as np
 
 model = joblib.load("/home/arual/Documentos/Github/faculdade/2024-2A-T08-EC07-G03/src/backend/controllers/model/modelo.joblib")
 
-print(type(model))
-print(model)
-
-
 def buscar_dados_por_knr(knr):
-
     df = pd.read_excel("dados.xlsx")
 
     dados = df[df["KNR"] == knr]
@@ -20,40 +15,34 @@ def buscar_dados_por_knr(knr):
 
     dados["KNR"] = 0
 
+    # Ajuste para garantir que você está extraindo exatamente 7 características
     features = dados[
         [
-            "KNR",
             "MODELO",
             "COR",
             "MOTOR",
             "ESTACAO",
             "USUARIO",
             "HALLE",
-            "FALHA",
-            "DATA_x",
-            "NAME",
-            "ID",
-            "STATUS",
-            "UNIT",
-            "VALUE_ID",
-            "VALUE",
-            "DATA_y",
+            "FALHA"
         ]
     ].values
 
-    features = features.reshape(1, -1)
+    # Adiciona uma dimensão extra para corresponder à forma esperada
+    features = np.expand_dims(features, axis=1)
 
     return features
 
-
-def predict(knr: str):
+def make_prediction(knr: str):  
     try:
         data = buscar_dados_por_knr(knr)
         print(data)
     except ValueError as e:
         raise HTTPException(status_code=404, detail=str(e))
 
-    prediction = model.predict(data)
-    print(type(prediction))
-
-    return {"knr": knr, "prediction": int(prediction[0])}
+    try:
+        prediction = model.predict(data)
+        print(type(prediction))
+        return {"knr": knr, "prediction": int(prediction[0])}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
