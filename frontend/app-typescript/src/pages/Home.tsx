@@ -1,9 +1,17 @@
 import React from 'react';
 import Button from '../components/Button';
 import Navbar from '../components/Navbar';
+import { useNavigate } from 'react-router-dom';
 
 
 const App: React.FC = () => {
+
+    const navigate = useNavigate();
+
+    const handleTrainClick = () => {
+        navigate('/training');
+    };
+
     return (
         <div className="min-h-screen flex flex-col">
             {/* Navbar */}
@@ -24,8 +32,8 @@ const App: React.FC = () => {
                     {/* Botões */}
                     <div className="mt-8 flex space-x-4">
                         <Button label="Executar" />
-                        <Button label="Treinar" />
-                    </div>
+                        <button onClick={handleTrainClick}>Treinar</button>
+                        </div>
 
                     {/* Footer */}
                     <footer className="text-gray-400 text-sm">
