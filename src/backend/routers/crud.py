@@ -5,7 +5,6 @@ from datetime import datetime
 
 router = APIRouter()
 
-# Initialize supabase client
 supabase = create_supabase_client()
 
 class ModelTraining(BaseModel):
