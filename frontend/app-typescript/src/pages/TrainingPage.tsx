@@ -1,5 +1,6 @@
 import React from 'react';
 import Header from '../components/Header';
+import { useNavigate } from 'react-router-dom';
 
 
 const Title: React.FC = () => {
@@ -12,7 +13,7 @@ const Title: React.FC = () => {
 
 const FileUpload: React.FC = () => {
   return (
-    <div className="flex flex-col items-center justify-center border-2 border-dashed border-gray-500 h-64 w-full max-w-lg mx-auto mt-10 bg-gray-800 rounded-lg">
+    <div className="font-sans flex flex-col items-center justify-center border-2 border-dashed bg-gradient-to-b from-[#333641] to-[#2D3039] h-64 w-full max-w-lg mx-auto mt-10 bg-gray-800 rounded-lg">
       <label className="cursor-pointer">
         <div className="flex flex-col items-center space-y-2">
           <svg width="150" height="150" viewBox="0 0 150 150" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -42,9 +43,14 @@ const KNRInput: React.FC = () => {
 };
 
 const ConfirmButton: React.FC = () => {
+  const navigate = useNavigate();
+
+  const handleTrainClick = () => {
+      navigate('/progress');
+  };
   return (
     <div className="flex justify-center mt-6">
-      <button className="px-8 py-2 bg-white text-gray-900 rounded-lg hover:bg-gray-200 transition duration-200">
+      <button onClick={handleTrainClick} className="px-8 py-2 bg-white text-gray-900 rounded-lg hover:bg-gray-200 transition duration-200">
         Confirmar
       </button>
     </div>
@@ -54,7 +60,7 @@ const ConfirmButton: React.FC = () => {
 
 const TrainingPage: React.FC = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-900 via-gray-800 to-gray-900 font-sans">
+    <div className="min-h-screen bg-gradient-to-b from-[#333641] to-[#282A32] font-sans">
       <Header />
       <Title />
       <FileUpload />
@@ -63,5 +69,7 @@ const TrainingPage: React.FC = () => {
     </div>
   );
 };
+
+
 
 export default TrainingPage;
