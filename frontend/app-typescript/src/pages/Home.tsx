@@ -13,7 +13,7 @@ const App: React.FC = () => {
     };
 
     return (
-        <div className="min-h-screen flex flex-col">
+        <div className="min-h-screen flex flex-col bg-gradient-to-r from-gray-900 to-gray-800">
             {/* Navbar */}
             <Navbar>
                 <a href="/">Home</a>
@@ -25,14 +25,13 @@ const App: React.FC = () => {
 
                     {/* Logo e Título */}
                     <div className="flex flex-col items-center space-y-4">
-                        <img src="/assets/logo.png" alt="Käfer logo" className="h-24 w-24" />
-                        <h1 className="text-white text-4xl font-light">Käfer</h1>
+                        <img src="../../src/assets/logo.png" alt="Käfer logo" />
                     </div>
 
                     {/* Botões */}
                     <div className="mt-8 flex space-x-4">
                         <Button label="Executar" />
-                        <button onClick={handleTrainClick}>Treinar</button>
+                        <Button label = "Treinar" onClick={handleTrainClick} />
                         </div>
 
                     {/* Footer */}

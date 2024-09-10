@@ -8,7 +8,7 @@ interface ButtonProps {
 const Button: React.FC<ButtonProps> = ({ label, onClick }) => {
   return (
     <button
-      className="px-4 py-2 bg-white text-gray-800 rounded-lg shadow-md hover:bg-gray-200 transition"
+      className="px-8 py-2 bg-white text-gray-900 rounded-lg hover:bg-gray-200 transition duration-200"
       onClick={onClick}
     >
       {label}
