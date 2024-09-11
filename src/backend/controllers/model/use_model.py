@@ -3,7 +3,7 @@ from keras.models import load_model
 import pandas as pd
 
 # Carregar o modelo salvo no formato .h5
-model = load_model("modelo2.h5")
+model = load_model("mmodelo.pkl")
 print(type(model))
 
 print(model)
