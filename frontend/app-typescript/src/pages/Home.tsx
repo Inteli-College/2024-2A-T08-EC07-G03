@@ -1,15 +1,24 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Button from '../components/Button';
 import Navbar from '../components/Navbar';
 import { useNavigate } from 'react-router-dom';
+import Popup from '../components/Popup'; 
 
-
-const App: React.FC = () => {
-
+const Home: React.FC = () => {
     const navigate = useNavigate();
+    const [isPopupVisible, setIsPopupVisible] = useState(false);
 
     const handleTrainClick = () => {
-        navigate('/training');
+        setIsPopupVisible(true);  
+    };
+
+    const handleClosePopup = () => {
+        setIsPopupVisible(false);  
+    };
+
+    const handleConfirm = () => {
+        setIsPopupVisible(false);  
+        navigate('/training');  // Redireciona para a página TrainingPage
     };
 
     return (
@@ -31,8 +40,8 @@ const App: React.FC = () => {
                     {/* Botões */}
                     <div className="mt-8 flex space-x-4">
                         <Button label="Executar" />
-                        <Button label = "Treinar" onClick={handleTrainClick} />
-                        </div>
+                        <Button label="Treinar" onClick={handleTrainClick} />
+                    </div>
 
                     {/* Footer */}
                     <footer className="text-gray-400 text-sm">
@@ -40,8 +49,15 @@ const App: React.FC = () => {
                     </footer>
                 </div>
             </div>
+
+            {/* Popup Modal */}
+            <Popup
+                isVisible={isPopupVisible}
+                onClose={handleClosePopup}
+                onConfirm={handleConfirm}  // Passa a função handleConfirm
+            />
         </div>
     );
 };
 
-export default App;
+export default Home;
