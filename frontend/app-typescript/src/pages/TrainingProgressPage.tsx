@@ -20,7 +20,7 @@ const TrainingProgressPage: React.FC = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gray-900">
+    <div className="min-h-screen bg-gradient-to-b from-[#333641] to-[#282A32]">
       <Header />
       <h1 className="text-3xl font-bold text-white text-center mt-8">Dados de Treinamento</h1>
       <div className="border-2 border-dashed border-gray-600 rounded-lg mx-auto mt-10 p-10 w-96 h-60 flex items-center justify-center">
