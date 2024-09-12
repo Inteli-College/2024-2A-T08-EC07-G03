@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Header from '../components/Header';
-import ConfirmationPopup from '../components/ConfirmationPopup';
+
 
 
 const ExcModelPage: React.FC = () => {
@@ -38,7 +38,9 @@ const ExcModelPage: React.FC = () => {
         </div>
       </div>
 
-    
+      <div className="w-full max-w-2xl h-64 bg-gray-200 rounded-lg flex items-center justify-center text-black text-2xl mb-8">
+        Gráfico
+      </div>
      
     </div>
     </div>
