@@ -1,0 +1,23 @@
+FROM node:18 as build
+
+WORKDIR /app
+
+# copiar o arquivo package.json e package-lock.json para o container
+COPY package*.json ./
+
+RUN npm install
+
+# Copiar o resto do código para o container
+COPY . .
+
+RUN npm run build
+
+# iagem Nginx para servir os arquivos estáticos
+FROM nginx:alpine
+
+# Copiar os arquivos do build para o diretório de HTML do Nginx
+COPY --from=build /app/build /usr/share/nginx/html
+
+EXPOSE 88
+
+CMD ["nginx", "-g", "daemon off;"]
