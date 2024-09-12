@@ -6,6 +6,9 @@ const pageNames: { [key: string]: string } = {
   '/training': 'Treinar',  
   '/progress': 'Treinar',
   '/trained': 'Modelo treinado',
+  '/exc': 'Executar',
+  '/excProgress': 'Executar',
+  '/excModel': 'Modelo executado',
 };
 
 const Header: React.FC = () => {

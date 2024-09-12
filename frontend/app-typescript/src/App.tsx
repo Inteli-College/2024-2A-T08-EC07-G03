@@ -4,8 +4,9 @@ import Home from './pages/Home';
 import TrainingPage from './pages/TrainingPage';  
 import TrainingProgressPage from './pages/TrainingProgressPage';
 import TrainedModelPage from './pages/TrainedModelPage';
-
-
+import ExcPage from './pages/ExcPage';
+import ExcProgressPage from './pages/ExcProgressPage';
+import ExcModelPage from './pages/ExcModelPage';
 
 function App() {
   return (
@@ -15,6 +16,9 @@ function App() {
         <Route path="/training" element={<TrainingPage />} />
         <Route path="/progress" element={<TrainingProgressPage />} />
         <Route path="/trained" element={<TrainedModelPage />} />
+        <Route path="/exc" element={<ExcPage />} />
+        <Route path="/excProgress" element={<ExcProgressPage />} />
+        <Route path="/excModel" element={<ExcModelPage />} />
       </Routes>
     </Router>
   );

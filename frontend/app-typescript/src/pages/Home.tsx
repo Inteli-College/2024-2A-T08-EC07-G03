@@ -8,8 +8,13 @@ const Home: React.FC = () => {
     const navigate = useNavigate();
     const [isPopupVisible, setIsPopupVisible] = useState(false);
 
+    
+    const handleExecuteClick = () => {
+        navigate('/exc');  
+    };
+
     const handleTrainClick = () => {
-        setIsPopupVisible(true);  
+        setIsPopupVisible(true); 
     };
 
     const handleClosePopup = () => {
@@ -18,7 +23,7 @@ const Home: React.FC = () => {
 
     const handleConfirm = () => {
         setIsPopupVisible(false);  
-        navigate('/training');  // Redireciona para a página TrainingPage
+        navigate('/training');  
     };
 
     return (
@@ -34,12 +39,15 @@ const Home: React.FC = () => {
 
                     {/* Logo e Título */}
                     <div className="flex flex-col items-center space-y-4">
-                        <img src="../../src/assets/logo.png" alt="Käfer logo" />
+                        <img src="../src/assets/logo.png" alt="Käfer logo" />
                     </div>
 
                     {/* Botões */}
                     <div className="mt-8 flex space-x-4">
-                        <Button label="Executar" />
+                        {/* Botão Executar que navega diretamente para a página ExcPage */}
+                        <Button label="Executar" onClick={handleExecuteClick} />
+                        
+                        {/* Botão Treinar que abre o Popup */}
                         <Button label="Treinar" onClick={handleTrainClick} />
                     </div>
 
