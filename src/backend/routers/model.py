@@ -10,7 +10,18 @@ class KNRData(BaseModel):
 @router.post("/predict")
 def predict(input_data: KNRData):
     try:
+        # Fazer a predição usando o KNR fornecido
         result = make_prediction(input_data.knr)
-        return {"prediction": result}
+        
+        if result is None:
+            raise HTTPException(status_code=404, detail="KNR não encontrado ou predição inválida.")
+        
+        return {"knr": input_data.knr, "prediction": result}
+    
+    except ValueError as e:
+        # Lançar uma exceção para KNR não encontrado
+        raise HTTPException(status_code=404, detail=str(e))
+    
     except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
+        # Tratar qualquer outra exceção inesperada
+        raise HTTPException(status_code=500, detail=f"Erro ao fazer a predição: {str(e)}")

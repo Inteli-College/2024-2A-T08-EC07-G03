@@ -1,46 +1,70 @@
-from fastapi import APIRouter, HTTPException
-from controllers.banco.supabase import create_supabase_client 
+from fastapi import APIRouter
+from controllers.banco.supabase import create_supabase_client
 from pydantic import BaseModel
 from datetime import datetime
 
 router = APIRouter()
-
 supabase = create_supabase_client()
 
 class ModelTraining(BaseModel):
     model_name: str
     training_accuracy: float
-    date: str
+    date: str 
 
 @router.post("/insert_model_training")
 def insert_model(input_data: ModelTraining):
-    # Valida o formato da data
+    # Converte a string da data para o formato datetime
     try:
         date_formatted = datetime.strptime(input_data.date, "%Y-%m-%d")
     except ValueError:
-        raise HTTPException(status_code=400, detail="Data inválida. O formato correto é YYYY-MM-DD")
+        return {"message": "Data inválida. O formato correto é YYYY-MM-DD"}
 
-    # Valida o campo de accuracy
-    if not (0 <= input_data.training_accuracy <= 1):
-        raise HTTPException(status_code=400, detail="Accuracy deve estar entre 0 e 1")
-
+    # Converte a data para uma string antes de inserir
     date_as_string = date_formatted.strftime("%Y-%m-%d %H:%M:%S")
 
-    try:
-        # Inserir os dados no banco
-        model = supabase.from_("model_training")\
-            .insert({
-                "model_name": input_data.model_name,
-                "training_accuracy": input_data.training_accuracy,
-                "date": date_as_string 
-            })\
-            .execute()
+    # Obtem o modelo anterior para comparação
+    previous_model = supabase.from_("model_training")\
+        .select("*")\
+        .order("date", desc=True)\
+        .limit(1)\
+        .execute()
 
-        if model.data:
-            return {"message": "Model created successfully"}
-        else:
-            raise HTTPException(status_code=500, detail="Model creation failed")
+    # Verifica se um modelo anterior foi encontrado
+    if previous_model.data:
+        previous_accuracy = previous_model.data[0]["training_accuracy"]
+        comparison_result = (
+            "Melhoria" if input_data.training_accuracy > previous_accuracy else "Piorou"
+        )
+    else:
+        comparison_result = "Primeiro modelo"
 
-    except Exception as e:
-        # Tratar possíveis erros inesperados
-        raise HTTPException(status_code=500, detail=str(e))
+    # Insere o novo modelo no banco de dados
+    new_model = supabase.from_("model_training")\
+        .insert({
+            "model_name": input_data.model_name,
+            "training_accuracy": input_data.training_accuracy,
+            "date": date_as_string
+        })\
+        .execute()
+
+    # Verifica se o novo modelo foi inserido com sucesso
+    if new_model.data:
+        return {
+            "message": "Model created successfully",
+            "comparison_with_previous": comparison_result,
+        }
+    else:
+        return {"message": "Model creation failed"}
+
+@router.get("/model_training_history")
+def get_model_training_history():
+    # Recupera o histórico de treinamento dos modelos
+    training_history = supabase.from_("model_training")\
+        .select("*")\
+        .order("date", desc=True)\
+        .execute()
+
+    if training_history.data:
+        return {"training_history": training_history.data}
+    else:
+        return {"message": "No training history found"}
