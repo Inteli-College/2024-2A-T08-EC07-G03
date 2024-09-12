@@ -1,0 +1,30 @@
+version: "3.8"
+
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "8000:80"
+    volumes:
+      - ./backend:/code
+    depends_on:
+      - frontend
+    networks:
+      - app-network
+
+  frontend:
+    build:
+      context: ./app-typescript
+      dockerfile: Dockerfile
+    ports:
+      - "7000:88"
+    volumes:
+      - ./app-typescript:/app
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
