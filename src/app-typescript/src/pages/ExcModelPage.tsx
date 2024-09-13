@@ -1,10 +1,17 @@
 import React, { useState } from 'react';
 import Header from '../components/Header';
 import ConfirmationPopup from '../components/ConfirmationPopup';
+import { useLocation } from 'react-router-dom';
 
 
-const ExcModelPage: React.FC = () => {
+const ExcModelPage: React.FC<ExcModelPageProps> = () => {
   const [isPopupVisible, setPopupVisible] = useState(false);
+
+  const location = useLocation();
+
+  const { result_atual } = location.state || {};
+  
+  console.log(result_atual);
 
   const handleOpenPopup = () => {
     setPopupVisible(true);
@@ -27,7 +34,7 @@ const ExcModelPage: React.FC = () => {
       <div className="w-full max-w-2xl mb-4">
         <label className="block text-gray-400 mb-2">Resultado Atual:</label>
         <div className="w-full bg-gray-300 h-10 rounded-lg flex justify-center items-center">
-          <span className="text-black">XXXXXX</span>
+          <span className="text-black">{result_atual}</span>
         </div>
       </div>
 

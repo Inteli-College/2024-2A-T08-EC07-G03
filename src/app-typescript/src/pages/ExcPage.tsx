@@ -33,20 +33,9 @@ const ConfirmButton: React.FC = () => {
       try{
         const knr = (document.getElementById('krn_input') as HTMLInputElement).value;
         console.log(knr);
+        
+        navigate('/excProgress', { state: { knr } });
 
-        const response = await fetch('http://localhost:8000/api/model/predict', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({knr})
-        });
-
-        if (response.ok) {
-          navigate('/excProgress');
-        } else {
-          throw new Error('Erro ao enviar o KNR');
-        }
       } catch (error) {
         console.log("Erro na requisição de predição", error);
       }
@@ -61,6 +50,7 @@ const ConfirmButton: React.FC = () => {
 };
 
 const ExcPage: React.FC = () => {
+  
   return (
     <div className="min-h-screen bg-gradient-to-b from-[#333641] to-[#282A32] font-sans">
       <Header />
