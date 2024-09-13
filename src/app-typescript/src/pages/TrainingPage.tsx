@@ -12,17 +12,6 @@ const Title: React.FC = () => {
   );
 };
 
-const KNRInput: React.FC = () => {
-  return (
-    <div className="flex flex-col items-center mt-6">
-      <input 
-        type="text"
-        placeholder="Digite seu KNR"
-        className="w-full max-w-lg px-4 py-2 border border-gray-500 rounded-lg bg-transparent text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-white font-light"
-      />
-    </div>
-  );
-};
 
 const ConfirmButton: React.FC = () => {
   const navigate = useNavigate();
@@ -45,8 +34,6 @@ const TrainingPage: React.FC = () => {
       <Header />
       <Title />
       <FileUpload />
-      <p className="text-white text-center mt-6">ou</p>
-      <KNRInput />
       <ConfirmButton />
     </div>
   );
