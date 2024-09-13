@@ -35,7 +35,7 @@ def buscar_dados_por_knr(knr):
 
     return features
 
-def predict(knr: str):
+def predict_failure(knr: str):
     # try:
     #     data = buscar_dados_por_knr(knr)
     #     print(data)
@@ -63,7 +63,8 @@ def predict(knr: str):
     #     raise HTTPException(status_code=404, detail=str(e))
 
     # Fazer a predição com o modelo Keras
-    prediction = model.predict(data)
+    print("Chegou aqui")
+    prediction = model.predict(knr)
     print(type(prediction))
 
     # O Keras geralmente retorna a predição como uma matriz, então podemos precisar extrair o valor

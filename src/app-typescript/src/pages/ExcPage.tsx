@@ -19,6 +19,7 @@ const KNRInput: React.FC = () => {
         type="text"
         placeholder="Digite seu KNR"
         className="w-full max-w-lg px-4 py-2 border border-gray-500 rounded-lg bg-transparent text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-white font-light"
+        id='krn_input'
       />
     </div>
   );
@@ -27,8 +28,28 @@ const KNRInput: React.FC = () => {
 const ConfirmButton: React.FC = () => {
   const navigate = useNavigate();
 
-  const handleTrainClick = () => {
-      navigate('/excProgress');
+  const handleTrainClick = async () => {
+
+      try{
+        const knr = (document.getElementById('krn_input') as HTMLInputElement).value;
+        console.log(knr);
+
+        const response = await fetch('http://localhost:8000/api/model/predict', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({knr})
+        });
+
+        if (response.ok) {
+          navigate('/excProgress');
+        } else {
+          throw new Error('Erro ao enviar o KNR');
+        }
+      } catch (error) {
+        console.log("Erro na requisição de predição", error);
+      }
   };
   return (
     <div className="flex justify-center mt-6">
