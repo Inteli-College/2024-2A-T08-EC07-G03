@@ -49,11 +49,9 @@ const ExcProgressPage: React.FC = () => {
           console.log("Status da predição:", predictionStatus);
 
           // Predição concluída, definir o progresso como 100%
+          await new Promise(f => setTimeout(f, 5000)); // Simula um tempo de espera de 5 segundos
+          navigate('/excModel', { state: { result_atual: data['prediction']['status'] } });
           setProgress(100);
-          setTimeout(() => {
-            // Após a predição terminar e o progresso atingir 100%, redireciona para ExcModelPage
-            navigate('/excModel', { state: { result_atual: data['prediction']['status'] } });
-          }, 5000); // Atraso para permitir que o progresso visualize os 100% antes de redirecionar
         } else {
           console.error('Erro na predição');
         }
