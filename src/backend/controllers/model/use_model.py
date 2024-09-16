@@ -3,7 +3,7 @@ from keras.models import load_model
 import pandas as pd
 from joblib import load
 from controllers.banco.supabase import create_supabase_client  # Para salvar no banco
-
+from controllers.data_process.data_process import build_feature_prediction
 
 # Carregar o modelo salvo no formato .h5
 model = load_model("modelo2.h5")
@@ -35,7 +35,7 @@ def buscar_dados_por_knr(knr):
 
     return features
 
-def predict(knr: str):
+async def predict_failure(knr: str):
     # try:
     #     data = buscar_dados_por_knr(knr)
     #     print(data)
@@ -63,15 +63,17 @@ def predict(knr: str):
     #     raise HTTPException(status_code=404, detail=str(e))
 
     # Fazer a predição com o modelo Keras
-    prediction = model.predict(data)
-    print(type(prediction))
+    print("Chegou aqui")
+    features = await build_feature_prediction(knr)
+    
+    print(features)
+    
+    prediction = model.predict(features)
+    print(prediction)
 
-    # O Keras geralmente retorna a predição como uma matriz, então podemos precisar extrair o valor
-    prediction_value = int(
-        prediction[0][0]
-    )  # Supondo que seja uma classificação binária
+    threshold = 0.5
 
-    if prediction_value == 0:
-        return {"knr": knr, "prediction": prediction_value, "status": "Não tem falha"}
+    if prediction[0][0] >= threshold:
+        return {"knr": knr, "prediction": float(prediction[0][0]), "status": "Tem falha"}
     else:
-        return {"knr": knr, "prediction": prediction_value, "status": "Tem falha"}
+        return {"knr": knr, "prediction": float(prediction[0][0]), "status": "Não tem falha"}
