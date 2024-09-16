@@ -10,7 +10,7 @@ import {themes as prismThemes} from 'prism-react-renderer';
 const config = {
   title: 'Grupo 3',
   tagline: 'Projeto de modelo preventivo para a Volkswagen',
-  favicon: 'img/favicon.ico',
+  favicon: 'img/logo_corte_black.png',
 
   // Set the production url of your site here
   url: 'https://inteli-college.github.io/',
@@ -69,7 +69,7 @@ const config = {
         title: 'Grupo 3',
         logo: {
           alt: 'My Site Logo',
-          src: 'img/logo.svg',
+          src: 'img/logo_corte_black.png',
         },
         items: [
           {

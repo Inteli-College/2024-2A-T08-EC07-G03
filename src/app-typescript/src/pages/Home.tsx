@@ -39,7 +39,7 @@ const Home: React.FC = () => {
 
                     {/* Logo e Título */}
                     <div className="flex flex-col items-center space-y-4">
-                        <img src="../assets/logo.png" alt="Käfer logo" />
+                        <img src="../assets/logo_corte_black.png" alt="Käfer logo" />
                     </div>
 
                     {/* Botões */}
