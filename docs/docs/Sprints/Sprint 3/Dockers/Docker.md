@@ -46,6 +46,18 @@ Sumarizando um pouco o que foi feito no Dockerfile:
 - Expondo a porta 8000, que é a porta em que o FastAPI irá rodar.
 - Rodamos o comando `uvicorn app:app --host
 
+Para rodar o cotainer do backend, deve-se rodar o seguinte comando:
+
+```bash
+
+docker build -t backend-kafer .
+
+docker run -d -p 8000:80 backend-kafer
+
+```
+
+Assim pode ser acesso as rotas do backend em `http://localhost:8000/docs`.
+
 ## Docker Frontend
 
 O Dockerfile do frontend é responsável por criar a imagem do contêiner do frontend. Para facilitar o deploy da aplicação no futuro e segurança utilizando o Nginx como servidor web.
@@ -90,6 +102,17 @@ Sumarizando um pouco o que foi feito no Dockerfile:
 - Expondo a porta 88, que é a porta em que o Nginx irá rodar.
 - Rodamos o comando `nginx -g daemon off;` para iniciar o servidor Nginx.
 
+Para rodar o cotainer do frontend, deve-se rodar o seguinte comando:
+
+```bash
+
+docker build -t frontend-kafer .
+
+docker run -d -p 3000:80 frontend-kafer
+```
+
+Assim pode ser acesso a aplicação em `http://localhost:3000`.
+
 ## Docker Compose
 
 Para conseguir rodar os dois containers juntos, utilizamos o Docker Compose. O arquivo `docker-compose.yml` é responsável por definir a configuração dos contêineres e a rede que será utilizada para a comunicação entre eles. Além disso, atraves dele estavamos fazendo o heatlh check dos containers que está detalhado no [Health Check](../HealthCheck/healthCheck.md).
@@ -122,7 +145,7 @@ services:
       context: ./app-typescript
       dockerfile: Dockerfile
     ports:
-      - "7000:80"
+      - "3000:80"
     volumes:
       - ./app-typescript:/app
     networks:
@@ -149,3 +172,11 @@ Sumarizando um pouco o que foi feito no docker-compose.yml:
 - Definimos a rede a ser utilizada para a comunicação entre os contêineres.
 - Configuramos o healthcheck para verificar a saúde dos contêineres.
 - Definimos a rede `app-network` como bridge para a comunicação entre os contêineres.
+
+Para rodar os contêineres juntos, basta rodar o seguinte comando:
+
+```bash
+
+docker-compose up --build
+
+``
