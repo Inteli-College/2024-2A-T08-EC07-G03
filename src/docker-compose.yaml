@@ -1,0 +1,41 @@
+version: "3.8"
+
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "8000:80"
+    volumes:
+      - ./backend:/code
+    depends_on:
+      - frontend
+    networks:
+      - app-network
+    # Healthcheck para verificar a saude do container -> fica tentando enquanto o container estiver rodando
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost/health"]
+      interval: 30s # Tempo entre os testes
+      timeout: 10s # Tempo para o teste falhar
+      retries: 3  # Numero de tentativas
+      start_period: 60s # Tempo pra começar testar o status
+  frontend:
+    build:
+      context: ./app-typescript
+      dockerfile: Dockerfile
+    ports:
+      - "7000:80"
+    volumes:
+      - ./app-typescript:/app
+    networks:
+      - app-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost/health"]  # rota de health check do frontend
+      interval: 30s 
+      timeout: 10s
+      retries: 3   
+
+networks:
+  app-network:
+    driver: bridge
