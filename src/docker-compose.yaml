@@ -19,7 +19,7 @@ services:
       interval: 30s # Tempo entre os testes
       timeout: 10s # Tempo para o teste falhar
       retries: 3  # Numero de tentativas
-
+      start_period: 60s # Tempo pra começar testar o status
   frontend:
     build:
       context: ./app-typescript

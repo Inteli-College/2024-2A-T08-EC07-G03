@@ -1,30 +1,20 @@
 import React, { useState } from 'react';
 import Header from '../components/Header';
-import ConfirmationPopup from '../components/ConfirmationPopup';
 import { useLocation } from 'react-router-dom';
-
-
-const ExcModelPage: React.FC = () => {
-  const [isPopupVisible, setPopupVisible] = useState(false);
-
-  const location = useLocation();
-
-  const { result_atual } = location.state || {};
-  
-  console.log(result_atual);
-
-  const handleOpenPopup = () => {
-    setPopupVisible(true);
-  };
-
-  const handleClosePopup = () => {
-    setPopupVisible(false);
-  };
-
-  return (
-    <div className="min-h-screen bg-gradient-to-b from-[#333641] to-[#282A32] text-white p-8">
+const ExcModelPage = () => {
+    const [isPopupVisible, setPopupVisible] = useState(false);
+    const location = useLocation();
+    const { result_atual } = location.state || {};
+    console.log(result_atual);
+    const handleOpenPopup = () => {
+        setPopupVisible(true);
+    };
+    const handleClosePopup = () => {
+        setPopupVisible(false);
+    };
+    return (<div className="min-h-screen bg-gradient-to-b from-[#333641] to-[#282A32] text-white p-8">
       <Header />
-      <div className="flex flex-col items-center justify-center" >
+      <div className="flex flex-col items-center justify-center">
       <h1 className="text-3xl font-light mb-6">Modelo Executado:</h1>
 
       <div className="w-full max-w-2xl h-64 bg-gray-200 rounded-lg flex items-center justify-center text-black text-2xl mb-8">
@@ -48,8 +38,6 @@ const ExcModelPage: React.FC = () => {
     
      
     </div>
-    </div>
-  );
+    </div>);
 };
-
 export default ExcModelPage;

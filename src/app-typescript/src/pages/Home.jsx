@@ -2,32 +2,24 @@ import React, { useState } from 'react';
 import Button from '../components/Button';
 import Navbar from '../components/Navbar';
 import { useNavigate } from 'react-router-dom';
-import Popup from '../components/Popup'; 
-
-const Home: React.FC = () => {
+import Popup from '../components/Popup';
+const Home = () => {
     const navigate = useNavigate();
     const [isPopupVisible, setIsPopupVisible] = useState(false);
-
-    
     const handleExecuteClick = () => {
-        navigate('/exc');  
+        navigate('/exc');
     };
-
     const handleTrainClick = () => {
-        setIsPopupVisible(true); 
+        setIsPopupVisible(true);
     };
-
     const handleClosePopup = () => {
-        setIsPopupVisible(false);  
+        setIsPopupVisible(false);
     };
-
     const handleConfirm = () => {
-        setIsPopupVisible(false);  
-        navigate('/training');  
+        setIsPopupVisible(false);
+        navigate('/training');
     };
-
-    return (
-        <div className="min-h-screen flex flex-col bg-gradient-to-r from-gray-900 to-gray-800">
+    return (<div className="min-h-screen flex flex-col bg-gradient-to-r from-gray-900 to-gray-800">
             {/* Navbar */}
             <Navbar>
                 <a href="/">Home</a>
@@ -39,16 +31,16 @@ const Home: React.FC = () => {
 
                     {/* Logo e Título */}
                     <div className="flex flex-col items-center space-y-4">
-                        <img src="../assets/logo.png" alt="Käfer logo" />
+                        <img src="../assets/logo.png" alt="Käfer logo"/>
                     </div>
 
                     {/* Botões */}
                     <div className="mt-8 flex space-x-4">
                         {/* Botão Executar que navega diretamente para a página ExcPage */}
-                        <Button label="Executar" onClick={handleExecuteClick} />
+                        <Button label="Executar" onClick={handleExecuteClick}/>
                         
                         {/* Botão Treinar que abre o Popup */}
-                        <Button label="Treinar" onClick={handleTrainClick} />
+                        <Button label="Treinar" onClick={handleTrainClick}/>
                     </div>
 
                     {/* Footer */}
@@ -59,13 +51,8 @@ const Home: React.FC = () => {
             </div>
 
             {/* Popup Modal */}
-            <Popup
-                isVisible={isPopupVisible}
-                onClose={handleClosePopup}
-                onConfirm={handleConfirm}  // Passa a função handleConfirm
-            />
-        </div>
-    );
+            <Popup isVisible={isPopupVisible} onClose={handleClosePopup} onConfirm={handleConfirm} // Passa a função handleConfirm
+    />
+        </div>);
 };
-
 export default Home;
