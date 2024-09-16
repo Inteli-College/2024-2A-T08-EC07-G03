@@ -1,3 +1,9 @@
+---
+title: Backend
+sidebar_position: 2
+description : Backend que desenvolvido na sprint 3
+---
+
 # Introdução
 
 A partir do que foi desenvolvido na Sprint 2, o grupo Käfer continuou o desenvolvimento do backend da solução, com o objetivo de adicionar mais rotas e fazer com que as informações fossem guardadas no banco de dados. Essa etapa é essencial essencial para garantir a comunicação eficaz entre os resultados do modelo preditivo e a interface do usuário.
@@ -7,7 +13,7 @@ A partir do que foi desenvolvido na Sprint 2, o grupo Käfer continuou o desenvo
 O backend foi contruído com FastAPI para fornecer endpoints que interagem com um modelo preditivo e um banco de dados Supabase. O backend é responsável por:
 
 - Receber e processar dados de entrada.
-- Fazer previsões com um modelo treinado.
+- Fazer previsões com um modelo treinado. 
 - Armazenar e recuperar dados de treinamento e previsões
 
 ### Tecnologias Utilizadas:
@@ -35,29 +41,25 @@ Insere um novo registro de treinamento do modelo.
 * **Resposta:**
     - **200 OK:**
 
-        [source,json]
-    ----
-        {
-
-        "message": "Model created successfully",
-        "comparison_with_previous": "Melhoria"
-        }
-
-    ----
+    ```json
+    {
+      "message": "Model created successfully",
+      "comparison_with_previous": "Melhoria"
+    }
+    ```
     - **400 Bad Request:**
     
-        [source,json]
+    ```json
     ----
         {
         "message:" "Data inválida. O formato correto é YYYY-MM-DD"
         }
 
-    ----
+    ```
 
 * **Exemplo de Requisição com cURL:**
-  [source,bash]
+  ```bash
 
-  ----
   curl -X POST "http://127.0.0.1:8000/api/insert_model_training" -H "Content-Type: application/json" -d 
     
         {
@@ -66,7 +68,7 @@ Insere um novo registro de treinamento do modelo.
         "date": "2024-09-10"
         }
 
-  ----
+  ```
 
 ### GET /api/model_training_history
 
@@ -75,9 +77,7 @@ Recupera o histórico de treinamento do modelos.
 * **Resposta:**
   - **200 OK:**
 
-    [source,json]
-
-----
+    ```json
     {
       "training_history": [
         {
@@ -88,18 +88,16 @@ Recupera o histórico de treinamento do modelos.
       ]
     }
 
-----
+  ```
 
 * **404 Not Found:**
 
-    [source,json]
 
-    ----
+    ```json
         {
         "message": "No training history found"
-        }
-        
-    ----
+        }     
+    ```
 
 ## Funções e Métodos
 
@@ -115,9 +113,7 @@ Faz um apredição com base no KNR fornecido.
 
 * **Exemplo de Uso:**
 
-    [source,python]
-
-    ----
+    ```python
         result = make_prediction("12345")
         print(result)
-    ----
+    ```
