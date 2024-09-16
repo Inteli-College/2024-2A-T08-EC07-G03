@@ -27,7 +27,7 @@ O componente Home é a página principal da aplicação. Ele utiliza o useState 
 
 <p align="center"><b> Figura 1 - Home</b></p>
 <div align="center">
-  <img src={require('./../../../static/img/home.png').default} alt="home"/>
+  <img src={require('../../../../static/img/home.png').default} alt="home"/>
   <p><b>Fonte:</b> Elaborado pelo grupo Käfer</p>
 </div>
 
@@ -51,7 +51,7 @@ Esta página exibe o resultado de um modelo executado, incluindo gráficos e mé
 
 <p align="center"><b> Figura 2 - ExcModelPage</b></p>
 <div align="center">
-  <img src={require('./../../../static/img/trainedModelPage.png').default} alt="ExcModelPage"/>
+  <img src={require('../../../../static/img/trainedModelPage.png').default} alt="ExcModelPage"/>
   <p><b>Fonte:</b> Elaborado pelo grupo Käfer</p>
 </div>
 
@@ -72,7 +72,7 @@ A página ExcPage lida com o upload de arquivos e a inserção de dados necessá
 
 <p align="center"><b> Figura 3 - ExcPage</b></p>
 <div align="center">
-  <img src={require('./../../../static/img/trainingPage.png').default} alt="EcxPage"/>
+  <img src={require('../../../../static/img/trainingPage.png').default} alt="EcxPage"/>
   <p><b>Fonte:</b> Elaborado pelo grupo Käfer</p>
 </div>
 
@@ -92,7 +92,7 @@ Essa página simula o progresso da execução de um modelo, exibindo uma barra d
 
 <p align="center"><b> Figura 4 - ExcProgressPage</b></p>
 <div align="center">
-  <img src={require('./../../../static/img/trainingProgressPage.png').default} alt="ExcProgressPage"/>
+  <img src={require('../../../../static/img/trainingProgressPage.png').default} alt="ExcProgressPage"/>
   <p><b>Fonte:</b> Elaborado pelo grupo Käfer</p>
 </div>
 
@@ -137,7 +137,7 @@ Ao clicar no botão treinar na tela inicial, a tela de treinamento é exibida, e
 
 <p align="center"><b> Figura 5 - TrainingPage</b></p>
 <div align="center">
-  <img src={require('./../../../static/img/trainingPage.png').default} alt="TrainingPage"/>
+  <img src={require('../../../../static/img/trainingPage.png').default} alt="TrainingPage"/>
   <p><b>Fonte:</b> Elaborado pelo grupo Käfer</p>
 </div>
 
@@ -189,7 +189,7 @@ Esta tela apenas exibe o processo de treinamento do modelo, incluindo uma progre
 
 <p align="center"><b> Figura 6 - TrainingProgressPage</b></p>
 <div align="center">
-  <img src={require('./../../../static/img/trainingProgressPage.png').default} alt="TrainingProgressPage"/>
+  <img src={require('../../../../static/img/trainingProgressPage.png').default} alt="TrainingProgressPage"/>
   <p><b>Fonte:</b> Elaborado pelo grupo Käfer</p>
 </div>
 
@@ -220,7 +220,7 @@ Exibe os resultados do treinamento do modelo, com a exibição de gráficos e m�
 
 <p align="center"><b> Figura 7 - TrainedModelPage</b></p>
 <div align="center">
-  <img src={require('./../../../static/img/trainedModelPage.png').default} alt="TrainedModelPage"/>
+  <img src={require('../../../../static/img/trainedModelPage.png').default} alt="TrainedModelPage"/>
   <p><b>Fonte:</b> Elaborado pelo grupo Käfer</p>
 </div>
 
