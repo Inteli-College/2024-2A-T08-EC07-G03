@@ -15,7 +15,7 @@ services:
       - app-network
     # Healthcheck para verificar a saude do container -> fica tentando enquanto o container estiver rodando
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost/health"]
+      test: ["CMD", "curl", "-f", "http://localhost/api/healthcheck/health"]
       interval: 30s # Tempo entre os testes
       timeout: 10s # Tempo para o teste falhar
       retries: 3  # Numero de tentativas
