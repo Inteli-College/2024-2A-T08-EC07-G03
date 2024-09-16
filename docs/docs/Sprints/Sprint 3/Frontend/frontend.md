@@ -25,6 +25,12 @@ Nesta sprint 3, o grupo Käfer começou a construir o frontend proposto para uso
 
 O componente Home é a página principal da aplicação. Ele utiliza o useState para gerenciar o estado de visibilidade do popup e useNavigate para controlar a navegação entre as páginas. Dois botões principais permitem ao usuário executar um modelo ou iniciar o processo de treinamento.
 
+<p align="center"><b> Figura 1 - Home</b></p>
+<div align="center">
+  <img src={require('./../../../static/img/home.png').default} alt="home"/>
+  <p><b>Fonte:</b> Elaborado pelo grupo Käfer</p>
+</div>
+
 #### Partes Importantes:
 - *Estado e navegação*: O useNavigate permite a navegação programática entre páginas. Por exemplo, o botão "Executar" redireciona para /exc, enquanto o botão "Treinar" abre um popup modal.
 - *Popup Modal*: O modal é controlado por um estado booleano (isPopupVisible). A função handleConfirm fecha o modal e redireciona para a página de treinamento.
@@ -43,6 +49,13 @@ const handleTrainClick = () => {
 
 Esta página exibe o resultado de um modelo executado, incluindo gráficos e métricas. O uso de estados permite controlar a abertura de popups, e a estrutura de layout com Tailwind facilita a estilização da página.
 
+<p align="center"><b> Figura 2 - ExcModelPage</b></p>
+<div align="center">
+  <img src={require('./../../../static/img/trainedModelPage.png').default} alt="ExcModelPage"/>
+  <p><b>Fonte:</b> Elaborado pelo grupo Käfer</p>
+</div>
+
+
 #### Partes Importantes:
 - *Seção de Resultados*: São exibidos o resultado atual e o modelo anterior, com caixas estilizadas utilizando Tailwind.
 - *Gráficos Placeholder*: Espaços são reservados para gráficos e métricas, permitindo futura integração com bibliotecas de visualização.
@@ -57,6 +70,13 @@ Esta página exibe o resultado de um modelo executado, incluindo gráficos e mé
 
 A página ExcPage lida com o upload de arquivos e a inserção de dados necessários para a execução de modelos. Inclui componentes reutilizáveis como FileUpload e KNRInput.
 
+<p align="center"><b> Figura 3 - ExcPage</b></p>
+<div align="center">
+  <img src={require('./../../../static/img/trainingPage.png').default} alt="EcxPage"/>
+  <p><b>Fonte:</b> Elaborado pelo grupo Käfer</p>
+</div>
+
+
 #### Partes Importantes:
 - *Componente de Input*: Um campo de entrada é fornecido para que o usuário insira seu KNR. O botão "Confirmar" navega para a página de progresso da execução do modelo.
 - *File Upload*: O componente FileUpload facilita o upload de arquivos, como .csv, necessários para a análise.
@@ -69,6 +89,13 @@ A página ExcPage lida com o upload de arquivos e a inserção de dados necessá
 ### 4. *ExcProgressPage.tsx*
 
 Essa página simula o progresso da execução de um modelo, exibindo uma barra de progresso que é atualizada periodicamente usando useEffect.
+
+<p align="center"><b> Figura 4 - ExcProgressPage</b></p>
+<div align="center">
+  <img src={require('./../../../static/img/trainingProgressPage.png').default} alt="ExcProgressPage"/>
+  <p><b>Fonte:</b> Elaborado pelo grupo Käfer</p>
+</div>
+
 
 #### Partes Importantes:
 - *Simulação de Progresso*: O estado progress é atualizado a cada segundo até atingir 100%, simulando a execução de um modelo de machine learning.
@@ -107,6 +134,13 @@ O componente App é o ponto de entrada da aplicação, responsável por definir 
 ### 6. *TrainingPage.tsx*
 
 Ao clicar no botão treinar na tela inicial, a tela de treinamento é exibida, em que disponibiliza uma opção para inserir dados em formato de csv para treinar o modelo
+
+<p align="center"><b> Figura 5 - TrainingPage</b></p>
+<div align="center">
+  <img src={require('./../../../static/img/trainingPage.png').default} alt="TrainingPage"/>
+  <p><b>Fonte:</b> Elaborado pelo grupo Käfer</p>
+</div>
+
 
 Também, vale destacar alguns dos componentes que estão presentes na tela. Um deles é o Header, que é a parte superior da tela, em que o usuário consegue saber em que tela está, e consegue retornar para telas anteriores ao clicar no nome da tela anterior. O código a seguir ilustra um pouco o funcionamento do header:
 
@@ -153,6 +187,12 @@ const FileUpload: React.FC = () => {
 
 Esta tela apenas exibe o processo de treinamento do modelo, incluindo uma progress bar, que mostra o progresso do treinamento
 
+<p align="center"><b> Figura 6 - TrainingProgressPage</b></p>
+<div align="center">
+  <img src={require('./../../../static/img/trainingProgressPage.png').default} alt="TrainingProgressPage"/>
+  <p><b>Fonte:</b> Elaborado pelo grupo Käfer</p>
+</div>
+
 Para realizar o funcionamento desta progress bar, o componente dele foi devidamente criado e configurado, e pode ser exemplificado no seguinte trecho de código:
 
 ```
@@ -177,6 +217,12 @@ const ProgressBar: React.FC<ProgressBarProps> = ({ progress }) => {
 ### 8. *TrainedModelPage*
 
 Exibe os resultados do treinamento do modelo, com a exibição de gráficos e métricas. Além disso, são exibidos, além dos resultados do modelo atual, os resultados do modelo antigo, o que torna possível fazer comparações entre modelos diferentes
+
+<p align="center"><b> Figura 7 - TrainedModelPage</b></p>
+<div align="center">
+  <img src={require('./../../../static/img/trainedModelPage.png').default} alt="TrainedModelPage"/>
+  <p><b>Fonte:</b> Elaborado pelo grupo Käfer</p>
+</div>
 
 Dada a exibição desses dois modelos, é possível escolher entre qual deles para prosseguir com a execução do modelo. Para isso ser possível, foi criado um componentes para a exibição de um pop up, que aparece quando um usuário clica no modelo atual ou no anterior, e exibe uma mensagem de confirmação para o uso de tal modelo:
 
