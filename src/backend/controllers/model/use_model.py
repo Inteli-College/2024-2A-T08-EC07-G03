@@ -1,59 +1,77 @@
 from fastapi import HTTPException
-import joblib
+from keras.models import load_model
 import pandas as pd
+from joblib import load
+from controllers.banco.supabase import create_supabase_client  # Para salvar no banco
 
 
-model = joblib.load("modelo.joblib")
+# Carregar o modelo salvo no formato .h5
+model = load_model("modelo2.h5")
 
 print(type(model))
 print(model)
 
-
-def buscar_dados_por_knr(knr):
-
+def buscar_dados_por_knr(knr):    
     df = pd.read_excel("dados.xlsx")
-
     dados = df[df["KNR"] == knr]
 
     if dados.empty:
-        raise ValueError(f"KNR {knr} não encontrado.")
+        raise ValueError(f"KNR {knr} não encontrado.")    
 
-    dados["KNR"] = 0
-
+    # Selecionar as features e prepará-las para o modelo
     features = dados[
         [
-            "KNR",
-            "MODELO",
-            "COR",
-            "MOTOR",
-            "ESTACAO",
-            "USUARIO",
-            "HALLE",
-            "FALHA",
-            "DATA_x",
-            "NAME",
-            "ID",
-            "STATUS",
-            "UNIT",
-            "VALUE_ID",
-            "VALUE",
-            "DATA_y",
+            "Nvezes1",
+            "Nvezes2",
+            "Nvezes718",
+            "SomaTempo1",
+            "SomaTempo2",
+            "SomaTempo718",
         ]
-    ].values
+    ].values    
 
+    # O Keras espera um array NumPy, então as dimensões devem estar corretas
     features = features.reshape(1, -1)
 
     return features
 
-
 def predict(knr: str):
-    try:
-        data = buscar_dados_por_knr(knr)
-        print(data)
-    except ValueError as e:
-        raise HTTPException(status_code=404, detail=str(e))
+    # try:
+    #     data = buscar_dados_por_knr(knr)
+    #     print(data)
+        
+    #     # Fazer a predição com o modelo
+    #     prediction = model.predict(data)
+    #     print(type(prediction))  
 
+    #     # Extrair o valor da predição
+    #     prediction_value = int(prediction[0][0])  # Supondo que seja uma classificação binária
+
+    #     status = "Tem falha" if prediction_value == 1 else "Não tem falha"
+
+    #     # Salvar a predição no banco de dados
+    #     supabase = create_supabase_client()
+    #     supabase.from_("predictions").insert({
+    #         "knr": knr,
+    #         "prediction": prediction_value,
+    #         "status": status,
+    #     }).execute()
+
+    #     return {"knr": knr, "prediction": prediction_value, "status": status}
+    
+    # except ValueError as e:
+    #     raise HTTPException(status_code=404, detail=str(e))
+
+    # Fazer a predição com o modelo Keras
     prediction = model.predict(data)
     print(type(prediction))
 
-    return {"knr": knr, "prediction": int(prediction[0])}
+    # O Keras geralmente retorna a predição como uma matriz, então podemos precisar extrair o valor
+    prediction_value = int(
+        prediction[0][0]
+    )  # Supondo que seja uma classificação binária
+
+    if prediction_value == 0:
+        return {"knr": knr, "prediction": prediction_value, "status": "Não tem falha"}
+    else:
+        return {"knr": knr, "prediction": prediction_value, "status": "Tem falha"}
