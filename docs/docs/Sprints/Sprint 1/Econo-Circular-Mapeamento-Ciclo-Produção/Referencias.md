@@ -3,10 +3,10 @@ title: Referências
 sidebar_position: 1
 description : Referências usadas na criação do Infográfico Interativo e no Levantamento de Matérias-Primas, Recursos, Processos e Impactos. 
 ---
-
+# Introdução
+Este documento apresenta as referências usadas na criação do Infográfico Interativo e do Levantamento de Matérias-Primas, Recursos, Processos e Impactos.
 
 # Referências
-
 
 - **Silva, D. 2021.**  from [Ciclo de vida do produto: como funciona + 3 exemplos práticos](https://www.zendesk.com.br/blog/ciclo-de-vida-do-produto/)
 

@@ -6,7 +6,7 @@ description : Levantamento de requisitos de visualização para o projeto
 
 # Introdução
 
-Este documento apresenta um levantamento das **matérias-primas**, **recursos**, **processos** e **impactos**, com ênfase nas operações e na cadeia de suprimentos da Volkswagen. Isso é crucial para o projeto, já que permite uma melhor compreensão dos elementos que influenciam a operação, sustentabilidade ambiental e o impacto social da produção automotiva.
+Essa etapa, expõe um levantamento das **matérias-primas**, **recursos**, **processos** e **impactos**, com ênfase nas operações e na cadeia de suprimentos da Volkswagen. Isso é crucial para o projeto, já que permite uma melhor compreensão dos elementos que influenciam a operação, a sustentabilidade ambiental e o impacto social da produção automotiva.
 
 As informações presentes neste documento, foram construidas após uma grande pesquisa, as referências usadas para criar essa etapa, estão disponíveis na secção de [Referências](https://inteli-college.github.io/2024-2A-T08-EC07-G03/docs/Sprints/Sprint%201/Econo-Circular-Mapeamento-Ciclo-Produ%C3%A7%C3%A3o/Referencias).
 
