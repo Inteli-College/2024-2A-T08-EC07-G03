@@ -10,7 +10,11 @@ Wireframes são essenciais no processo de design e desenvolvimento de qualquer a
 
 ### 1. Tela Inicial
 
-![Tela Inicial](/img/tela_inicial1.png)
+<p align="center"><b> Figura 1 - Tela Inicial</b></p>
+<div align="center" class="zoom-image">
+  <img src={require('../../../../static/img/tela_inicial1.png').default} alt="Tela Inicial"/>
+  <p><b>Fonte:</b> Elaborado por Grupo 3</p>
+</div>
 
 A **Tela Inicial** é o ponto de entrada da aplicação Käfer. Ela apresenta um logotipo proeminente de um besouro (Käfer) no centro da tela, simbolizando o nome da aplicação. Abaixo do logotipo, há dois botões principais: **Executar** e **Treinar**.
 
@@ -21,7 +25,11 @@ O design é minimalista, com foco em guiar o usuário para essas duas ações pr
 
 ### 2. Execução e Treino
 
-![Tabela](/img/carregamento.png)
+<p align="center"><b> Figura 2 - Execução e Treino</b></p>
+<div align="center" class="zoom-image">
+  <img src={require('../../../../static/img/carregamento.png').default} alt="Tabela"/>
+  <p><b>Fonte:</b> Elaborado por Grupo 3</p>
+</div>
 
 Ao clicar em **Executar** na tela inicial, o usuário é levado à tela de **Upload**.
 
@@ -37,7 +45,11 @@ Se o usuário selecionar **Treinar** na tela inicial, ele é direcionado para a 
 
 ### 3. Modelo Treinado
 
-![Resultados Treino](/img/resultados_treino.png)
+<p align="center"><b> Figura 3 - Modelo Treinado</b></p>
+<div align="center" class="zoom-image">
+  <img src={require('../../../../static/img/resultados_treino.png').default} alt="Resultados Treino"/>
+  <p><b>Fonte:</b> Elaborado por Grupo 3</p>
+</div>
 
 Após o processo de treinamento, o usuário é levado à tela de **Modelo Treinado**.
 
@@ -47,7 +59,11 @@ Após o processo de treinamento, o usuário é levado à tela de **Modelo Treina
 
 ### 4. Modelo Executado
 
-![Resultados Execução](/img/resultados_exc.png)
+<p align="center"><b> Figura 4 - Modelo Executado</b></p>
+<div align="center" class="zoom-image">
+  <img src={require('../../../../static/img/resultados_exc.png').default} alt="Resultados Execução"/>
+  <p><b>Fonte:</b> Elaborado por Grupo 3</p>
+</div>
 
 Após o processo de treinamneto do modelo, o usuário ao clicar no botão **Home** é redirecionado para a **Tela Inicial**, após todo processo de carregamento da **Execução** do Modelo, o usuário é levado pra tela de resultados do **Modelo Executado**.
 
@@ -57,8 +73,11 @@ Após o processo de treinamneto do modelo, o usuário ao clicar no botão **Home
 
 ### 5. POPUP Ver Mais
 
-![Resultados Ver mais](/img/vermais.png)
-
+<p align="center"><b> Figura 5 - POPUP Ver Mais</b></p>
+<div align="center" class="zoom-image">
+  <img src={require('../../../../static/img/vermais.png').default} alt="Resultados Ver mais"/>
+  <p><b>Fonte:</b> Elaborado por Grupo 3</p>
+</div>
 
 Clicar em **Ver Mais** na tela de Resultados abre uma janela detalhada de **POPUP**.
 
@@ -69,7 +88,11 @@ Clicar em **Ver Mais** na tela de Resultados abre uma janela detalhada de **POPU
 
 A imagem abaixo ilustra o fluxo da aplicação Käfer conforme descrito nas seções acima:
 
-![Fluxo da Aplicação Käfer](/img/fluxo.png)
+<p align="center"><b> Figura 6 - Fluxo da Aplicação</b></p>
+<div align="center" class="zoom-image">
+  <img src={require('../../../../static/img/fluxo.png').default} alt="fluxo"/>
+  <p><b>Fonte:</b> Elaborado por Grupo 3</p>
+</div>
 
 O fluxo da aplicação começa na **Tela Inicial**, onde o usuário escolhe entre **Executar** uma análise de dados ou **Treinar** um modelo. Dependendo da escolha, o usuário será levado para a tela de **Tabela Para Análise** ou **Treino do Modelo**. Após a conclusão das respectivas ações, o usuário pode visualizar os resultados em **Modelo Treinado** ou **Resultados**, com a opção de explorar mais detalhes através do **POPUP Ver Mais**. Este fluxo garante uma navegação intuitiva e eficiente, guiando o usuário por todas as etapas do processo de análise e treinamento de forma clara e direta.
 

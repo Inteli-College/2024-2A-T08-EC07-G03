@@ -9,7 +9,7 @@ description : Modelos desenvolvidos na sprint 2
 &emsp;&emsp;Durante a sprint 02, o grupo aprimorou o modelo preditivo com base no protótipo desenvolvido na sprint 01. Assim como na primeira fase, a metodologia CRISP-DM foi fundamental para o desenvolvimento. Essa metodologia, amplamente reconhecida por sua eficácia, segue um ciclo iterativo, onde cada etapa do processo é revisitada conforme necessário para garantir melhorias contínuas. Utilizando a abordagem CRISP-DM, a equipe desenvolveu um modelo preditivo com métricas de classificação para avaliar e exibir os resultados, aprimorando a precisão e a confiabilidade das previsões.
 
 <p align="center"><b> Figura 1 - Crisp-DM</b></p>
-<div align="center">
+<div align="center" class="zoom-image">
   <img src={require('../../../../static/img/crispEtapas.png').default} alt="Crisp-DM"/>
   <p><b>Fonte:</b> EBAC Online</p>
 </div>

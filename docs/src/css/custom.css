@@ -28,3 +28,15 @@
   --ifm-color-primary-lightest: #4fddbf;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
 }
+
+.zoom-image {
+  z-index: 100; 
+  width: 119%;
+  position: relative; 
+  left: -16%;
+  transition: transform 0.3s ease; 
+}
+
+.zoom-image:hover {
+  transform: scale(1.5); 
+}

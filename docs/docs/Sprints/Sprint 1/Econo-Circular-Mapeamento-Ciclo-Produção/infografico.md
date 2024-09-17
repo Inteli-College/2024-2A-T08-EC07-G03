@@ -9,7 +9,7 @@ description : Infográfico interativo para descrever o ciclo produtivo do carro 
 Para a melhor compreensão do ciclo produtivo do carro nos desenvolvemos um infográfico interativo que descreve todo o ciclo e quais são os riscos, fragilidades e impactos sociais e ambientais em cada etapa. Para isso, utilizamos a ferramenta Prezi.
 
 
-<div align="center"><iframe src="https://prezi.com/p/embed/Azaqa6NExqUNcRd5LChP/" id="iframe_container" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen="" allow="autoplay; fullscreen" height="315" width="560"></iframe>
+<div align="center" class="zoom-image"><iframe src="https://prezi.com/p/embed/Azaqa6NExqUNcRd5LChP/" id="iframe_container" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen="" allow="autoplay; fullscreen" height="315" width="560"></iframe>
 </div>
 
 A apresentação pode ser acessada por [aqui](https://prezi.com/view/lEiL65LmUNfYtvM47nes/) também.
