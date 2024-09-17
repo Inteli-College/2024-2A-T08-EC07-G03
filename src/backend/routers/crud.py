@@ -68,3 +68,73 @@ def get_model_training_history():
         return {"training_history": training_history.data}
     else:
         return {"message": "No training history found"}
+
+class NewEntries(BaseModel):
+    date: datetime
+    nvezes1: int
+    nvezes2: int
+    nvezes718: int
+    somatempo1: int
+    somatempo2: int
+    somatempo718: int
+
+
+@router.post("/insert_data_entries")
+def insert_data_entries(input_data: NewEntries):
+    
+    print(input_data)
+    
+    # Converte a data para uma string antes de inserir
+    date_as_string = input_data.date.strftime("%Y-%m-%d %H:%M:%S")
+
+    # Insere os novos dados no banco de dados
+    new_data = supabase.from_("data_entries")\
+        .insert({
+            "date": date_as_string,
+            "nvezes1": input_data.nvezes1,
+            "nvezes2": input_data.nvezes2,
+            "nvezes718": input_data.nvezes718,
+            "somatempo1": input_data.somatempo1,
+            "somatempo2": input_data.somatempo2,
+            "somatempo718": input_data.somatempo718
+        })\
+        .execute()
+
+    # Verifica se os novos dados foram inseridos com sucesso
+    if new_data.data:
+        return {"message": "Data entries created successfully"}
+    else:
+        return {"message": "Data entries creation failed"}
+
+class PredictionResults(BaseModel):
+    data_entry_id: int
+    result_value: int
+    date: datetime
+    model_id: int
+
+
+@router.post("/insert_prediciton_results")
+def insert_prediction_results(input_data: PredictionResults):
+    
+    print(input_data)
+    
+    # Converte a data para uma string antes de inserir
+    date_as_string = input_data.date.strftime("%Y-%m-%d %H:%M:%S")
+
+    # Insere os resultados da predição no banco de dados
+    new_results = supabase.from_("prediction_results")\
+        .insert({
+            "data_entry_id": input_data.data_entry_id,
+            "result_value": input_data.result_value,
+            "date": date_as_string,
+            "model_id": input_data.model_id
+        })\
+        .execute()
+
+    # Verifica se os resultados da predição foram inseridos com sucesso
+    if new_results.data:
+        return {"message": "Prediction results created successfully"}
+    else:
+        return {"message": "Prediction results creation failed"}
+    
+    

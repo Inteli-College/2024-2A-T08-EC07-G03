@@ -1,19 +1,19 @@
 FROM python:3.12
 
-# Set the working directory
+# Diretorio de trabalho do containeir
 WORKDIR /code
 
-# Copy the requirements.txt first, for better cache
+# Copiar os requirements pra dentro do container
 COPY ./requirements.txt /code/requirements.txt
 
-# Install dependencies
+# Instalar as dependências
 RUN pip install --no-cache-dir --upgrade -r /code/requirements.txt
 
-# Copy all the current contents (app.py and others) into /code inside the container
+# Copiar todo conteudo para dentro do code
 COPY . /code
 
-# Expose the port FastAPI will run on
+# Porta que vai rodar a aplicação
 EXPOSE 8000
 
-# Run the FastAPI app
+# Rodar aplicação
 CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "80"]

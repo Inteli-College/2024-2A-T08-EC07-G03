@@ -1,5 +1,5 @@
 from fastapi import APIRouter, HTTPException
-from controllers.model import make_prediction
+from controllers.model import predict_failure
 from pydantic import BaseModel
 
 router = APIRouter()
@@ -8,10 +8,11 @@ class KNRData(BaseModel):
     knr: str
 
 @router.post("/predict")
-def predict(input_data: KNRData):
+async def predict(input_data: KNRData):
     try:
         # Fazer a predição usando o KNR fornecido
-        result = make_prediction(input_data.knr)
+        print(f"KNR: {input_data.knr}")
+        result = await predict_failure(input_data.knr)
         
         if result is None:
             raise HTTPException(status_code=404, detail="KNR não encontrado ou predição inválida.")

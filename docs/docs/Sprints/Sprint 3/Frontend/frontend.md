@@ -5,7 +5,6 @@ description : Frontend desenvolvido na sprint 3
 ---
 
 # Documentação do Projeto
-=======
 # Introdução
 
 Nesta sprint 3, o grupo Käfer começou a construir o frontend proposto para uso da solução. Tendo o mockup, desenvolvido na sprint anterior, como base, a aplicação foi desenvolvida utilizando Typescript com Vite e Tailwind, tecnologias que serão explicadas melhor no próximo tópico desta documentação. Ademais, conceitos de UX foram aplicados durante a construção do frontend de modo que a interface fosse feita da melhor forma possível para o usuário final. Dessa forma, criamos telas para a aplicação web deste projeto, que pode ser observado nesta documentação e na pasta frontend do nosso repositório
@@ -30,7 +29,6 @@ O componente `Home` é a página principal da aplicação. Ele utiliza o `useSta
 - **Popup Modal**: O modal é controlado por um estado booleano (`isPopupVisible`). A função `handleConfirm` fecha o modal e redireciona para a página de treinamento.
 
 ```typescript
-=======
 *TypeScript* é uma linguagem de programação que estende o JavaScript, adicionando tipos estáticos. Ao utilizar .tsx, estamos lidando com arquivos que combinam TypeScript e JSX, permitindo a criação de componentes React com a segurança adicional de tipos, o que torna o desenvolvimento mais robusto e fácil de manter. O TypeScript ajuda a detectar erros durante o desenvolvimento, evitando problemas em tempo de execução.
 
 ### Vite
@@ -67,42 +65,63 @@ const handleTrainClick = () => {
 };
 ```
 
-### 2. **ExcModelPage.tsx**
+### 2. *ExcModelPage.tsx*
 
 Esta página exibe o resultado de um modelo executado, incluindo gráficos e métricas. O uso de estados permite controlar a abertura de popups, e a estrutura de layout com Tailwind facilita a estilização da página.
 
-#### Partes Importantes:
-- **Seção de Resultados**: São exibidos o resultado atual e o modelo anterior, com caixas estilizadas utilizando Tailwind.
-- **Gráficos Placeholder**: Espaços são reservados para gráficos e métricas, permitindo futura integração com bibliotecas de visualização.
+<p align="center"><b> Figura 2 - ExcModelPage</b></p>
+<div align="center">
+  <img src={require('../../../../static/img/trainedModelPage.png').default} alt="ExcModelPage"/>
+  <p><b>Fonte:</b> Elaborado pelo grupo Käfer</p>
+</div>
 
-```typescript
+
+#### Partes Importantes:
+- *Seção de Resultados*: São exibidos o resultado atual e o modelo anterior, com caixas estilizadas utilizando Tailwind.
+- *Gráficos Placeholder*: Espaços são reservados para gráficos e métricas, permitindo futura integração com bibliotecas de visualização.
+
+```
 <div className="w-full bg-gray-300 h-10 rounded-lg flex justify-center items-center">
   <span className="text-black">XXXXXX</span>
 </div>
 ```
 
-### 3. **ExcPage.tsx**
+### 3. *ExcPage.tsx*
 
-A página `ExcPage` lida com o upload de arquivos e a inserção de dados necessários para a execução de modelos. Inclui componentes reutilizáveis como `FileUpload` e `KNRInput`.
+A página ExcPage lida com o upload de arquivos e a inserção de dados necessários para a execução de modelos. Inclui componentes reutilizáveis como FileUpload e KNRInput.
+
+<p align="center"><b> Figura 3 - ExcPage</b></p>
+<div align="center">
+  <img src={require('../../../../static/img/trainingPage.png').default} alt="EcxPage"/>
+  <p><b>Fonte:</b> Elaborado pelo grupo Käfer</p>
+</div>
+
 
 #### Partes Importantes:
-- **Componente de Input**: Um campo de entrada é fornecido para que o usuário insira seu KNR. O botão "Confirmar" navega para a página de progresso da execução do modelo.
-- **File Upload**: O componente `FileUpload` facilita o upload de arquivos, como `.csv`, necessários para a análise.
+- *Componente de Input*: Um campo de entrada é fornecido para que o usuário insira seu KNR. O botão "Confirmar" navega para a página de progresso da execução do modelo.
+- *File Upload*: O componente FileUpload facilita o upload de arquivos, como .csv, necessários para a análise.
 
-```typescript
+```
 <KNRInput />
 <ConfirmButton />
 ```
 
-### 4. **ExcProgressPage.tsx**
+### 4. *ExcProgressPage.tsx*
 
-Essa página simula o progresso da execução de um modelo, exibindo uma barra de progresso que é atualizada periodicamente usando `useEffect`.
+Essa página simula o progresso da execução de um modelo, exibindo uma barra de progresso que é atualizada periodicamente usando useEffect.
+
+<p align="center"><b> Figura 4 - ExcProgressPage</b></p>
+<div align="center">
+  <img src={require('../../../../static/img/trainingProgressPage.png').default} alt="ExcProgressPage"/>
+  <p><b>Fonte:</b> Elaborado pelo grupo Käfer</p>
+</div>
+
 
 #### Partes Importantes:
-- **Simulação de Progresso**: O estado `progress` é atualizado a cada segundo até atingir 100%, simulando a execução de um modelo de machine learning.
-- **Barra de Progresso**: Um componente `BarExc` é responsável por renderizar visualmente o progresso.
+- *Simulação de Progresso*: O estado progress é atualizado a cada segundo até atingir 100%, simulando a execução de um modelo de machine learning.
+- *Barra de Progresso*: Um componente BarExc é responsável por renderizar visualmente o progresso.
 
-```typescript
+```
 useEffect(() => {
   const interval = setInterval(() => {
     setProgress((prev) => {
