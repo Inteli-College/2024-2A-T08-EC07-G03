@@ -77,7 +77,7 @@ description : Levantamento de requisitos técnicos para o projeto
 &emsp;&emsp;O parceiro forneceu uma ampla variedade de dados detalhando o processo de fabricação dos carros T-Cross. A grande quantidade de dados permitiu uma exploração e testes abrangentes. No entanto, observa-se que a maioria dos carros apresenta algum defeito em determinado momento do processo de montagem. Isso pode representar um desafio, pois há o risco de enviesar o modelo, resultando na identificação de falhas em todos os veículos, o que foge do objetivo do projeto.
 
 <p align="center"><b> Figura 1 - Gráfico de Tipos de Falhas</b></p>
-<div align="center">
+<div align="center" class="zoom-image">
   <img src={require('../../../../static/img/10_falhas.png').default} alt="Gráfico de Tipos de Falhas"/>
   <p><b>Fonte:</b> Elaborado por Grupo 3</p>
 </div>
@@ -99,7 +99,7 @@ As analises apresentadas nesse texto foram obtidas a apartir das informações o
 &emsp;&emsp;Na fase de aprendizado de máquina (ML), os dados de separados são submetidos ao processo de retreino do modelo, visando a atualização frequente de dados, possibilitando prever, precisamente, a ocorrência de falhas. Também, durante essa fase, os dados gerados pelo modelo são armazenados em uma nova tabela. Essa tabela alimenta o servidor backend, que, por sua vez, apresenta essas informações em uma interface interativa e intuitiva, facilitando a visualização e interpretação dos resultados.
 
 <p align="center"><b> Figura 1 - Diagrama de Blocos</b></p>
-<div align="center">
+<div align="center" class="zoom-image">
   ![Diagrama de Blocos](../../../../static/img/DiagramadeBlocos.png)
   <p><b>Fonte:</b> Elaborado por Grupo3</p>
 </div>

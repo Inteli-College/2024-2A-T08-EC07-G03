@@ -67,7 +67,12 @@ CREATE TABLE IF NOT EXISTS public.analysis_results(
 
 &emsp;&emsp;Com isso, um diagrama foi criado para exibir o banco de dados do sistema deste projeto. Ele pode ser visto na seguinte imagem:
 
-![Diagrama](../../../../static/img/erd.png)
+<p align="center"><b> Figura 1 - Diagrama Entidade-Relacionamento</b></p>
+<div align="center" class="zoom-image">
+  <img src={require('../../../../static/img/erd.png').default} alt="Diagrama ER"/>
+  <p><b>Fonte:</b> Elaborado pelo Grupo 3</p>
+</div>
+
 
 &emsp;&emsp;A partir deste diagrama, feito com a ferramenta ERD Database do PostgreSQL, é possível visualizar as tabelas e as colunas presentes no banco de dados. Para ver o arquivo deste diagrama, ele esta localizado na pasta backend deste repositório.
 

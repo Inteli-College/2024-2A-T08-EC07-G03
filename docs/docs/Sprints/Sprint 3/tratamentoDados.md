@@ -9,7 +9,7 @@ description : Tratamento de dados e Feature Engineering desenvolvidos na sprint 
 &emsp;&emsp;Durante a sprint 03, o grupo trabalhou na exploração de novas features para o modelo preditivo com base no protótipo desenvolvido na sprint 02. Assim como nas fases anteriores, a metodologia CRISP-DM foi fundamental para o desenvolvimento. 
 
 <p align="center"><b> Figura 1 - Crisp-DM</b></p>
-<div align="center">
+<div align="center" class="zoom-image">
   <img src={require('./../../../static/img/crispEtapas.png').default} alt="Crisp-DM"/>
   <p><b>Fonte:</b> EBAC Online</p>
 </div>
