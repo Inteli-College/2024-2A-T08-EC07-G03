@@ -47,12 +47,15 @@ async def healthcheck_services():
 async def healthcheck_backend():
     try:
         async with httpx.AsyncClient() as client_http:
-            response = await client_http.get("http://localhost:8000/health", timeout=2)
+            response = await client_http.get("http://backend:80/api/healthcheck/health", timeout=3)
+            print(response)
             if response.status_code == 200:
                 return True
             else:
+                print(f"Erro no healthcheck do backend: {response.status_code}")
                 return False
-    except:
+    except Exception as e:
+        print(f"Exceção no healthcheck do backend: {e}")
         return False
 
 # Função para chamar healthcheck do datalake
@@ -75,14 +78,18 @@ async def healthcheck_database():
 async def healthcheck_frontend():
     try:
         async with httpx.AsyncClient() as client_http:
-            response = await client_http.get("http://localhost:8002/health", timeout=2)
+            response = await client_http.get("http://frontend:82/health", timeout=3)
+            print(response)
             if response.status_code == 200:
                 return True
             else:
+                print(f"Erro no healthcheck do frontend: {response.status_code}")
                 return False
-    except:
+    except Exception as e:
+        print(f"Exceção no healthcheck do frontend: {e}")
         return False
 
 
 if __name__ == "__main__":
+    print("Teste")
     uvicorn.run(app, host="0.0.0.0", port=8009)

@@ -28,7 +28,7 @@ services:
       context: ./healthCheck
       dockerfile: Dockerfile
     ports:
-      - "8009:89"
+      - "8009:8009"
     volumes:
       - ./healthCheck:/code2
     networks:
