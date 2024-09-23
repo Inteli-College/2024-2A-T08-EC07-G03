@@ -14,9 +14,9 @@ const ProgressBar: React.FC<ProgressBarProps> = ({ progress }) => {
         }
       }, [progress, navigate]);
   return (
-    <div className="w-full bg-gray-700 rounded-full h-2.5 mt-8">
+    <div className="w-64 bg-gray-700 rounded-full h-2.5 mt-8">
       <div
-        className="bg-blue-500 h-2.5 rounded-full"
+        className="bg-blue-500 h-2.5 rounded-full 2-64"
         style={{ width: `${progress}%` }}
       />
     </div>

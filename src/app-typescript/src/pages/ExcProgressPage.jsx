@@ -61,11 +61,11 @@ const ExcProgressPage = () => {
     }, [knr, navigate]);
     return (<div className="min-h-screen bg-gradient-to-b from-[#333641] to-[#282A32]">
       <Header />
-      <h1 className="text-3xl font-bold text-white text-center mt-8">Dados Para Análise</h1>
-      <div className="border-2 border-dashed border-gray-600 rounded-lg mx-auto mt-10 p-10 w-96 h-60 flex items-center justify-center">
+      <h1 className="text-6xl font-light text-white text-center mt-8 mb-24">Dados Para Análise</h1>
+      <div className="font-sans flex flex-col items-center justify-center border-gray-500 border-2 border-dashed bg-gradient-to-b from-[#333641] to-[#2D3039] h-72 w-full max-w-lg mx-auto mt-10 bg-gray-800">
         <p className="text-gray-400">O modelo está sendo executado...</p>
       </div>
-      <div className="w-11/12 mx-auto mt-10">
+      <div className="w-72 mx-auto mt-20">
         <BarExc progress={progress}/>
         <p className="text-center text-gray-400 mt-2">Processando...</p>
       </div>
