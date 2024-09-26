@@ -4,13 +4,31 @@ sidebar_position: 1
 description : Frontend desenvolvido na sprint 3
 ---
 
+# Documentação do Projeto
 # Introdução
 
 Nesta sprint 3, o grupo Käfer começou a construir o frontend proposto para uso da solução. Tendo o mockup, desenvolvido na sprint anterior, como base, a aplicação foi desenvolvida utilizando Typescript com Vite e Tailwind, tecnologias que serão explicadas melhor no próximo tópico desta documentação. Ademais, conceitos de UX foram aplicados durante a construção do frontend de modo que a interface fosse feita da melhor forma possível para o usuário final. Dessa forma, criamos telas para a aplicação web deste projeto, que pode ser observado nesta documentação e na pasta frontend do nosso repositório
 
 ## Tecnologias Utilizadas
+**TypeScript** é uma linguagem de programação que estende o JavaScript, adicionando tipos estáticos. Ao utilizar `.tsx`, estamos lidando com arquivos que combinam TypeScript e JSX, permitindo a criação de componentes React com a segurança adicional de tipos, o que torna o desenvolvimento mais robusto e fácil de manter. O TypeScript ajuda a detectar erros durante o desenvolvimento, evitando problemas em tempo de execução.
 
-### TypeScript (.tsx)
+### Vite
+**Vite** é uma ferramenta de build que oferece um ambiente de desenvolvimento rápido e otimizado. Diferentemente de ferramentas como Webpack, o Vite carrega os módulos sob demanda, resultando em um tempo de inicialização quase instantâneo, especialmente útil em projetos React. Ele também permite uma integração eficiente com TypeScript e frameworks como Tailwind.
+
+### Tailwind CSS
+**Tailwind CSS** é um framework CSS utilitário que permite a criação rápida de interfaces de usuário ao fornecer classes de estilos predefinidas. Ele possibilita a criação de layouts responsivos e bem estilizados sem a necessidade de escrever CSS personalizado, o que acelera o desenvolvimento e garante consistência.
+
+## Estrutura do Código
+
+### 1. **Home.tsx**
+
+O componente `Home` é a página principal da aplicação. Ele utiliza o `useState` para gerenciar o estado de visibilidade do popup e `useNavigate` para controlar a navegação entre as páginas. Dois botões principais permitem ao usuário executar um modelo ou iniciar o processo de treinamento.
+
+#### Partes Importantes:
+- **Estado e navegação**: O `useNavigate` permite a navegação programática entre páginas. Por exemplo, o botão "Executar" redireciona para `/exc`, enquanto o botão "Treinar" abre um popup modal.
+- **Popup Modal**: O modal é controlado por um estado booleano (`isPopupVisible`). A função `handleConfirm` fecha o modal e redireciona para a página de treinamento.
+
+```typescript
 *TypeScript* é uma linguagem de programação que estende o JavaScript, adicionando tipos estáticos. Ao utilizar .tsx, estamos lidando com arquivos que combinam TypeScript e JSX, permitindo a criação de componentes React com a segurança adicional de tipos, o que torna o desenvolvimento mais robusto e fácil de manter. O TypeScript ajuda a detectar erros durante o desenvolvimento, evitando problemas em tempo de execução.
 
 ### Vite
@@ -36,6 +54,8 @@ O componente Home é a página principal da aplicação. Ele utiliza o useState 
 - *Popup Modal*: O modal é controlado por um estado booleano (isPopupVisible). A função handleConfirm fecha o modal e redireciona para a página de treinamento.
 
 ```
+
+```typescript
 const handleExecuteClick = () => {
     navigate('/exc');  
 };
@@ -116,14 +136,14 @@ useEffect(() => {
 }, []);
 ```
 
-### 5. *App.tsx*
+### 5. **App.tsx**
 
-O componente App é o ponto de entrada da aplicação, responsável por definir as rotas utilizando o react-router-dom. Cada rota mapeia um caminho específico para um componente.
+O componente `App` é o ponto de entrada da aplicação, responsável por definir as rotas utilizando o `react-router-dom`. Cada rota mapeia um caminho específico para um componente.
 
 #### Partes Importantes:
-- *Rotas*: O sistema de rotas é responsável por controlar a navegação entre páginas. Por exemplo, a rota /exc leva à página ExcPage, enquanto /excProgress leva à página de progresso.
+- **Rotas**: O sistema de rotas é responsável por controlar a navegação entre páginas. Por exemplo, a rota `/exc` leva à página `ExcPage`, enquanto `/excProgress` leva à página de progresso.
 
-```
+```typescript
 <Routes>
   <Route path="/" element={<Home />} />
   <Route path="/exc" element={<ExcPage />} />
@@ -144,7 +164,7 @@ Ao clicar no botão treinar na tela inicial, a tela de treinamento é exibida, e
 
 Também, vale destacar alguns dos componentes que estão presentes na tela. Um deles é o Header, que é a parte superior da tela, em que o usuário consegue saber em que tela está, e consegue retornar para telas anteriores ao clicar no nome da tela anterior. O código a seguir ilustra um pouco o funcionamento do header:
 
-```
+```typescript
 const Header: React.FC = () => {
   const location = useLocation();
   const currentPage = pageNames[location.pathname] || 'Página Desconhecida';
@@ -162,7 +182,7 @@ const Header: React.FC = () => {
 
 Um outro componente presente nesta tela é o File Upload, que permite o upload de arquivos csv. Segue um trecho do código deste componente:
 
-```
+```typescript
 const FileUpload: React.FC = () => {
     return (
       <div className="font-sans flex flex-col items-center justify-center border-2 border-dashed bg-gradient-to-b from-[#333641] to-[#2D3039] h-64 w-full max-w-lg mx-auto mt-10 bg-gray-800 rounded-lg">
@@ -195,7 +215,7 @@ Esta tela apenas exibe o processo de treinamento do modelo, incluindo uma progre
 
 Para realizar o funcionamento desta progress bar, o componente dele foi devidamente criado e configurado, e pode ser exemplificado no seguinte trecho de código:
 
-```
+```typescript
 const ProgressBar: React.FC<ProgressBarProps> = ({ progress }) => {
     const navigate = useNavigate();
 
@@ -226,7 +246,7 @@ Exibe os resultados do treinamento do modelo, com a exibição de gráficos e m�
 
 Dada a exibição desses dois modelos, é possível escolher entre qual deles para prosseguir com a execução do modelo. Para isso ser possível, foi criado um componentes para a exibição de um pop up, que aparece quando um usuário clica no modelo atual ou no anterior, e exibe uma mensagem de confirmação para o uso de tal modelo:
 
-```
+```typescript
 const ConfirmationPopup: React.FC<ConfirmationPopupProps> = ({ onClose }) => {
   const navigate = useNavigate();
 
