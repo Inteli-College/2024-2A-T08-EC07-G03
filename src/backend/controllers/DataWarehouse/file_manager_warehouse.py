@@ -4,7 +4,7 @@ from fastapi import UploadFile, HTTPException
 
 # Conectar ao pc do Lab
 client = MongoClient("mongodb://10.32.0.12:27017/")
-db = client["data_lake"]  # Nome do banco de dados
+db = client["data_warehouse"]  # Nome do banco de dados
 fs = gridfs.GridFS(db)
 
 async def upload_file(file: UploadFile):

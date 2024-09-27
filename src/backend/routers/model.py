@@ -1,7 +1,12 @@
 from fastapi import APIRouter, HTTPException, UploadFile, File
-from controllers.model import predict_failure
+from controllers.model import predict_failure, retrain_model
+from controllers.datalake import upload_file
+from controllers.dataWarehouse import process_data_datawarehouse
 from pydantic import BaseModel
+from datetime import datetime
+from typing import List
 import pandas as pd
+import os
 
 
 router = APIRouter()
@@ -29,15 +34,36 @@ async def predict(input_data: KNRData):
         # Tratar qualquer outra exceção inesperada
         raise HTTPException(status_code=500, detail=f"Erro ao fazer a predição: {str(e)}")
 
+# Receber mais de um arquivo
 @router.post("/retrain")
-async def retrain(file: UploadFile = File(...), save_new_model: bool = True):
+async def retrain(files: List[UploadFile] = File(...), save_new_model: bool = True):
     try:
-        # Verifica se o arquivo é um CSV
-        if file.content_type != 'text/csv':
-            raise HTTPException(status_code=400, detail="O arquivo deve ser um CSV.")
-
-        # Carrega o arquivo CSV em um DataFrame
-        contents = await file.read()
+        # Guardar os nomes dos arquivos
+        file_names = []
+        
+        for file in files:
+            
+            # # Verifica se o arquivo é um CSV
+            # if file.content_type != 'text/csv':
+            #     raise HTTPException(status_code=400, detail="O arquivo deve ser um CSV.")
+            
+            name_file = f'{datetime.now().strftime("%Y-%m-%d_%H-%M-%S")}_{file.filename}'
+            
+            # Renomear o arquivo
+            os.rename(file.filename, name_file)
+               
+            file_names.append(name_file)
+            
+            # Subir arquivo no datalake
+            await upload_file(file)
+            
+        # Chama a função de processamento dos dados
+        final_file = await process_data_datawarehouse(file_names)
+            
+    
+            
+            
+            
         df = pd.read_csv(pd.io.common.BytesIO(contents))
 
         # Chama a função de retreinamento do modelo com os dados fornecidos

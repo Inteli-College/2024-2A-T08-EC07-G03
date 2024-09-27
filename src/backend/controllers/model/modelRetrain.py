@@ -2,6 +2,7 @@ from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import LSTM, Dense, Dropout
 from sklearn.model_selection import train_test_split
 from controllers.datalake import upload_file
+from controllers.DataWarehouse import download_file
 from routers.crud import insert_model
 from pydantic import BaseModel
 from datetime import datetime
@@ -14,9 +15,14 @@ class ModelTraining(BaseModel):
     training_accuracy: float
     date: str 
 
-async def trainModel(csv_file: str):
+async def retrainModel(name_file: str):
     try:
-        dataset = pd.read_csv(csv_file)
+        
+        file_content = await download_file(name_file)
+            
+        # Tranformar em um dataframe
+        
+        df = pd.read_csv(file_content['content'])
     
         # Converter as colunas SomaTempo1, SomaTempo2 e SomaTempo718 para o tipo time delta
         dataset['SomaTempo1'] = pd.to_timedelta(dataset['SomaTempo1'])
@@ -53,7 +59,6 @@ async def trainModel(csv_file: str):
         
         # Salvar o modelo
         model.save('model.h5')
-        
         
         # Formatar o nome do modelo com a data
         model_name = f'model_{datetime.now().strftime("%Y-%m-%d")}'

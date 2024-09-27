@@ -6,7 +6,7 @@ from controllers.banco.supabase import create_supabase_client  # Para salvar no 
 from controllers.data_process.data_process import build_feature_prediction
 
 # Carregar o modelo salvo no formato .h5
-model = load_model("modelo2.h5")
+model = load_model("C:/Users/Inteli/Documents/GitHub/2024-2A-T08-EC07-G03/src/backend/modelos/modelo2.h5")
 
 print(type(model))
 print(model)
