@@ -1,7 +1,7 @@
 from fastapi import APIRouter, HTTPException, UploadFile, File
-from controllers.model import predict_failure, retrain_model
+from controllers.model import predict_failure, retrainModel
 from controllers.datalake import upload_file
-from controllers.dataWarehouse import process_data_datawarehouse
+from controllers.model import process_data_datawarehouse
 from pydantic import BaseModel
 from datetime import datetime
 from typing import List
@@ -34,40 +34,49 @@ async def predict(input_data: KNRData):
         # Tratar qualquer outra exceção inesperada
         raise HTTPException(status_code=500, detail=f"Erro ao fazer a predição: {str(e)}")
 
-# Receber mais de um arquivo
 @router.post("/retrain")
-async def retrain(files: List[UploadFile] = File(...), save_new_model: bool = True):
+async def retrain(
+    resultados: List[UploadFile] = File(...),
+    falhas: List[UploadFile] = File(...),
+    status: List[UploadFile] = File(...),
+    save_new_model: bool = True
+):
     try:
-        # Guardar os nomes dos arquivos
-        file_names = []
-        
-        for file in files:
+        # Listas para guardar os nomes dos arquivos de cada tipo
+        resultado_names = []
+        falhas_names = []
+        status_names = []
+
+        # Renomear e processar os arquivos de resultado
+        for resultado in resultados:
+            name_file = f'{datetime.now().strftime("%Y-%m-%d_%H-%M-%S")}_resultado_{resultado.filename}'
+            await upload_file(resultado, name_file)  # Subir arquivo no Data Lake (simulação)
+            resultado_names.append(name_file)
+
+        # Renomear e processar os arquivos de falhas
+        for falha in falhas:
+            name_file = f'{datetime.now().strftime("%Y-%m-%d_%H-%M-%S")}_falhas_{falha.filename}'
+            await upload_file(falha, name_file)  # Subir arquivo no Data Lake (simulação)
+            falhas_names.append(name_file)
+
+        # Renomear e processar os arquivos de status
+        for stat in status:
+            name_file = f'{datetime.now().strftime("%Y-%m-%d_%H-%M-%S")}_status_{stat.filename}'
+            await upload_file(stat, name_file)  # Subir arquivo no Data Lake (simulação)
+            status_names.append(name_file)
             
-            # # Verifica se o arquivo é um CSV
-            # if file.content_type != 'text/csv':
-            #     raise HTTPException(status_code=400, detail="O arquivo deve ser um CSV.")
-            
-            name_file = f'{datetime.now().strftime("%Y-%m-%d_%H-%M-%S")}_{file.filename}'
-            
-            # Renomear o arquivo
-            os.rename(file.filename, name_file)
-               
-            file_names.append(name_file)
-            
-            # Subir arquivo no datalake
-            await upload_file(file)
-            
+        # Excluir arquivos originais
+        for file in resultado_names + falhas_names + status_names:
+            if os.path.exists(file):
+                os.remove(file)
+                
+        print(f"Arquivos processados: {resultado_names}, {falhas_names}, {status_names}")
+
         # Chama a função de processamento dos dados
-        final_file = await process_data_datawarehouse(file_names)
-            
-    
-            
-            
-            
-        df = pd.read_csv(pd.io.common.BytesIO(contents))
+        final_file_name = await process_data_datawarehouse(resultado_names, falhas_names, status_names)
 
         # Chama a função de retreinamento do modelo com os dados fornecidos
-        retrain_model(df, save_new_model)
+        retrainModel(final_file_name)
 
         if save_new_model:
             return {"detail": "Modelo retreinado e salvo com sucesso."}
@@ -75,7 +84,7 @@ async def retrain(files: List[UploadFile] = File(...), save_new_model: bool = Tr
             return {"detail": "Novo modelo descartado. Modelo antigo restaurado com sucesso."}
 
     except pd.errors.EmptyDataError:
-        raise HTTPException(status_code=400, detail="O arquivo CSV está vazio ou inválido.")
+        raise HTTPException(status_code=400, detail="Um dos arquivos CSV está vazio ou inválido.")
     
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Erro ao retreinar o modelo: {str(e)}")

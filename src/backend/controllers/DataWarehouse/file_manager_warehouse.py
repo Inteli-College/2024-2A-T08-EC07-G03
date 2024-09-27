@@ -7,9 +7,9 @@ client = MongoClient("mongodb://10.32.0.12:27017/")
 db = client["data_warehouse"]  # Nome do banco de dados
 fs = gridfs.GridFS(db)
 
-async def upload_file(file: UploadFile):
+async def upload_file(file: UploadFile, new_filename: str):
     try:
-        file_id = fs.put(file.file, filename=file.filename)
+        file_id = fs.put(file.file, filename=new_filename)
         return {"message": "Arquivo carregado com sucesso!", "file_id": str(file_id)}
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Erro ao carregar o arquivo: {str(e)}")

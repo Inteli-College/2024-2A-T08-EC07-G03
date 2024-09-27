@@ -23,15 +23,24 @@ async def retrainModel(name_file: str):
         # Tranformar em um dataframe
         
         df = pd.read_csv(file_content['content'])
+        
+        # Selecionar apenas as colunas numéricas para normalização
+        colunas_numericas = df.select_dtypes(include=['float64', 'int64']).columns
+
+        # Instanciar o MinMaxScaler
+        scaler = MinMaxScaler()
+
+        # Aplicar o scaler para as colunas numéricas
+        df[colunas_numericas] = scaler.fit_transform(df_final[colunas_numericas])
     
         # Converter as colunas SomaTempo1, SomaTempo2 e SomaTempo718 para o tipo time delta
-        dataset['SomaTempo1'] = pd.to_timedelta(dataset['SomaTempo1'])
-        dataset['SomaTempo2'] = pd.to_timedelta(dataset['SomaTempo2'])
-        dataset['SomaTempo718'] = pd.to_timedelta(dataset['SomaTempo718'])
+        df['SomaTempo1'] = pd.to_timedelta(df['SomaTempo1'])
+        df['SomaTempo2'] = pd.to_timedelta(df['SomaTempo2'])
+        df['SomaTempo718'] = pd.to_timedelta(df['SomaTempo718'])
         
-        dataset['SomaTempo1'] = dataset['SomaTempo1'].dt.total_seconds()
-        dataset['SomaTempo2'] = dataset['SomaTempo2'].dt.total_seconds()
-        dataset['SomaTempo718'] = dataset['SomaTempo718'].dt.total_seconds()
+        df['SomaTempo1'] = df['SomaTempo1'].dt.total_seconds()
+        df['SomaTempo2'] = df['SomaTempo2'].dt.total_seconds()
+        df['SomaTempo718'] = df['SomaTempo718'].dt.total_seconds()
         
         X = dataset[['Nvezes1', 'Nvezes2', 'Nvezes718', 'SomaTempo1', 'SomaTempo2', 'SomaTempo718', 'TemFalhaRod']].values
 
