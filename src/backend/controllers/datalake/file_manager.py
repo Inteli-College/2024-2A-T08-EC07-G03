@@ -37,3 +37,9 @@ async def list_files():
 async def list_databases():
     databases = client.list_database_names()
     return {"databases": databases}
+
+# Apagar todos os arquivos
+async def delete_all_files_datalake():
+    for file in fs.find({}):
+        fs.delete(file._id)
+    return {"message": "Todos os arquivos foram apagados com sucesso!"}

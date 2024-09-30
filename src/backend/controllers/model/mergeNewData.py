@@ -78,7 +78,7 @@ async def process_data_datawarehouse(resultado_names: list, falhas_names: list, 
         
     # Merge dos dataframes de status
     
-    df_status = pd.concat(df_status, ignore_index=True)
+    df_status = pd.concat(df_status_list, ignore_index=True)
         
     df_falhas = []
     
@@ -110,13 +110,20 @@ async def process_data_datawarehouse(resultado_names: list, falhas_names: list, 
     
     df_falhas = pd.concat(df_falhas, ignore_index=True)
     
+    print(df_resultado.columns)
+    print(df_falhas.columns)
+    
+    print(df_resultado['KNR'].dtype)
+    print(df_falhas['KNR'].dtype)
+
+    
     df_resultado['temFalha'] = df_resultado['KNR'].apply(lambda knr: 1 if knr in df_falhas['KNR'].values else 0)
     
     # Processamento final
     
     df_merged = pd.merge(df_status, df_resultado, on='KNR', how='inner')
     
-    df_merged = merge_df_with_last(df_merged)
+    df_merged = await merge_df_with_last(df_merged)
     
     # Salvar arquivo final no data warehouse
     
@@ -187,7 +194,8 @@ async def resultado_processing(df):
 async def falhas_processing(df):
     
     # Definir a linha correta como cabeçalho
-    df_falhas.columns = df.iloc[1]
+    df_falhas = df.copy()
+    df_falhas.columns = df_falhas.iloc[1]
     df_falhas = df_falhas[2:]
 
     # Resetar o índice do DataFrame
@@ -195,11 +203,18 @@ async def falhas_processing(df):
     
     df_falhas.dropna(axis=1, how='all', inplace=True)
     
+    # Pegar a terceira linha como cabeçalho
+    
+    # df_falhas.columns = df_falhas.iloc[3]
+    
+    print(df_falhas.head())
+    print(df_falhas.columns)
+    
     df_falhas.drop(['MODELO',     'COR',   'MOTOR', 'ESTACAO', 'USUARIO',   'HALLE',   'FALHA',    'DATA'], axis=1, inplace=True)
     
     df_falhas = df_falhas.drop_duplicates()       
     
-    return df
+    return df_falhas
 
 station_to_group = {
 'ZP7': ['M695', 'M698', 'M701', 'M702', 'M704', 'M711', 'M712', 'M721', 'M722'],
@@ -213,20 +228,22 @@ async def status_processing(df):
     
     # Processamento dos dados de status
     
+    # Exibir as colunas originais
     print(df.columns)
-    
-    df.columns = df.iloc[1]
 
-    df = df.drop([1]).reset_index(drop=True)
-    
+    # Dropar as colunas que não são necessárias
+    df = df.drop(columns=['Unnamed: 0', 'Unnamed: 1', 'Unnamed: 2', 'Unnamed: 3'])
+
+    # Exibir as colunas depois da alteração
     print(df.columns)
+
+    # Filtrar as linhas onde a coluna STATUS não é nula
+    df_tst = df[df["STATUS"].notnull()]
     
-    df_tst = df[df["STATUS"].isnull()==False]
+    df_tst['DATA'] = pd.to_datetime(df_tst['DATA'], errors='coerce')
 
     # df_tst = df_tst.drop(columns=["Unnamed: 0", "Unnamed: 1", "Unnamed: 2", "Unnamed: 3"])
-    
-    df_tst.drop(columns=['index'])
-    
+        
     ZP7 = ['M695', 'M698', 'M701', 'M702', 'M704', 'M711', 'M712', 'M721', 'M722']
     ZP5 = ['R640', 'R650', 'R700', 'R754']
     ZP5A = ['L534', 'L535', 'L536', 'L537', 'L538', 'L539', 'L541', 'L542', 'L543', 'L544', 'L545', 'L546', 'L547', 'L548']
@@ -247,6 +264,9 @@ async def status_processing(df):
 
     # Filtrar o DataFrame original para manter apenas os KNRs válidos
     df_filtered = df_tst[df_tst['KNR'].isin(knrs_validos)]
+    
+    df_filtered['DATA'] = pd.to_datetime(df_filtered['DATA'], errors='coerce')
+
 
     df_filtered = df_filtered.sort_values(by=['KNR', 'DATA'])
     
@@ -278,6 +298,12 @@ def get_group(status):
 
 def has_at_least_one_station_from_each(df, knr):
     stations_in_knr = df[df['KNR'] == knr]['STATUS'].unique()
+    
+    ZP7 = ['M695', 'M698', 'M701', 'M702', 'M704', 'M711', 'M712', 'M721', 'M722']
+    ZP5 = ['R640', 'R650', 'R700', 'R754']
+    ZP5A = ['L534', 'L535', 'L536', 'L537', 'L538', 'L539', 'L541', 'L542', 'L543', 'L544', 'L545', 'L546', 'L547', 'L548']
+    ZP6 = ['M599', 'M591', 'M592', 'M593', 'M594', 'M595', 'M596', 'M643', 'M644', 'M647', 'M648', 'M651', 'M652', 'M655', 'M656', 'M673', 'M674', 'M677', 'M678', 'M681', 'M682']
+    CAB = ['M619', 'M643', 'M644', 'M655', 'M656', 'M673', 'M674']
     
     # Verifica se o KNR tem pelo menos uma estação de cada ZP e CAB
     has_zp7 = any(station in stations_in_knr for station in ZP7)
