@@ -41,9 +41,20 @@ async def retrain(
     falhas: List[UploadFile] = File(...),
     status: List[UploadFile] = File(...),
     save_new_model: bool = True
-)
+):
+    try:
+        # Listas para guardar os nomes dos arquivos de cada tipo
+        resultado_names = []
+        falhas_names = []
+        status_names = []
+
+        # Renomear e processar os arquivos de resultado
+        for resultado in resultados:
+            name_file = f'{datetime.now().strftime("%Y-%m-%d_%H-%M-%S")}_resultado_{resultado.filename}'
+            await upload_file(resultado, name_file)  # Subir arquivo no Data Lake (simulação)
+            resultado_names.append(name_file)
 ```
-Nesse trecho da rota, da pra ver uma parte da função de retreino, em que algumas variáveis como a resultados, falhas e status são definidas e configuradas perante os dados que serão adicionados. O código inteiro pode ser visto na pasta **src/backend** deste repositório
+Nesse trecho da rota, da pra ver uma parte da função de retreino, em que algumas variáveis são definidas e configuradas perante os dados que serão adicionados, e mostra um "for" de processamento dos arquivos de resultados. O código inteiro pode ser visto na pasta **src/backend** deste repositório
 
 ## Controler de lógica para o processamento dos dados
 
