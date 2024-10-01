@@ -2,7 +2,6 @@ from fastapi import APIRouter, HTTPException, UploadFile, File
 from controllers.model import predict_failure
 from pydantic import BaseModel
 import pandas as pd
-import io
 
 router = APIRouter()
 
@@ -28,22 +27,3 @@ async def predict(input_data: KNRData):
     except Exception as e:
         # Tratar qualquer outra exceção inesperada
         raise HTTPException(status_code=500, detail=f"Erro ao fazer a predição: {str(e)}")
-
-# Prever múltiplos KNRs a partir de um arquivo CSV
-@router.post("/predict_batch")
-async def predict_batch(file: UploadFile = File(...)):
-    try:
-        content = await file.read()
-        df = pd.read_csv(io.BytesIO(content)) 
-        
-        # Fazer a predição para cada KNR no CSV
-        knrs = df["knr"].tolist() 
-        predictions = []
-        for knr in knrs:
-            prediction = await predict_failure(knr)
-            predictions.append({"knr": knr, "prediction": prediction})
-        
-        return {"predictions": predictions}
-
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=f"Erro ao processar o CSV: {str(e)}")
