@@ -8,7 +8,6 @@ from typing import List
 import pandas as pd
 import os
 
-
 router = APIRouter()
 
 class KNRData(BaseModel):

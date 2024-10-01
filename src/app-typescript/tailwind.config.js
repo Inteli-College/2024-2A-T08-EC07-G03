@@ -12,3 +12,19 @@ module.exports = {
   },
   plugins: [],
 }
+
+module.exports = {
+  content: [
+    './src/**/*.{js,jsx,ts,tsx}',
+  ],
+  theme: {
+    extend: {
+      colors: {
+        customGray: '#212121',
+        customDarkBlue: '#003366',
+        customBlue: '#0066cc',
+      },
+    },
+  },
+  plugins: [],
+}

@@ -3,13 +3,13 @@ import Header from '../components/Header';
 import FileUpload from '../components/FileUpload';
 import { useNavigate } from 'react-router-dom';
 const Title = () => {
-    return (<h1 className="text-4xl font-light text-white text-center mt-16 font-sans">
+    return (<h1 className="text-6xl font-light text-white text-center mt-8 mb-24 font-sans">
       Dados para Análise:
     </h1>);
 };
 const KNRInput = () => {
-    return (<div className="flex flex-col items-center mt-6">
-      <input type="text" placeholder="Digite seu KNR" className="w-full max-w-lg px-4 py-2 border border-gray-500 rounded-lg bg-transparent text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-white font-light" id='krn_input'/>
+    return (<div className="flex flex-col items-center mt-8">
+      <input type="text" placeholder="Digite seu KNR" className="w-full max-w-lg px-4 py-2 border border-white rounded-lg bg-transparent text-white placeholder-white focus:outline-none focus:ring-2 focus:ring-white font-light" id='krn_input'/>
     </div>);
 };
 const ConfirmButton = () => {
@@ -25,7 +25,7 @@ const ConfirmButton = () => {
         }
     };
     return (<div className="flex justify-center mt-6">
-      <button onClick={handleTrainClick} className="px-8 py-2 bg-white text-gray-900 rounded-lg hover:bg-gray-200 transition duration-200">
+      <button onClick={handleTrainClick} className="px-12 py-1 mt-8 bg-white text-gray-900 rounded-lg hover:bg-gray-200 transition duration-200">
         Confirmar
       </button>
     </div>);
@@ -35,7 +35,7 @@ const ExcPage = () => {
       <Header />
       <Title />
       <FileUpload />
-      <p className="text-white text-center mt-6">ou</p>
+      <p className="text-gray-400 text-center mt-8">ou</p>
       <KNRInput />
       <ConfirmButton />
     </div>);
