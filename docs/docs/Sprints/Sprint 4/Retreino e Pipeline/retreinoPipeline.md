@@ -41,65 +41,19 @@ async def retrain(
     falhas: List[UploadFile] = File(...),
     status: List[UploadFile] = File(...),
     save_new_model: bool = True
-):
-    try:
-        # Listas para guardar os nomes dos arquivos de cada tipo
-        resultado_names = []
-        falhas_names = []
-        status_names = []
-
-        # Renomear e processar os arquivos de resultado
-        for resultado in resultados:
-            name_file = f'{datetime.now().strftime("%Y-%m-%d_%H-%M-%S")}_resultado_{resultado.filename}'
-            await upload_file(resultado, name_file)  # Subir arquivo no Data Lake (simulação)
-            resultado_names.append(name_file)
-
-        # Renomear e processar os arquivos de falhas
-        for falha in falhas:
-            name_file = f'{datetime.now().strftime("%Y-%m-%d_%H-%M-%S")}_falhas_{falha.filename}'
-            await upload_file(falha, name_file)  # Subir arquivo no Data Lake (simulação)
-            falhas_names.append(name_file)
-
-        # Renomear e processar os arquivos de status
-        for stat in status:
-            name_file = f'{datetime.now().strftime("%Y-%m-%d_%H-%M-%S")}_status_{stat.filename}'
-            await upload_file(stat, name_file)  # Subir arquivo no Data Lake (simulação)
-            status_names.append(name_file)
-            
-        # Excluir arquivos originais
-        for file in resultado_names + falhas_names + status_names:
-            if os.path.exists(file):
-                os.remove(file)
-                
-        print(f"Arquivos processados: {resultado_names}, {falhas_names}, {status_names}")
-
-        # Chama a função de processamento dos dados
-        final_file_name = await process_data_datawarehouse(resultado_names, falhas_names, status_names)
-
-        # Chama a função de retreinamento do modelo com os dados fornecidos
-        retrainModel(final_file_name)
-
-        if save_new_model:
-            return {"detail": "Modelo retreinado e salvo com sucesso."}
-        else:
-            return {"detail": "Novo modelo descartado. Modelo antigo restaurado com sucesso."}
-
-    except pd.errors.EmptyDataError:
-        raise HTTPException(status_code=400, detail="Um dos arquivos CSV está vazio ou inválido.")
-    
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=f"Erro ao retreinar o modelo: {str(e)}")
+)
 ```
+Nesse trecho da rota, da pra ver uma parte da função de retreino, em que algumas variáveis como a resultados, falhas e status são definidas e configuradas perante os dados que serão adicionados. O código inteiro pode ser visto na pasta **src/backend** deste repositório
 
 ## Controler de lógica para o processamento dos dados
 
-O processamento dos dados é responsável por controlar a lógica de decisão sobre o que fazer com o novo modelo treinado. Dependendo da escolha do usuário, ele salva o novo modelo no lugar do antigo ou descarta o novo e restaura o modelo anterior. Dessa forma, ele gerencia tanto o processamento dos dados quanto a atualização do modelo preditivo de forma flexível e controlada.
+Para implementar toda a lógica de processamento do nosso projeto, foi feito um processamento dos dados é responsável por controlar a lógica de decisão sobre o que fazer com o novo modelo treinado. Dependendo da escolha do usuário, ele salva o novo modelo no lugar do antigo ou descarta o novo e restaura o modelo anterior. Dessa forma, ele gerencia tanto o processamento dos dados quanto a atualização do modelo preditivo de forma flexível e controlada, o que é fundamental para o funcionamento do nosso projeto.
 
 ## Junção dos dados
 
-O controller da junção dos dados é responsável por gerenciar o processo de combinar os novos dados do arquivo CSV com o data lake existente. Sua principal função é garantir que os dados fornecidos pelo usuário, através de um arquivo CSV, sejam integrados de forma correta e eficiente aos dados antigos, permitindo o retreinamento do modelo com um conjunto de dados atualizado.
+O controller da junção dos dados na nossa solução é responsável por gerenciar o processo de combinar os novos dados do arquivo CSV com o data lake existente na nossa solução. Sua principal função é garantir que os dados fornecidos pelo usuário, através de um arquivo CSV, sejam integrados de forma correta e eficiente aos dados antigos, permitindo o retreinamento do modelo com um conjunto de dados atualizado, conforme o que foi planejado para a nossa solução.
 
-Essa junção ocorre ao ler o arquivo CSV e transformar os dados, verificando se eles estão no formato correto. Depois, o controller adiciona esses novos dados ao data lake, formando um único conjunto de dados que será usado no retreinamento. Assim, ele assegura que o modelo seja sempre atualizado com informações relevantes. Segue um trecho do código da junção apenas dos dataframes de resultados, para exemplificar o processo:
+Segue um trecho do código da junção apenas dos dataframes de resultados, para exemplificar o processo existente no nosso projeto:
 
 ```python
     # Merge dos dataframes de resultados
@@ -134,13 +88,15 @@ Essa junção ocorre ao ler o arquivo CSV e transformar os dados, verificando se
             continue
 ```
 
+Ao analisar este trecho de código, vale destacar que essa junção ocorre ao ler o arquivo CSV e transformar os dados, verificando se eles estão no formato correto. Depois, o controller adiciona esses novos dados ao data lake, formando um único conjunto de dados que será usado no retreinamento. Assim, ele assegura que o modelo seja sempre atualizado com informações relevantes, o que é essencial dado o contexto do nosso projeto. O código inteiro pode ser visto na pasta **src/backend** deste repositório
+
 ## Retreino com novos dados
 
 O retreino do modelo com os novos dados é a etapa onde o modelo preditivo é atualizado para aprender com as novas informações adicionadas. Após a junção dos novos dados ao data lake, o conjunto completo de dados é utilizado para ajustar novamente os parâmetros do modelo, melhorando sua capacidade de fazer previsões com base nas novas tendências ou padrões encontrados.
 
-Durante o retreino, o modelo usa o mesmo algoritmo e processo de aprendizado que foi utilizado inicialmente, mas com um volume de dados maior. Esse processo é importante para manter a precisão do modelo ao longo do tempo, garantindo que ele continue relevante e eficaz ao lidar com mudanças no comportamento dos dados ou no ambiente em que está sendo aplicado.
+Durante o retreino do nosso modelo, o modelo usa o mesmo algoritmo e processo de aprendizado que foi utilizado inicialmente, mas com um volume de dados maior. Esse processo é importante para manter a precisão do modelo ao longo do tempo, garantindo que ele continue relevante e eficaz ao lidar com mudanças no comportamento dos dados ou no ambiente em que está sendo aplicado.
 
-Segue o código de retreino do modelo com novos dados, até a parte da separação dos dados de treino e teste:
+Segue o código de retreino do modelo com novos dados, até a parte da aplicação do scaler para as colunas numéricas:
 
 ```python
 async def retrainModel(name_file: str):
@@ -161,23 +117,9 @@ async def retrainModel(name_file: str):
         # Aplicar o scaler para as colunas numéricas
         df[colunas_numericas] = scaler.fit_transform(df_final[colunas_numericas])
     
-        # Converter as colunas SomaTempo1, SomaTempo2 e SomaTempo718 para o tipo time delta
-        df['SomaTempo1'] = pd.to_timedelta(df['SomaTempo1'])
-        df['SomaTempo2'] = pd.to_timedelta(df['SomaTempo2'])
-        df['SomaTempo718'] = pd.to_timedelta(df['SomaTempo718'])
-        
-        df['SomaTempo1'] = df['SomaTempo1'].dt.total_seconds()
-        df['SomaTempo2'] = df['SomaTempo2'].dt.total_seconds()
-        df['SomaTempo718'] = df['SomaTempo718'].dt.total_seconds()
-        
-        X = dataset[['Nvezes1', 'Nvezes2', 'Nvezes718', 'SomaTempo1', 'SomaTempo2', 'SomaTempo718', 'TemFalhaRod']].values
-
-        Y = dataset['TemFalhaRod'].values
-        
-        X = np.expand_dims(X, axis=1)
-        
-        X_train, X_test, y_train, y_test = train_test_split(X, Y, test_size=0.2, random_state=42)
 ```
+
+O código inteiro pode ser visto na pasta **src/backend** deste repositório
 
 ## Salvamento dos dados e do modelo no datalake
 
