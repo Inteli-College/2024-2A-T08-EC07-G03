@@ -3,7 +3,7 @@ import Header from '../components/Header';
 import FileUpload from '../components/FileUpload';
 import { useNavigate } from 'react-router-dom';
 const Title = () => {
-    return (<h1 className="text-4xl font-light text-white text-center mt-16 font-sans">
+    return (<h1 className="text-6xl font-light text-white text-center mt-8 mb-24 font-sans">
       Dados de Treinamento:
     </h1>);
 };
@@ -13,7 +13,7 @@ const ConfirmButton = () => {
         navigate('/progress');
     };
     return (<div className="flex justify-center mt-6">
-      <button onClick={handleTrainClick} className="px-8 py-2 bg-white text-gray-900 rounded-lg hover:bg-gray-200 transition duration-200">
+      <button onClick={handleTrainClick} className="px-12 py-1 mt-8 bg-white text-gray-900 rounded-lg hover:bg-gray-200 transition duration-200">
         Confirmar
       </button>
     </div>);
