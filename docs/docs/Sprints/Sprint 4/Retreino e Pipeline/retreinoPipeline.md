@@ -54,15 +54,14 @@ async def retrain(
             await upload_file(resultado, name_file)  # Subir arquivo no Data Lake (simulação)
             resultado_names.append(name_file)
 ```
-&emsp;&emsp;Nesse trecho da rota, da pra ver uma parte da função de retreino, em que algumas variáveis são definidas e configuradas perante os dados que serão adicionados, e mostra um "for" de processamento dos arquivos de resultados. O código inteiro pode ser visto na pasta **src/backend** deste repositório
-
+&emsp;&emsp;Nesse trecho da rota, é processada parte da função de retreino, em que algumas variáveis como a resultados, falhas e status são definidas e configuradas perante os dados que serão adicionados. (adicionar o que o for ta fazendo "subindo no datalake e etc") O código completo pode ser visto na pasta **src/backend** deste repositório
 ## Controler de lógica para o processamento dos dados
 
-&emsp;&emsp;Para implementar toda a lógica de processamento do nosso projeto, foi feito um processamento dos dados é responsável por controlar a lógica de decisão sobre o que fazer com o novo modelo treinado. Dependendo da escolha do usuário, ele salva o novo modelo no lugar do antigo ou descarta o novo e restaura o modelo anterior. Dessa forma, ele gerencia tanto o processamento dos dados quanto a atualização do modelo preditivo de forma flexível e controlada, o que é fundamental para o funcionamento do nosso projeto.
+&emsp;&emsp;Para implementar toda a lógica de processamento desse projeto, foi feito o processamento dos dados que é responsável por controlar a lógica de decisão sobre o que fazer com o novo modelo treinado. Dependendo da escolha do usuário, ele salva o novo modelo no lugar do antigo ou descarta o novo e restaura o modelo anterior. Dessa forma, ele gerencia tanto o processamento dos dados quanto a atualização do modelo preditivo de forma flexível e controlada, o que é fundamental para o funcionamento do nosso projeto.
 
 ## Junção dos dados
 
-&emsp;&emsp;O controller da junção dos dados na nossa solução é responsável por gerenciar o processo de combinar os novos dados do arquivo CSV com o data lake existente na nossa solução. Sua principal função é garantir que os dados fornecidos pelo usuário, através de um arquivo CSV, sejam integrados de forma correta e eficiente aos dados antigos, permitindo o retreinamento do modelo com um conjunto de dados atualizado, conforme o que foi planejado para a nossa solução.
+&emsp;&emsp;O controller da junção dos dados nessa solução é responsável por gerenciar o processo de combinar os novos dados do arquivo CSV com o data lake existente no projeto. Sua principal função é garantir que os dados fornecidos pelo usuário, através de um arquivo CSV, sejam integrados de forma correta e eficiente aos dados antigos, permitindo o retreinamento do modelo com um conjunto de dados atualizado.
 
 &emsp;&emsp;Segue um trecho do código da junção apenas dos dataframes de resultados, para exemplificar o processo existente no nosso projeto:
 
@@ -99,38 +98,13 @@ async def retrain(
             continue
 ```
 
-&emsp;&emsp;Ao analisar este trecho de código, vale destacar que essa junção ocorre ao ler o arquivo CSV e transformar os dados, verificando se eles estão no formato correto. Depois, o controller adiciona esses novos dados ao data lake, formando um único conjunto de dados que será usado no retreinamento. Assim, ele assegura que o modelo seja sempre atualizado com informações relevantes, o que é essencial dado o contexto do nosso projeto. O código inteiro pode ser visto na pasta **src/backend** deste repositório
+&emsp;&emsp;O controller adiciona novos dados ao data lake, formando um único conjunto de dados que será usado no retreinamento. Assim, ele assegura que o modelo seja sempre atualizado com informações relevantes, o que é essencial dado o contexto do nosso projeto. O código inteiro pode ser visto na pasta src/backend deste repositório
 
 ## Retreino com novos dados
 
 &emsp;&emsp;O retreino do modelo com os novos dados é a etapa onde o modelo preditivo é atualizado para aprender com as novas informações adicionadas. Após a junção dos novos dados ao data lake, o conjunto completo de dados é utilizado para ajustar novamente os parâmetros do modelo, melhorando sua capacidade de fazer previsões com base nas novas tendências ou padrões encontrados.
 
-&emsp;&emsp;Durante o retreino do nosso modelo, o modelo usa o mesmo algoritmo e processo de aprendizado que foi utilizado inicialmente, mas com um volume de dados maior. Esse processo é importante para manter a precisão do modelo ao longo do tempo, garantindo que ele continue relevante e eficaz ao lidar com mudanças no comportamento dos dados ou no ambiente em que está sendo aplicado.
-
-&emsp;&emsp;Segue o código de retreino do modelo com novos dados, até a parte da aplicação do scaler para as colunas numéricas:
-
-```python
-async def retrainModel(name_file: str):
-    try:
-        
-        file_content = await download_file(name_file)
-            
-        # Tranformar em um dataframe
-        
-        df = pd.read_csv(file_content['content'])
-        
-        # Selecionar apenas as colunas numéricas para normalização
-        colunas_numericas = df.select_dtypes(include=['float64', 'int64']).columns
-
-        # Instanciar o MinMaxScaler
-        scaler = MinMaxScaler()
-
-        # Aplicar o scaler para as colunas numéricas
-        df[colunas_numericas] = scaler.fit_transform(df_final[colunas_numericas])
-    
-```
-
-&emsp;&emsp;O código inteiro pode ser visto na pasta **src/backend** deste repositório
+&emsp;&emsp;Durante o retreino do modelo, o pipeline usa o mesmo algoritmo e processo de aprendizado que foi utilizado inicialmente (LSTM), mas com um volume de dados maior. Esse processo é importante para manter a precisão do modelo ao longo do tempo, garantindo que ele continue relevante e eficaz ao lidar com mudanças no comportamento dos dados ou no ambiente em que está sendo aplicado.
 
 ## Salvamento dos dados e do modelo no datalake
 
