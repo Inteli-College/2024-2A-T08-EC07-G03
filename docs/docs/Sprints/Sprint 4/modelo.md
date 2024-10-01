@@ -8,17 +8,47 @@ description: Tratamento de dados e Feature Engineering desenvolvidos na sprint 3
 
 &emsp;&emsp;Durante a sprint 04, o grupo trabalhou na exploração de novas features para o modelo preditivo com base no protótipo desenvolvido na sprint 03. Assim como nas fases anteriores, a metodologia CRISP-DM foi fundamental para o desenvolvimento.
 
-<p align="center"><b> Figura 1 - Crisp-DM</b></p>
-<div align="center" class="zoom-image">
-  <img src={require('./../../../static/img/crispEtapas.png').default} alt="Crisp-DM"/>
-  <p><b>Fonte:</b> EBAC Online</p>
-</div>
-
 ## Metodologia
 
 &emsp;&emsp;Durante a sprint 4, o grupo trabalhou na exploração de novas features para o modelo preditivo com base no protótipo desenvolvido na sprint 3. Assim como nas fases anteriores, a metodologia CRISP-DM foi fundamental para o desenvolvimento.
 
 &emsp;&emsp;Nesta sprint, identificou-se que a planilha "STATUS" fornecida pelo parceiro continha informações relevantes sobre o tempo gasto nas estações, juntamente com as informações de identificação de resultados do sistema em relação aos KNRs, por meio da tabela de resultados na coluna NAME.
+
+**Agrupando por KNR e somar o tempo gasto em cada ZP/CAB**
+
+```
+# Aplicar a função de grupo ao dataframe
+df_filtered['Group'] = df_filtered['STATUS'].apply(get_group)
+
+# Calcular a diferença de tempo entre os status consecutivos para o mesmo KNR
+df_filtered['Tempo'] = df_filtered.groupby('KNR')['DATA'].diff().dt.total_seconds() / 60  # Diferença em minutos
+
+# Preencher NaN com 0, já que a primeira ocorrência não tem tempo anterior
+df_filtered['Tempo'] = df_filtered['Tempo'].fillna(0)
+
+# Criar colunas para armazenar o tempo gasto em cada ZP/CAB
+for group in station_to_group.keys():
+    df_filtered[f'Tempo_{group}'] = df_filtered.apply(lambda row: row['Tempo'] if row['Group'] == group else 0, axis=1)
+
+# Agrupar por KNR e somar o tempo gasto em cada ZP/CAB
+df_result = df_filtered.groupby('KNR').agg({f'Tempo_{group}': 'sum' for group in station_to_group.keys()}).reset_index()
+```
+**Criando colunas com os dados da coluna NAME**
+
+```
+# Criar uma tabela pivô onde cada NAME se torna uma coluna
+df_merged = df_merged.pivot_table(index='KNR', columns='NAME', aggfunc='size', fill_value=0)
+
+# Alterar os valores diferentes de zero para 1 (para indicar que aquele KNR tem dados para aquele NAME)
+df_merged = (df_merged > 0).astype(int)
+
+# Resetar o índice para trazer KNR de volta como coluna
+df_merged = df_merged.reset_index()
+
+# Exibir o DataFrame resultante
+print(df_merged)
+
+```
 
 &emsp;&emsp;Para melhor aproveitamento dos dados, foi realizado um tratamento em cada uma das tabelas para garantir que não haveria dados nulos, repetidos ou dados de estações pelas quais os KNRs passam depois do teste de rodagem, que não serão utilizados no treinamento do modelo. Isso porque, no momento de uso real desse projeto, esses dados ainda não terão sido obtidos, dado que o objetivo do projeto é desenvolver uma solução que será utilizada antes do processo de rodagem dos carros da VW.
 
