@@ -54,7 +54,8 @@ async def retrain(
             await upload_file(resultado, name_file)  # Subir arquivo no Data Lake (simulação)
             resultado_names.append(name_file)
 ```
-&emsp;&emsp;Nesse trecho da rota, é processada parte da função de retreino, em que algumas variáveis como a resultados, falhas e status são definidas e configuradas perante os dados que serão adicionados. (adicionar o que o for ta fazendo "subindo no datalake e etc") O código completo pode ser visto na pasta **src/backend** deste repositório
+&emsp;&emsp;Nesse trecho da rota, é processada parte da função de retreino, em que algumas variáveis como a resultados, falhas e status são definidas e configuradas perante os dados que serão adicionados, e mostra um "for" do processamento dos arquivos de resultados. O código completo pode ser visto na pasta **src/backend** deste repositório
+
 ## Controler de lógica para o processamento dos dados
 
 &emsp;&emsp;Para implementar toda a lógica de processamento desse projeto, foi feito o processamento dos dados que é responsável por controlar a lógica de decisão sobre o que fazer com o novo modelo treinado. Dependendo da escolha do usuário, ele salva o novo modelo no lugar do antigo ou descarta o novo e restaura o modelo anterior. Dessa forma, ele gerencia tanto o processamento dos dados quanto a atualização do modelo preditivo de forma flexível e controlada, o que é fundamental para o funcionamento do nosso projeto.
