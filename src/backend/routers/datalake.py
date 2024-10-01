@@ -1,5 +1,5 @@
 from fastapi import APIRouter, UploadFile, File
-from controllers.datalake import upload_file, download_file, list_files, list_databases
+from controllers.datalake import upload_file, download_file, list_files, list_databases, delete_all_files_datalake
 
 router = APIRouter()
 
@@ -22,3 +22,8 @@ async def list_files_datalake():
 @router.get("/databases")
 async def list_databases_datalake():
     return await list_databases()
+
+# Rota para apagar todos arquivos
+@router.delete("/deleteAll")
+async def delete_all_files():
+    return await delete_all_files_datalake()
