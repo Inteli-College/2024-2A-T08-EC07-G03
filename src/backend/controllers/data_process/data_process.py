@@ -1,10 +1,10 @@
+from datetime import datetime
+from pydantic import BaseModel
 import pandas as pd
 import numpy as np
 import io
 from  controllers.datalake.file_manager import download_file
 from routers.crud import insert_data_entries
-from datetime import datetime
-from pydantic import BaseModel
 
 class NewEntries(BaseModel):
     date: datetime
@@ -35,7 +35,7 @@ async def build_feature_prediction(knr):
     file_data["SomaTempo718"] = pd.to_timedelta(file_data["SomaTempo718"]).dt.total_seconds()
 
     print(file_data.values)
-
+    
     # Montar dicionario para enviar para o banco de dados
     db_data = {
         "date": datetime.now(),

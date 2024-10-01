@@ -27,23 +27,23 @@ const Home: React.FC = () => {
     };
 
     return (
-        <div className="min-h-screen flex flex-col bg-gradient-to-r from-gray-900 to-gray-800">
+        <div className="min-h-screen flex flex-col bg-custom-gradient">
             {/* Navbar */}
             <Navbar>
                 <a href="/">Home</a>
             </Navbar>
 
             {/* Conteúdo Principal Centralizado */}
-            <div className="flex-1 flex items-center justify-center bg-gradient-to-r from-gray-900 to-gray-800">
+            <div className="flex-1 flex items-center justify-center bg-custom-gradient">
                 <div className="flex flex-col items-center space-y-8">
 
                     {/* Logo e Título */}
-                    <div className="flex flex-col items-center space-y-4">
-                        <img src="../assets/logo_corte_black.png" alt="Käfer logo" />
+                    <div className="flex flex-col items-center space-y-8">
+                        <img src="../assets/logo.png" alt="Käfer logo" />
                     </div>
 
                     {/* Botões */}
-                    <div className="mt-8 flex space-x-4">
+                    <div className="mt-12 flex space-x-4">
                         {/* Botão Executar que navega diretamente para a página ExcPage */}
                         <Button label="Executar" onClick={handleExecuteClick} />
                         

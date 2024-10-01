@@ -4,9 +4,12 @@ import pandas as pd
 from joblib import load
 from controllers.banco.supabase import create_supabase_client  # Para salvar no banco
 from controllers.data_process.data_process import build_feature_prediction
+import os
 
 # Carregar o modelo salvo no formato .h5
-model = load_model("modelo2.h5")
+model_path = os.path.abspath(os.path.join(os.getcwd(), "modelos", "modelo2.h5"))
+
+model = load_model(model_path)
 
 print(type(model))
 print(model)

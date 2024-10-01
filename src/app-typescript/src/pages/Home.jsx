@@ -3,6 +3,7 @@ import Button from '../components/Button';
 import Navbar from '../components/Navbar';
 import { useNavigate } from 'react-router-dom';
 import Popup from '../components/Popup';
+
 const Home = () => {
     const navigate = useNavigate();
     const [isPopupVisible, setIsPopupVisible] = useState(false);
@@ -19,14 +20,15 @@ const Home = () => {
         setIsPopupVisible(false);
         navigate('/training');
     };
-    return (<div className="min-h-screen flex flex-col bg-gradient-to-r from-gray-900 to-gray-800">
+    return (
+        <div className="min-h-screen flex flex-col bg-gradient-to-r from-customGray via-customDarkBlue to-customBlue">
             {/* Navbar */}
             <Navbar>
                 <a href="/">Home</a>
             </Navbar>
 
             {/* Conteúdo Principal Centralizado */}
-            <div className="flex-1 flex items-center justify-center bg-gradient-to-r from-gray-900 to-gray-800">
+            <div className="flex-1 flex items-center justify-center bg-gradient-to-r from-customGray via-customDarkBlue to-customBlue">
                 <div className="flex flex-col items-center space-y-8">
 
                     {/* Logo e Título */}
@@ -51,8 +53,13 @@ const Home = () => {
             </div>
 
             {/* Popup Modal */}
-            <Popup isVisible={isPopupVisible} onClose={handleClosePopup} onConfirm={handleConfirm} // Passa a função handleConfirm
-    />
-        </div>);
+            <Popup 
+                isVisible={isPopupVisible} 
+                onClose={handleClosePopup} 
+                onConfirm={handleConfirm} // Passa a função handleConfirm
+            />
+        </div>
+    );
 };
+
 export default Home;

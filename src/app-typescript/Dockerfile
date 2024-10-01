@@ -19,5 +19,6 @@ COPY ./nginx.conf /etc/nginx/conf.d/default.conf
 # Copia os arquivos do build para o diretório do Nginx
 COPY --from=build /app/dist /usr/share/nginx/html
 
-EXPOSE 88
+EXPOSE 82
+
 CMD ["nginx", "-g", "daemon off;"]
