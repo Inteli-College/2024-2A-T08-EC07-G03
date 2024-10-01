@@ -1,6 +1,7 @@
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import LSTM, Dense, Dropout
 from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import MinMaxScaler
 from controllers.datalake import upload_file
 from controllers.DataWarehouse.file_manager_warehouse import download_file_warehouse
 from routers.crud import insert_model
