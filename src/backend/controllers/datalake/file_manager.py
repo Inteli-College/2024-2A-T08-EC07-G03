@@ -26,12 +26,18 @@ async def download_file(filename: str):
 
 async def list_files():
     files = []
-    for file in fs.find():
-        files.append({
-            "filename": file.filename,
-            "file_id": str(file._id),
-            "size": file.length,
-        })
+    try:
+        for file in fs.find():
+            files.append({
+                "filename": file.filename,
+                "file_id": str(file._id),
+                "size": file.length,
+            })
+            
+    except Exception as e:
+        print(f"Erro ao listar arquivos: {e}")  # Isso exibe o erro no console
+        return {"error": str(e)}  # Retorna o erro como resposta
+
     return {"files": files}
 
 async def list_databases():

@@ -1,7 +1,7 @@
 import pandas as pd
 from tensorflow.keras.models import load_model
 from controllers.datalake import download_file, list_files
-from controllers.DataWarehouse import upload_file
+from controllers.DataWarehouse import upload_file_warehouse, download_file_warehouse, list_files_warehouse
 from datetime import datetime
 import numpy as np
 import os
@@ -127,13 +127,22 @@ async def process_data_datawarehouse(resultado_names: list, falhas_names: list, 
     
     # Salvar arquivo final no data warehouse
     
+    # Definir o nome do arquivo final com base na data e hora atuais
     final_file = f'{datetime.now().strftime("%Y-%m-%d_%H-%M-%S")}_final.csv'
-    
+
+    # Salvar o DataFrame como CSV
     df_merged.to_csv(final_file, index=False)
-    
-    await upload_file(final_file) # Subir na data warehouse
-    
-    os.remove(final_file)
+
+    try:
+        # Abrir o arquivo CSV em modo leitura binária
+        with open(final_file, 'rb') as file:
+            # Fazer o upload do arquivo CSV para o data warehouse
+            await upload_file_warehouse(file_content=file, new_filename=final_file)
+
+        # Opcionalmente, remover o arquivo após o upload para evitar acumulação de arquivos locais
+        os.remove(final_file)
+    except Exception as e:
+        print(f"Erro ao salvar o arquivo no data warehouse: {str(e)}")
     
     return final_file
 
@@ -141,25 +150,31 @@ async def process_data_datawarehouse(resultado_names: list, falhas_names: list, 
 async def merge_df_with_last(df):
     
     # Pegar ultimo arquivo no data warehouse
-    files = await list_files()
+    files = await list_files_warehouse()
     
-    last_file = files[-1]
+    print(files)
     
-    # Baixar o arquivo
-    file_content = await download_file(last_file)
+    # Se tiver vazio, retornar o DataFrame original
+    if not files['files']:
+        return df
+    else:
+        last_file = files['files'][-1]['filename']
     
-    df_last = pd.read_csv(file_content.decode('utf-8'))
-    
-    # Pegar knrs que estão no último arquivo
-    knrs_last = df_last['KNR'].values
-    
-    # Manter apenas os KNRs que não estão no último arquivo
-    df = df[~df['KNR'].isin(knrs_last)]
-    
-    # Merge dos dataframes
-    df_final = pd.concat([df_last, df], ignore_index=True)
-    
-    return df_final
+        # Baixar o arquivo
+        file_content = await download_file_warehouse(last_file)
+        
+        df_last = pd.read_csv(file_content.decode('utf-8'))
+        
+        # Pegar knrs que estão no último arquivo
+        knrs_last = df_last['KNR'].values
+        
+        # Manter apenas os KNRs que não estão no último arquivo
+        df = df[~df['KNR'].isin(knrs_last)]
+        
+        # Merge dos dataframes
+        df_final = pd.concat([df_last, df], ignore_index=True)
+        
+        return df_final
     
     
 

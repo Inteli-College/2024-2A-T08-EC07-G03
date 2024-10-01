@@ -2,7 +2,7 @@ from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import LSTM, Dense, Dropout
 from sklearn.model_selection import train_test_split
 from controllers.datalake import upload_file
-from controllers.DataWarehouse import download_file
+from controllers.DataWarehouse.file_manager_warehouse import download_file_warehouse
 from routers.crud import insert_model
 from pydantic import BaseModel
 from datetime import datetime
@@ -18,7 +18,7 @@ class ModelTraining(BaseModel):
 async def retrainModel(name_file: str):
     try:
         
-        file_content = await download_file(name_file)
+        file_content = await download_file_warehouse(name_file)
             
         # Tranformar em um dataframe
         
@@ -31,7 +31,7 @@ async def retrainModel(name_file: str):
         scaler = MinMaxScaler()
 
         # Aplicar o scaler para as colunas numéricas
-        df[colunas_numericas] = scaler.fit_transform(df_final[colunas_numericas])
+        df[colunas_numericas] = scaler.fit_transform(df[colunas_numericas])
     
         # Converter as colunas SomaTempo1, SomaTempo2 e SomaTempo718 para o tipo time delta
         df['SomaTempo1'] = pd.to_timedelta(df['SomaTempo1'])
@@ -42,9 +42,9 @@ async def retrainModel(name_file: str):
         df['SomaTempo2'] = df['SomaTempo2'].dt.total_seconds()
         df['SomaTempo718'] = df['SomaTempo718'].dt.total_seconds()
         
-        X = dataset[['Nvezes1', 'Nvezes2', 'Nvezes718', 'SomaTempo1', 'SomaTempo2', 'SomaTempo718', 'TemFalhaRod']].values
+        X = df[['Nvezes1', 'Nvezes2', 'Nvezes718', 'SomaTempo1', 'SomaTempo2', 'SomaTempo718', 'TemFalhaRod']].values
 
-        Y = dataset['TemFalhaRod'].values
+        Y = df['TemFalhaRod'].values
         
         X = np.expand_dims(X, axis=1)
         
