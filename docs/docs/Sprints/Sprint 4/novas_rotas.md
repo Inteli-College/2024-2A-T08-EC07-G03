@@ -82,4 +82,8 @@ As rotas estão organizadas de forma modular dentro da pasta `routers`, separand
 
 As rotas implementadas foram projetadas para facilitar a integração com o front-end da aplicação. Em particular, a rota `/model-training` é utilizada para popular uma tabela que exibe aos usuários uma visão geral dos modelos treinados. Essa tabela permite que os usuários visualizem rapidamente informações essenciais sobre cada modelo, como data de treinamento, métricas de desempenho e parâmetros utilizados, contribuindo para uma melhor compreensão e monitoramento dos modelos preditivos implementados.
 
+# Resultado final
+
+![Texto Alternativo](../../../static/img/tabela_modelos.png)
+
 ---
