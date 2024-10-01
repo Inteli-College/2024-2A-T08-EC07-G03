@@ -26,7 +26,7 @@ description : Business Model Canvas da solução
 
 &emsp;A partir destes princípios, foi desenvolvido um BMC sobre este projeto. Apesar de todo o contexto do projeto, em que o cliente é a Atvos e consiste num projeto de graduação na faculdade Inteli, este BMC foi criado como se uma empresa de startup estivesse vendendo este tipo de projeto. 
 
-<div align="center"> 
+<div align="center" class="zoom-image"> 
 
 ![Business Model Canvas](../../../../static/img/grupoKaferBmc.png)
 Fonte: Elaborado pelo grupo Käfer

@@ -14,7 +14,11 @@ description : Primeiro modelo de predição
 
 &emsp;O CRISP-DM opera como um ciclo iterativo, uma vez que, dada a complexidade à manipulação e interpretação de vastos volumes de dados, é crucial proceder com avanços de etapa a etapa para alcançar um progresso gradual no ciclo do projeto. Essa metodologia apresenta seis estágios distintos, porém para esta primeira sprint de projeto a implementação do modelo será da etapa 1 até a etapa 5: Entendimento do Negócio, Entendimento dos Dados, Preparação dos Dados, Modelagem e Avaliação
 
-![Crisp-DM](../../../../static/img/crispEtapas.png)
+<p align="center"><b> Figura 1 - Crisp-DM</b></p>
+<div align="center" class="zoom-image">
+  <img src={require('../../../../static/img/crispEtapas.png').default} alt="Crisp-DM"/>
+  <p><b>Fonte:</b> Elaborado por Grupo 3</p>
+</div>
 
 Fonte: EBAC Online
 
@@ -22,9 +26,17 @@ Fonte: EBAC Online
 
 &emsp;Entendimento dos Dados: A próxima fase é o Entendimento dos Dados. Ela envolve uma etapa essencial de coleta e exploração dos dados. Por meio dessa imersão nos dados, a equipe busca garantir que eles sejam confiáveis, de alta qualidade e diretamente relevantes para o escopo do projeto em questão. Uma compreensão sólida dos dados não apenas simplifica o processo de modelagem, mas também desempenha um papel importante na avaliação da adequação dos dados para atender às demandas específicas do projeto. Além disso, verificações rigorosas quanto à precisão, coesão e coerência dos dados são realizadas, assim como a criação de relatórios descritivos que fornecem insights sobre a natureza dos dados. Todo esse entendimento foi feito a partir de diversos estudos sobre os dados, que podem ser exemplados nas seguintes imagens:
 
-![Top 10 falhas mais comuns](../../../../static/img/10_falhas.png)
+<p align="center"><b> Figura 2 - Top 10 falhas mais comuns</b></p>
+<div align="center" class="zoom-image">
+  <img src={require('../../../../static/img/10_falhas.png').default} alt="10 falhas"/>
+  <p><b>Fonte:</b> Elaborado por Grupo 3</p>
+</div>
 
-![Distribuição das Falhas ao Longo do Tempo](../../../../static/img/distri_falhas.png)
+<p align="center"><b> Figura 3 - Distribuição das Falhas ao Longo do Tempo</b></p>
+<div align="center" class="zoom-image">
+  <img src={require('../../../../static/img/distri_falhas.png').default} alt="distri falhas"/>
+  <p><b>Fonte:</b> Elaborado por Grupo 3</p>
+</div>
 
 Fonte: Elaborado pelo grupo Käfer
 
@@ -38,17 +50,21 @@ Fonte: Elaborado pelo grupo Käfer
 
 &emsp;O escolhido para a introdução desse projeto foi o Random Forest. “Em resumo, o Random Forest irá criar muitas árvores de decisão, de maneira aleatória”[1] e, em seguida, combina os resultados dessas árvores para formar um único resultado consolidado. Esse algoritmo encontra-se na biblioteca scikit-learn e baseia-se no conceito de ensemble learning, que envolve o uso de vários modelos para obter uma previsão, muito parecido com a abordagem de uma árvore de decisão tradicional. No entanto, o Random Forest utiliza diversas árvores de decisões para gerar a previsão esperada. É um modelo versátil e pode ser usado tanto para regressão ou classificação, que teve a classificação como forma escolhida nesse projeto para prever falhas na produção de automóveis na fábrica da Volkswagen. Devido a sua capacidade de lidar com o uso de diversas features e ao mecanismo de ensemble, esse modelo se torna muito eficiente em resultados com diversos tipos de problemas.
 
-![Random Forest](../../../../static/img/randomForest.png)
-
-Fonte: Deniz Gunay
+<p align="center"><b> Figura 4 - Random Forest</b></p>
+<div align="center" class="zoom-image">
+  <img src={require('../../../../static/img/randomForest.png').default} alt="Random Forest"/>
+  <p><b>Fonte:</b> Deniz Gunay</p>
+</div>
 
 # Métricas
 
 &emsp;Na criação de um modelo preditivo, é essencial serem utilizados critérios para avaliar o desempenho deste. Desse modo, esses critérios são chamados de métricas e elas podem ser divididas em dois grupos: de regressão e de classificação. Assim, foram utilizadas métricas de classificação para avaliar o modelo preditivo desenvolvido pela equipe Käfer, uma vez que o modelo testado foi o Random Forest Classifier. As métricas escolhidas são: Acurácia, Precisão, Sensibilidade (Recall) e F1-Score. Além disso, é importante ressaltar que o grupo utilizou a biblioteca sklearn.metrics para realizar o cálculo das métricas, o que é apresentado no trecho de código abaixo:
 
-![Metricas](../../../../static/img/metricasSprint1Kafer.png)
-
-Fonte: Elaborado pelo grupo Käfer
+<p align="center"><b> Figura 5 - Métricas</b></p>
+<div align="center" class="zoom-image">
+  <img src={require('../../../../static/img/metricasSprint1Kafer.png').default} alt="Metricas"/>
+  <p><b>Fonte:</b> Elaborado por Grupo 3</p>
+</div>
 
 &emsp;Nesse sentido, a seguir serão apresentadas os significados das métricas de classificação utilizadas para avaliar o modelo preditivo:
 
@@ -62,11 +78,17 @@ Fonte: Elaborado pelo grupo Käfer
 
 A imagem abaixo apresenta todos os resultados obtidos nas métricas apresentadas acima de maneira resumida:
 
-![Resultados](../../../../static/img/resultadosSprint1Kafer.png)
+<p align="center"><b> Figura 6 - Resultados</b></p>
+<div align="center" class="zoom-image">
+  <img src={require('../../../../static/img/resultadosSprint1Kafer.png').default} alt="Resultados"/>
+  <p><b>Fonte:</b> Elaborado por Grupo 3</p>
+</div>
 
-![Matriz de Confusão](../../../../static/img/output.png)
-
-Fonte: Elaborado pelo grupo Käfer
+<p align="center"><b> Figura 7 - Matriz de Confusão</b></p>
+<div align="center" class="zoom-image">
+  <img src={require('../../../../static/img/output.png').default} alt="Matriz de Confusão"/>
+  <p><b>Fonte:</b> Elaborado por Grupo 3</p>
+</div>
 
 &emsp;Dados os resultados das quatro métricas escolhidas acima, é possível analisar que ocorreu o fenômeno de overfitting nesta predição, por conta da proximidade dos valores ao número 1, valor máximo destas métricas. O modelo se ajustou muito bem ao conjunto de dados anteriomente verificados, mas será ineficaz para prever novos resultados. Uma das causas para a ocorrência deste fenômeno pode ter sido o desbalanceamento dos dados. Após o recebimento dos dados do cliente, várias ajustes foram feitos nas planilhas, para os dados estarem preparados corretamente para serem utilizados. Além disso, mais ajustes foram feitos no dataframe, que podem ser vistos no notebook da solução, como a transformação dos dados categóricos para numéricos. Apesar do caso de overfitting, o modelo preditivo desta sprint foi concluído dessa forma. 
 
