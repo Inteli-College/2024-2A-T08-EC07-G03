@@ -3,6 +3,8 @@ import Header from '../components/Header';
 import FileUpload from '../components/FileUpload';
 import { useNavigate } from 'react-router-dom';
 import FileUpload_Resultados from '../components/FileUpload_Resultados';
+import FileUpload_Status from '../components/FileUpload_Status';
+
 const Title = () => {
     return (<h1 className="text-6xl font-light text-white text-center mt-8 mb-24 font-sans">
       Dados de Treinamento:
@@ -25,7 +27,7 @@ const TrainingPage = () => {
       <Title />
       <div className="flex justify-center gap-4 mt-8">
         <FileUpload_Resultados />
-        <FileUpload />
+        <FileUpload_Status />
         <FileUpload />
       </div>
       <ConfirmButton />
