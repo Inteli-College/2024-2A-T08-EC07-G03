@@ -1,6 +1,6 @@
 import React from 'react';
 import Header from '../components/Header';
-import FileUpload from '../components/FileUpload';
+import FileUpload1 from '../components/FileUpload';
 import { useNavigate } from 'react-router-dom';
 
 
@@ -125,7 +125,7 @@ const ExcPage: React.FC = () => {
     <div className="min-h-screen bg-gradient-to-b from-[#333641] to-[#282A32] font-sans">
       <Header />
       <Title />
-      <FileUpload />
+      <FileUpload1 />
       <p className="text-white text-center mt-6">ou</p>
       <KNRInput />
       <ConfirmButton />
