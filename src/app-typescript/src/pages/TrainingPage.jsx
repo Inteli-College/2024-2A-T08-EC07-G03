@@ -22,7 +22,11 @@ const TrainingPage = () => {
     return (<div className="min-h-screen bg-gradient-to-b from-[#333641] to-[#282A32] font-sans">
       <Header />
       <Title />
-      <FileUpload />
+      <div className="flex justify-center gap-4 mt-8">
+        <FileUpload />
+        <FileUpload />
+        <FileUpload />
+      </div>
       <ConfirmButton />
     </div>);
 };
