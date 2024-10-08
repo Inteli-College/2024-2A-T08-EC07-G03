@@ -65,6 +65,15 @@ A solução proposta é um modelo preditivo de classificação, com acurácia m�
 ```
 
 
+## Stack utilizada
+
+**Front-end:** Typescript, React e TailwindCSS
+
+**Back-end:** Node, Python
+
+**Banco de dados:** PostgreSQL
+
+
 ## Histórico de lançamentos
 
 ### Sprint 1
@@ -97,9 +106,17 @@ A solução proposta é um modelo preditivo de classificação, com acurácia m�
 
 ### Sprint 5
 
+- Melhoria do Frontend
 - Entrega da PoC (Prova de Conceito)
 
 ## Licença
 
 
 <p xmlns:cc="http://creativecommons.org/ns#" xmlns:dct="http://purl.org/dc/terms/"><span property="dct:title">Käfer</span> by <span property="cc:attributionName">Inteli - Laura Bueno, Luan de Mello, Lucas de Luccas, Isabelle Vasquez, Luiz Leão,Rodrigo Sales</span> is licensed under <a href="https://creativecommons.org/licenses/by/4.0/?ref=chooser-v1" target="_blank" rel="license noopener noreferrer" style="display:inline-block;">CC BY 4.0<img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1" alt=""><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1" alt=""></a></p>
+
+
+
+
+
+
+![Logo](docs/static/img/logo.png)
