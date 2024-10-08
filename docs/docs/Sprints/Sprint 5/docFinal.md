@@ -61,7 +61,69 @@ O BMC desenvolvido para esta solução demonstra sua viabilidade estratégica e 
 
 &emsp;&emsp;A análise financeira destaca a necessidade de um investimento significativo para o desenvolvimento e implementação do projeto. O protótipo é relativamente acessível, mas a implementação completa envolve custos elevados, principalmente devido à mão de obra e infraestrutura. Ao incorporar uma margem de lucro justa e os impostos, o valor final reflete o retorno financeiro necessário para garantir a viabilidade do projeto. Assim, a análise demonstra a importância de avaliar a viabilidade econômica antes de prosseguir com a implementação em grande escala.
 
+A seção de Requisitos Técnicos é fundamental para o sucesso de qualquer projeto, pois define as especificações necessárias para que o desenvolvimento ocorra de maneira eficiente e alinhada aos objetivos. O propósito desta documentação é detalhar os requisitos técnicos levantados, abordando aspectos cruciais como software, desempenho e outras necessidades técnicas. Com esses requisitos bem definidos, garantimos que todos os envolvidos no projeto tenham uma compreensão clara das expectativas e das metas a serem alcançadas.
+
+### Proposta Geral do Sistema
+
+&emsp;&emsp;Durante a apresentação dos representantes da Volkswagen, parceiros deste projeto, foi levantada a necessidade de inspeções mais assertivas antes do processo de rodagem dos veículos na fábrica. Em resposta a essa demanda, propôs-se o desenvolvimento de um modelo preditivo para classificar os carros com possíveis defeitos nas seguintes categorias: classe 1 e classe 2. O principal objetivo é tornar o processo de inspeção mais eficiente, focando nos problemas mais prováveis, permitindo economizar tempo e reduzir a ocorrência de problemas durante a fase de testes de rodagem.
+
+&emsp;&emsp;A solução, sendo um modelo preditivo com uma acurácia desejada acima de 95%, visa melhorar a eficiência dos testes de rodagem por meio da classificação e identificação prévia de possíveis defeitos durante a montagem. Além disso, o sistema precisa ser escalável, sendo calibrado mensalmente com novos dados de produção para garantir maior assertividade nas inspeções dos veículos.
+
+&emsp;&emsp;O sistema será utilizado por analistas da fábrica para ajustar o processo de inspeção e fornecer uma visualização clara dos resultados do algoritmo. Dessa forma, o motorista inspetor saberá exatamente qual tipo de inspeção é necessária para cada veículo, garantindo uma abordagem mais eficaz na fase de rodagem.
+
+#### Requisitos Funcionais
+
+&emsp;&emsp;Requisitos funcionais são as funcionalidades específicas que o sistema deve proporcionar para atender às operações desejadas. Para este projeto, os seguintes requisitos funcionais foram elaborados:
+
+- **RF1 - Interface Gráfica Simples**: A interface gráfica deve apresentar de maneira clara e objetiva os resultados da classificação do modelo preditivo, facilitando a identificação do tipo de inspeção a ser realizada. Deve incluir um dashboard interativo para a visualização dos resultados e métricas associadas.
+  
+- **RF2 - Importação de Dados**: O sistema deve suportar a importação de dados a partir de diferentes fontes, como arquivos CSV, XLSX, bancos de dados SQL e APIs, permitindo o re-treinamento do modelo para melhorar a precisão com base em dados atualizados.
+  
+- **RF3 - Utilização em Cloud**: A aplicação deve ser migrada para a nuvem, utilizando a infraestrutura da AWS, para armazenar o modelo preditivo treinado e realizar o deploy da API do projeto.
+
+- **RF4 - Integração de Tecnologias**: Deve ser estabelecida uma integração entre o modelo de predição, o banco de dados e o sistema de coleta de dados, permitindo um fluxo contínuo de informações entre esses elementos.
+
+- **RF5 - Documentação**: A documentação deve explicar detalhadamente o funcionamento do sistema, as técnicas empregadas no modelo preditivo, os processos de integração e o uso da interface de usuário.
+
+#### Requisitos Não Funcionais
+
+&emsp;&emsp;Os requisitos não funcionais definem as características de qualidade que o sistema deve apresentar. Para este projeto, foram identificados os seguintes requisitos não funcionais:
+
+- **RNF1 - Acurácia do Modelo**: O modelo preditivo deve categorizar corretamente os veículos nas classes 1 e 2, com uma acurácia superior a 95%. O modelo será amplamente testado e ajustado com base nos resultados.
+
+- **RNF2 - Usabilidade da Interface Gráfica**: A interface gráfica deve ser fácil de usar e compreender, permitindo que os operadores identifiquem rapidamente o defeito classificado e o tipo de inspeção necessária. A interface será avaliada pelo número de cliques necessários para realizar uma tarefa (máximo de 3 cliques), e 90% das funcionalidades devem estar disponíveis na tela inicial.
+
+### Estudo de Viabilidade Técnica
+
+&emsp;&emsp;O estudo de viabilidade técnica é uma etapa crucial, especialmente em projetos que envolvem inovação e novas tecnologias. No caso deste projeto, que visa implementar um modelo preditivo para auxiliar na manutenção de veículos da Volkswagen com base nos dados do processo de montagem, o estudo de viabilidade técnica garante que as decisões sejam baseadas em análises cuidadosas.
+
+#### Tecnologia e Ferramentas Disponíveis
+
+- **Modelos de Aprendizado de Máquina**: Estas tecnologias são amplamente usadas na indústria para analisar grandes volumes de dados, identificar padrões complexos e melhorar previsões com novos dados.
+
+- **Serviço de Cloud**: A adoção de uma infraestrutura de cloud, como a AWS, oferece escalabilidade, alta disponibilidade e segurança, além de integrar facilmente outras ferramentas, como APIs e bancos de dados.
+
+- **Interface com FastAPI e React**: A combinação de FastAPI para a criação de APIs robustas e React para interfaces dinâmicas resulta em uma aplicação ágil e escalável.
+
+#### Análise de Dados
+
+&emsp;&emsp;Os dados fornecidos pela Volkswagen foram analisados, e observou-se que muitos carros apresentam algum tipo de defeito durante a montagem. Essa informação orientou o desenvolvimento de um modelo preditivo robusto, que utiliza principalmente dados relacionados ao torque durante a montagem dos carros.
+
+&emsp;&emsp;Foi necessário reunir dados de várias tabelas e organizá-los em um único arquivo para viabilizar a análise. A partir das informações obtidas, foi possível prever a ocorrência de falhas com maior precisão, utilizando as colunas relacionadas ao processo de montagem.
+
+#### Diagrama de Blocos
+
+&emsp;&emsp;A arquitetura da solução é estruturada em três fases: ETL (Extração, Transformação e Carga), Storage e Aprendizado de Máquina. Todo o sistema é hospedado na nuvem, utilizando serviços da AWS. O processo inicia-se na fase de ETL, onde os dados são tratados e separados em conjuntos de treino e teste. Na fase de storage, os dados são armazenados e o modelo é retreinado com novos dados. Na fase de aprendizado de máquina, os dados são utilizados para atualizar o modelo preditivo, que alimenta o backend e fornece informações claras na interface de usuário.
+
 ## Modelo Preditivo
+
+&emsp;&emsp;Durante as sprints do projeto, a equipe implementou um modelo preditivo utilizando a metodologia CRISP-DM, que permitiu um ciclo iterativo de desenvolvimento, revisão e aprimoramento contínuo. Na primeira sprint, foi desenvolvido um modelo preditivo com o algoritmo Random Forest, que demonstrou a capacidade de prever falhas na produção de automóveis na fábrica da Volkswagen. Embora o modelo apresentasse um desempenho elevado nas métricas de avaliação, como acurácia e F1-Score, também foi identificado um fenômeno de overfitting, o que indicou a necessidade de ajustes no tratamento de dados e balanceamento.
+
+&emsp;&emsp;Na segunda sprint, a equipe focou na melhoria do modelo, explorando dados adicionais, como estações de montagem e tempos gastos em cada uma delas. Foram removidas duplicatas do dataset e criadas novas colunas que permitiram um entendimento mais aprofundado das informações, como frequência de ocorrências e tempo gasto, além da definição de uma nova coluna para falhas de rodagem. Apesar das melhorias, a equipe percebeu que os dados ainda estavam desbalanceados, indicando a necessidade de mais refinamentos.
+
+&emsp;&emsp;Na terceira sprint, o projeto passou pela fase de dockerização e a configuração de um datalake, que facilitou o armazenamento e a gestão de dados. Essa estrutura foi essencial para a coleta e processamento de informações, garantindo que os dados estivessem organizados e prontos para o treinamento do modelo. A quarta sprint concentrou-se no processo de ETL, onde os dados foram extraídos de arquivos XLSX fornecidos pela empresa parceira, formatados e processados adequadamente para o treinamento do modelo. O fluxo de retrain do modelo foi desenhado com foco nas personas principais, como operadores e engenheiros de dados, utilizando diagramas de blocos para visualizar o processo e facilitar a compreensão.
+
+&emsp;&emsp;Com a conclusão dessas etapas, o projeto avançou significativamente na construção de um sistema preditivo robusto, visando melhorar a precisão das previsões e a segurança dos testes dos automóveis, sendo assim, o modelo está finalizado.
 
 ## Backend
 
