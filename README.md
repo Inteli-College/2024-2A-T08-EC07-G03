@@ -39,11 +39,13 @@ Para acessar a documentação do projeto, basta clicar [aqui](https://inteli-col
 
 ## Problema
 
----
+A Volkswagen identificou a oportunidade de aprimorar a precisão das inspeções de veículos antes da fase de rodagem na fábrica. O processo atual poderia se beneficiar de uma priorização mais eficaz dos veículos com maior probabilidade de apresentar defeitos, o que resultaria em um uso mais eficiente do tempo e dos recursos durante os testes. Uma abordagem mais direcionada nas inspeções pode contribuir para uma maior eficiência e qualidade no processo produtivo, garantindo que os problemas sejam detectados e resolvidos de forma mais ágil.
+
 
 ## Solução
 
----
+A solução proposta é um modelo preditivo de classificação, com acurácia mínima de 95%, para identificar possíveis defeitos nos veículos durante a montagem. O modelo classifica os veículos em duas categorias de risco (classe 1 e classe 2), permitindo que os analistas da fábrica ajustem o processo de inspeção de acordo com os problemas mais prováveis. Além de aumentar a eficiência nas inspeções, o sistema será escalável, permitindo recalibrações mensais com novos dados de produção, o que aprimorará continuamente a assertividade das inspeções. Isso garantirá que o motorista inspetor saiba exatamente quais testes realizar em cada veículo, otimizando a fase de rodagem.
+
 
 ## 📁 Estrutura de pastas
 
@@ -52,8 +54,13 @@ Para acessar a documentação do projeto, basta clicar [aqui](https://inteli-col
 │   ├── docs
 │   ├── src
 │   ├── static
+├── notebooks
+│   ├── sprint2
+│   ├── sprint3
 ├── src
-│   ├── notebooks
+│   ├── app-typescript
+│   ├── backend
+│   ├── datalake
 ├── README.md
 ```
 
@@ -66,6 +73,31 @@ Para acessar a documentação do projeto, basta clicar [aqui](https://inteli-col
 - Economia Circular e Mapeamento do Ciclo de Produção e Consumo
 - Requisitos de viabilidade técnica
 - Primeiro modelo de predição
+
+### Sprint 2
+
+- Aprimorar o modelo de predição
+- Implementação de API de interface
+- Rede Neural Recorrente implementada
+- Backend
+
+### Sprint 3
+
+- Dockerização da aplicação
+- Construção de um datalake para armazenamento dos dados
+- Melhoria da features
+- Frontend
+
+### Sprint 4
+
+- Fluxo de Retreino do modelo
+- Construção do processo de ETL
+- Pipeline de Treinamento do Modelo
+- Visualização dos dados através do frontend
+
+### Sprint 5
+
+- Entrega da PoC (Prova de Conceito)
 
 ## Licença
 
