@@ -13,6 +13,7 @@ services:
       - frontend
     networks:
       - app-network
+      
   frontend:
     build:
       context: ./app-typescript
@@ -23,6 +24,7 @@ services:
       - ./app-typescript:/app
     networks:
       - app-network
+      
   health:
     build:
       context: ./healthCheck
@@ -31,6 +33,15 @@ services:
       - "8009:8009"
     volumes:
       - ./healthCheck:/code2
+    networks:
+      - app-network
+      
+  datalake:  # Serviço do MongoDB
+    build:
+      context: ./datalake
+      dockerfile: Dockerfile
+    ports:
+      - "27017:27017"
     networks:
       - app-network
 

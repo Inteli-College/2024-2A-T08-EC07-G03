@@ -19,7 +19,7 @@ templates = Jinja2Templates(directory="templates")
 
 app.mount("/static", StaticFiles(directory="static"), name="static")
 
-client = MongoClient("mongodb://10.32.0.12:27017/", serverSelectionTimeoutMS = 2000)
+client = MongoClient("mongodb://34.207.178.171:27017/", serverSelectionTimeoutMS = 2000)
 
 supabase: Client = create_client(api_url, key)
 
