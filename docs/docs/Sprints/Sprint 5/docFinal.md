@@ -127,4 +127,24 @@ A seção de Requisitos Técnicos é fundamental para o sucesso de qualquer proj
 
 ## Backend
 
+&emsp;&emsp;Durante o desenvolvimento do backend, o grupo iniciou a estruturação das rotas essenciais para a comunicação entre o modelo preditivo e a interface do usuário. Optou-se pelo FastAPI devido à sua alta performance, capacidade de utilizar recursos modernos do Python, como tipagem e async/await, e sua documentação intuitiva, que facilita a integração e o uso do serviço por desenvolvedores. O backend foi projetado para receber o KNR como input, permitindo a recuperação de dados associados de um bucket, simulada localmente através de um arquivo Excel.
+
+&emsp;&emsp;A primeira função implementada, buscar_dados_por_knr, busca os dados do KNR fornecido e os formata para entrada no modelo preditivo. Em seguida, a função predict utiliza esses dados para gerar previsões e retornar os resultados ao usuário, tratando exceções com mensagens apropriadas.
+
+&emsp;&emsp;Para organizar o código, adotou-se uma estrutura de controllers e routers no FastAPI, facilitando a manutenção e a escalabilidade do projeto. Além disso, foi criado um banco de dados utilizando PostgreSQL, com a criação de tabelas para armazenar entradas de dados, informações sobre o treinamento do modelo e resultados de análises. O modelo entidade-relacionamento (ER) foi elaborado para visualizar as relações entre as tabelas e suas colunas.
+
+&emsp;&emsp;Na continuação do projeto, novas rotas foram adicionadas ao backend, que agora interage com um banco de dados Supabase. Foram implementadas rotas para inserir registros de treinamento do modelo e para recuperar o histórico de treinamento. O grupo também criou novas rotas para buscar entradas de dados e resultados de análises, permitindo o acesso eficiente às informações armazenadas no Supabase. Essas adições foram fundamentais para melhorar a funcionalidade do sistema e garantir que as informações fossem corretamente geridas e acessadas.
+
 ## Frontend
+
+&emsp;&emsp;O desenvolvimento do frontend da aplicação Käfer foi um processo metódico e bem estruturado, com foco na criação de uma interface de usuário intuitiva e eficiente. A partir da elaboração inicial dos wireframes, que proporcionaram uma visão clara da estrutura e do fluxo da aplicação, o grupo avançou para a implementação prática, utilizando tecnologias como TypeScript, Vite e Tailwind CSS. Cada etapa do desenvolvimento foi cuidadosamente planejada e executada, assegurando que o resultado final atendesse aos requisitos funcionais e de usabilidade.
+
+1. **Criação do Wireframe:** O wireframe desempenhou um papel crucial na definição da interface. Ele permitiu identificar e resolver problemas de usabilidade antes do início do desenvolvimento. Com a representação visual das telas, o grupo pôde alinhar expectativas e entender melhor como os usuários interagiriam com a aplicação. As telas desenhadas incluíram a Tela Inicial, que apresenta opções claras de "Executar" e "Treinar", assim como as telas de execução e resultados, proporcionando um fluxo de navegação lógico e eficiente.
+
+2. **Tecnologias Utilizadas:** A escolha de TypeScript trouxe robustez ao desenvolvimento, permitindo a detecção de erros em tempo de compilação e aumentando a confiabilidade do código. Vite, por sua vez, proporcionou um ambiente de desenvolvimento rápido e eficiente, essencial para a construção de aplicações reativas, enquanto Tailwind CSS facilitou a criação de layouts responsivos, permitindo que o grupo se concentrasse mais na experiência do usuário do que na escrita de CSS.
+
+3. **Estrutura do Código:** A estrutura do código foi organizada em componentes React, com um foco especial na interatividade e na gestão de estado. O componente Home, por exemplo, gerencia a navegação entre as páginas de execução e treinamento por meio do useNavigate, enquanto o uso de popups modais enriqueceu a experiência do usuário, permitindo interações mais dinâmicas e informativas.
+
+4. **Fluxo da Aplicação:** O fluxo definido nos wireframes foi seguido rigorosamente, assegurando que os usuários pudessem navegar de forma fluida entre as diferentes funcionalidades da aplicação. Desde a Tela Inicial até os resultados do modelo executado, cada etapa foi projetada para ser clara e intuitiva, facilitando a interação e garantindo que os usuários alcançassem seus objetivos de maneira eficiente.
+
+&emsp;&emsp;Em suma, o desenvolvimento do frontend da aplicação Käfer foi marcado por um forte alinhamento entre design e implementação, resultando em uma interface que não só atende às necessidades dos usuários, mas também reflete as melhores práticas de usabilidade e acessibilidade. O processo integrado de criação e iteração garantiu que a solução final fosse não apenas funcional, mas também agradável de usar, posicionando a aplicação para um sucesso significativo no seu uso prático.
