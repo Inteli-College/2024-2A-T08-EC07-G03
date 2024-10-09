@@ -49,4 +49,4 @@ A aplicação de técnicas de machine learning permitirá que a Volkswagen antec
 - **Redução de Custos Operacionais**: Diminuição do tempo e recursos gastos em inspeções e manutenções.
 - **Sustentabilidade**: Menor impacto ambiental ao otimizar o consumo de recursos e reduzir a geração de resíduos no processo de manutenção.
 
-Essa solução integrada permitirá à Volkswagen aprimorar seu processo de inspeção, garantindo maior qualidade dos veículos antes de sua liberação ao mercado e mantendo-se alinhada com as demandas por eficiência e sustentabilidade no setor automotivo.
+Nossa quando solução integrada, permitirá à Volkswagen aprimorar seu processo de inspeção, garantindo maior qualidade dos veículos antes de sua liberação ao mercado e mantendo-se alinhada com as demandas por eficiência e sustentabilidade no setor automotivo.
