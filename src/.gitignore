@@ -3,3 +3,6 @@ venv
 ~$dados.xlsx
 .DS_Store
 modelo.joblib
+teste_falha.csv
+teste.csv
+best_data.csv
