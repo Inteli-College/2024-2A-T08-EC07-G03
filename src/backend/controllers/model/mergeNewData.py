@@ -6,6 +6,7 @@ from datetime import datetime
 import numpy as np
 import os
 import shutil
+from io import StringIO, BytesIO
 
         
 # Processamento de dados cru para serem subidos no data warehouse
@@ -57,10 +58,41 @@ async def process_data_datawarehouse(resultado_names: list, falhas_names: list, 
             
             file_content = file_content['content']
             
-            print(f'{file_content}')
+            # print(f'{file_content}')
+            
+            with open('output_test.xlsx', 'wb') as f:
+                f.write(file_content)
 
             if file.endswith('.xlsx'):
-                df = pd.read_excel(file_content)
+                # excel_data = pd.ExcelFile('output_test.xlsx')
+                
+                # print(excel_data)
+                # print(excel_data.sheet_names)
+                
+                # df = pd.read_excel('output_test.xlsx')
+                column_names = ['KNR', 'STATUS', 'DATA']
+                
+                excel_data = pd.ExcelFile('output_test.xlsx')
+    
+                df_list = []
+                
+                for i, sheet in enumerate(excel_data.sheet_names):
+                    print(f'Processing sheet {sheet}')
+                    # A primeira aba tem o cabeçalho correto
+                    if i == 0:
+                        df = pd.read_excel(excel_data, sheet_name=sheet, header=0)
+                    else:
+                        # Nas outras abas, ler os dados sem cabeçalho
+                        df = pd.read_excel(excel_data, sheet_name=sheet, header=None)
+                        # Renomear colunas para 'Unnamed: 1', 'Unnamed: 2', etc., e limpar
+                        df = pd.DataFrame(df[[1, 2, 3]])  # Selecionar as colunas certas
+                        df.columns = column_names  # Atribuir os nomes das colunas
+                        
+                    df_list.append(df)
+                    print(f'Processed {df.shape[0]} rows')
+                
+                print(f'Processed {len(df_list)} sheets')
+                df = pd.concat(df_list, ignore_index=True)
             elif file.endswith('.csv'):
                 df = pd.read_csv(file_content.decode('utf-8'))
             else:
@@ -163,7 +195,9 @@ async def merge_df_with_last(df):
         # Baixar o arquivo
         file_content = await download_file_warehouse(last_file)
         
-        df_last = pd.read_csv(file_content.decode('utf-8'))
+        file_content = file_content['content']
+        
+        df_last = pd.read_csv(StringIO(file_content))
         
         # Pegar knrs que estão no último arquivo
         knrs_last = df_last['KNR'].values
@@ -247,13 +281,18 @@ async def status_processing(df):
     print(df.columns)
 
     # Dropar as colunas que não são necessárias
-    df = df.drop(columns=['Unnamed: 0', 'Unnamed: 1', 'Unnamed: 2', 'Unnamed: 3'])
-
-    # Exibir as colunas depois da alteração
-    print(df.columns)
+    # df = df.drop(columns=['Unnamed: 0', 'Unnamed: 1', 'Unnamed: 2', 'Unnamed: 3'])
+    df.drop(['KNR',	'STATUS', 'DATA'], axis=1, inplace=True)
+    
+    # Transformar primeira linha em df
+    df = df.iloc[1:]
+    
+    df.drop(['Unnamed: 0'], axis=1, inplace=True)
+    
+    df.columns = ['KNR', 'STATUS', 'DATA']
 
     # Filtrar as linhas onde a coluna STATUS não é nula
-    df_tst = df[df["STATUS"].notnull()]
+    df_tst = df.dropna(how='all')
     
     df_tst['DATA'] = pd.to_datetime(df_tst['DATA'], errors='coerce')
 

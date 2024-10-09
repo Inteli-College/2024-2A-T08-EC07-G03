@@ -24,6 +24,7 @@ async def download_file(filename: str):
     else:
         return {"filename": filename, "content": file_data.read()}
 
+# Função para listar os arquivos no sistema de arquivos
 async def list_files():
     files = []
     try:
@@ -33,12 +34,9 @@ async def list_files():
                 "file_id": str(file._id),
                 "size": file.length,
             })
-            
     except Exception as e:
-        print(f"Erro ao listar arquivos: {e}")  # Isso exibe o erro no console
-        return {"error": str(e)}  # Retorna o erro como resposta
-
-    return {"files": files}
+        return {"error": str(e)}
+    return files
 
 async def list_databases():
     databases = client.list_database_names()
