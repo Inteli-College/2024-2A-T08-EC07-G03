@@ -12,7 +12,7 @@ const FileUpload_Status = () => {
             <path d="M60 45 L75 30 L90 45" stroke="#888888" stroke-width="3" stroke-linecap="round"/>
             </svg>
           </div>
-          <input type="file" accept=".csv" className="hidden"/>
+          <input type="file" className="hidden"/>
         </label>
       </div>);
 };
