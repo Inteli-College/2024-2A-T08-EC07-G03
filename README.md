@@ -65,14 +65,15 @@ A solução proposta é um modelo preditivo de classificação, com acurácia m�
 ```
 
 
-## Stack utilizada
+## Tecnologias utilizadas
 
-**Front-end:** Typescript, React e TailwindCSS
+**Front-end:** Typescript, React e TailwindCSS.
 
-**Back-end:** Node, Python
+**Back-end:** FastAPI
 
-**Banco de dados:** PostgreSQL
+**Banco de dados:** Supabase e PostgreSQL
 
+**Modelagem:** Metodologia CRISP-DM e Python
 
 ## Histórico de lançamentos
 
