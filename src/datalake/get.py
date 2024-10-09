@@ -2,7 +2,7 @@ from pymongo import MongoClient
 import gridfs
 
 # Conectar ao servidor MongoDB
-client = MongoClient("mongodb://184.72.146.140:27017/")
+client = MongoClient("mongodb://44.208.228.224:27017/")
 
 # Nome do banco de dados
 db = client["data_lake"]
