@@ -15,7 +15,12 @@ async def upload_file(file: UploadFile, new_filename: str):
         raise HTTPException(status_code=500, detail=f"Erro ao carregar o arquivo: {str(e)}")
 
 async def download_file(filename: str):
-    file_data = fs.find_one({"filename": filename})
+    try:
+    
+        file_data = fs.find_one({"filename": filename})
+    except Exception as e:
+        raise HTTPException(status_code=404, detail=f"Houve um erro ao tentar recuperar o arquivo, {str(e)}")
+    
     if not file_data:
         raise HTTPException(status_code=404, detail="Arquivo não encontrado")
     

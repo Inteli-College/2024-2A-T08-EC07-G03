@@ -5,8 +5,8 @@ router = APIRouter()
 
 # Rota de upload de arquivo
 @router.post("/upload")
-async def upload_file_datalake(file: UploadFile = File(...)):
-    return await upload_file(file)
+async def upload_file_datalake(file: UploadFile = File(...), new_filename: str = None):
+    return await upload_file(file, new_filename)
 
 # Rota para recuperar arquivo pelo nome
 @router.get("/download/{filename}")
