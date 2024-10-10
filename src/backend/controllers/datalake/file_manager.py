@@ -3,7 +3,7 @@ import gridfs
 from fastapi import UploadFile, HTTPException
 
 # Conectar ao pc do Lab
-client = MongoClient("mongodb://44.208.228.224:27017/")
+client = MongoClient("mongodb://3.83.113.165:27017/")
 db = client["data_lake"]  # Nome do banco de dados
 fs = gridfs.GridFS(db)
 
@@ -15,7 +15,12 @@ async def upload_file(file: UploadFile, new_filename: str):
         raise HTTPException(status_code=500, detail=f"Erro ao carregar o arquivo: {str(e)}")
 
 async def download_file(filename: str):
-    file_data = fs.find_one({"filename": filename})
+    try:
+    
+        file_data = fs.find_one({"filename": filename})
+    except Exception as e:
+        raise HTTPException(status_code=404, detail=f"Houve um erro ao tentar recuperar o arquivo, {str(e)}")
+    
     if not file_data:
         raise HTTPException(status_code=404, detail="Arquivo não encontrado")
     
@@ -24,6 +29,7 @@ async def download_file(filename: str):
     else:
         return {"filename": filename, "content": file_data.read()}
 
+# Função para listar os arquivos no sistema de arquivos
 async def list_files():
     files = []
     try:
@@ -33,12 +39,9 @@ async def list_files():
                 "file_id": str(file._id),
                 "size": file.length,
             })
-            
     except Exception as e:
-        print(f"Erro ao listar arquivos: {e}")  # Isso exibe o erro no console
-        return {"error": str(e)}  # Retorna o erro como resposta
-
-    return {"files": files}
+        return {"error": str(e)}
+    return files
 
 async def list_databases():
     databases = client.list_database_names()

@@ -43,7 +43,7 @@ const ExcProgressPage = () => {
                     console.log("Status da predição:", predictionStatus);
                     // Predição concluída, definir o progresso como 100%
                     await new Promise(f => setTimeout(f, 5000)); // Simula um tempo de espera de 5 segundos
-                    navigate('/excModel', { state: { result_atual: data['prediction']['status'] } });
+                    navigate('/excModel', { state: { result_atual: data['prediction']['status'], knr } });
                     setProgress(100);
                 }
                 else {

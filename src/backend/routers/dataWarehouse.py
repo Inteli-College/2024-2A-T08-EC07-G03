@@ -10,12 +10,12 @@ async def upload_file_warehouse(file: UploadFile = File(...)):
 
 # Rota para recuperar arquivo pelo nome
 @router.get("/download/{filename}")
-async def download_file_warehouse(filename: str):
+async def download_file_warehouse_file(filename: str):
     return await download_file_warehouse(filename)
 
 # Rota para listar todos os arquivos
 @router.get("/list")
-async def list_files_warehouse():
+async def list_files_warehouse_files():
     return await list_files_warehouse()
 
 # Rota para listar todos os bancos de dados

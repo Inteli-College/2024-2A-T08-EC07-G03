@@ -75,7 +75,7 @@ async def retrain(
         final_file_name = await process_data_datawarehouse(resultado_names, falhas_names, status_names)
 
         # Chama a função de retreinamento do modelo com os dados fornecidos
-        retrainModel(final_file_name)
+        await retrainModel(final_file_name)
 
         if save_new_model:
             return {"detail": "Modelo retreinado e salvo com sucesso."}

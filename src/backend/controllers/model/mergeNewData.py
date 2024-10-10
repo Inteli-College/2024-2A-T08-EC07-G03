@@ -6,6 +6,7 @@ from datetime import datetime
 import numpy as np
 import os
 import shutil
+from io import StringIO, BytesIO
 
         
 # Processamento de dados cru para serem subidos no data warehouse
@@ -58,7 +59,7 @@ async def process_data_datawarehouse(resultado_names: list, falhas_names: list, 
             file_content = file_content['content']
             
             print(f'{file_content}')
-
+            
             if file.endswith('.xlsx'):
                 df = pd.read_excel(file_content)
             elif file.endswith('.csv'):
@@ -163,7 +164,9 @@ async def merge_df_with_last(df):
         # Baixar o arquivo
         file_content = await download_file_warehouse(last_file)
         
-        df_last = pd.read_csv(file_content.decode('utf-8'))
+        file_content = file_content['content']
+        
+        df_last = pd.read_csv(StringIO(file_content))
         
         # Pegar knrs que estão no último arquivo
         knrs_last = df_last['KNR'].values
@@ -247,13 +250,18 @@ async def status_processing(df):
     print(df.columns)
 
     # Dropar as colunas que não são necessárias
-    df = df.drop(columns=['Unnamed: 0', 'Unnamed: 1', 'Unnamed: 2', 'Unnamed: 3'])
-
-    # Exibir as colunas depois da alteração
-    print(df.columns)
+    # df = df.drop(columns=['Unnamed: 0', 'Unnamed: 1', 'Unnamed: 2', 'Unnamed: 3'])
+    df.drop(['KNR',	'STATUS', 'DATA'], axis=1, inplace=True)
+    
+    # Transformar primeira linha em df
+    df = df.iloc[1:]
+    
+    df.drop(['Unnamed: 0'], axis=1, inplace=True)
+    
+    df.columns = ['KNR', 'STATUS', 'DATA']
 
     # Filtrar as linhas onde a coluna STATUS não é nula
-    df_tst = df[df["STATUS"].notnull()]
+    df_tst = df.dropna(how='all')
     
     df_tst['DATA'] = pd.to_datetime(df_tst['DATA'], errors='coerce')
 
@@ -265,11 +273,11 @@ async def status_processing(df):
     ZP6 = ['M599', 'M591', 'M592', 'M593', 'M594', 'M595', 'M596', 'M643', 'M644', 'M647', 'M648', 'M651', 'M652', 'M655', 'M656', 'M673', 'M674', 'M677', 'M678', 'M681', 'M682']
     CAB = ['M619', 'M643', 'M644', 'M655', 'M656', 'M673', 'M674']
     
-        # Combine todas as listas em uma única lista
+    # Combine todas as listas em uma única lista
     all_stations = ZP7 + ZP5 + ZP5A + ZP6 + CAB
 
     # Filtrar o DataFrame para manter apenas as linhas cujo STATUS está em all_stations
-    df_tst = df_tst[df_tst['STATUS'].isin(all_stations)]
+    # df_tst = df_tst[df_tst['STATUS'].isin(all_stations)]
     
     # Lista de KNRs únicos no dataset
     knrs_unicos = df_tst['KNR'].unique()
