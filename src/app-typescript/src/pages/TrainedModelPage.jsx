@@ -30,6 +30,11 @@ const TrainedModelPage = () => {
     setPopupVisible(false);
   };
 
+  const getLastModel = () => {
+    if (modelTrainingData.length === 0) return null;
+    return modelTrainingData[modelTrainingData.length - 1];
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-[#333641] to-[#282A32] text-white p-8">
       <Header />
@@ -60,26 +65,26 @@ const TrainedModelPage = () => {
             </tbody>
           </table>
         </div>
-      </div>
-
-      <div className="w-full max-w-2xl mb-6">
+        <div className="w-full max-w-2xl mb-6">
         <label className="block text-gray-400 mb-2 text-2xl">Modelo Atual:</label>
         <div className="w-full bg-gray-300 h-10 rounded-lg flex justify-center items-center">
-          <span className="text-black">XXXXXX</span>
+          <span className="text-black">
+            {getLastModel()?.training_accuracy || 'N/A'}
+          </span>
         </div>
       </div>
       
       <div className="w-full max-w-2xl mb-4">
         <label className="block text-gray-400 mb-2 text-2xl">Modelo Anterior:</label>
         <div className="w-full bg-gray-300 h-10 rounded-lg flex justify-center items-center">
-          <span className="text-black">XXXXXX</span>
+          <span className="text-black">{modelTrainingData.find(item => item.atual)?.training_accuracy || 'N/A'}%</span>
         </div>
       </div>
 
       <div className="w-full max-w-2xl mt-12 text-center">
         <p className="text-gray-400 text-2xl">Selecione qual modelo</p>
         <p className="text-gray-400 mb-12 text-2xl">você deseja utilizar:</p>
-        <div className="flex justify-center space-x-4">
+        <div className="flex justify-center space-x-4"></div>
           <button className="bg-gray-200 text-black px-12 py-1 mr-10 rounded-lg hover:bg-gray-300 transition" onClick={handleOpenPopup}>
             Atual
           </button>
@@ -90,7 +95,7 @@ const TrainedModelPage = () => {
 
         {isPopupVisible && <ConfirmationPopup onClose={handleClosePopup} />}
       </div>
-    </div>
+      </div>
   );
 };
 

@@ -10,6 +10,7 @@ class ModelTraining(BaseModel):
     model_name: str
     training_accuracy: float
     date: str 
+    atual: bool = False
 
 @router.post("/insert_model_training")
 def insert_model(input_data: ModelTraining):
@@ -43,7 +44,8 @@ def insert_model(input_data: ModelTraining):
         .insert({
             "model_name": input_data.model_name,
             "training_accuracy": input_data.training_accuracy,
-            "date": date_as_string
+            "date": date_as_string,
+            "atual": input_data.atual
         })\
         .execute()
 
