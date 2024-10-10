@@ -3,7 +3,7 @@ import gridfs
 from fastapi import UploadFile, HTTPException
 
 # Conectar ao pc do Lab
-client = MongoClient("mongodb://3.83.113.165:27017/")
+client = MongoClient("mongodb://3.84.220.52:27017/")
 db = client["data_lake"]  # Nome do banco de dados
 fs = gridfs.GridFS(db)
 
