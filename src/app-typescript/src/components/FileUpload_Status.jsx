@@ -1,9 +1,10 @@
 import React from 'react';
 
-// Componente FileUpload_Resultados agora aceitando a prop setFiles para atualizar o estado dos arquivos
+// Componente FileUpload_Status agora aceitando a prop setFiles para atualizar o estado dos arquivos
 const FileUpload_Status = ({ setFiles }) => {
     const handleFileChange = (event) => {
         const selectedFiles = Array.from(event.target.files);
+        console.log('Arquivos selecionados (status):', selectedFiles); // Verificar se os arquivos foram selecionados
         setFiles(selectedFiles); // Atualiza o estado no componente pai
     };
 
