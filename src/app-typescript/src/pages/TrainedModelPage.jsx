@@ -34,7 +34,7 @@ const TrainedModelPage = () => {
     <div className="min-h-screen bg-gradient-to-b from-[#333641] to-[#282A32] text-white p-8">
       <Header />
       <div className="flex flex-col items-center justify-center">
-      <h1 className="text-6xl font-light mt-8 mb-24">Modelo Treinado:</h1>
+        <h1 className="text-6xl font-light mt-8 mb-24">Modelo Treinado:</h1>
 
         <div className="w-full max-w-2xl mb-8 overflow-x-auto">
           <table className="w-full bg-gray-800 rounded-lg">
@@ -60,18 +60,21 @@ const TrainedModelPage = () => {
             </tbody>
           </table>
         </div>
+      </div>
 
       <div className="w-full max-w-2xl mb-6">
-        <label className="block text-gray-400 mb-2 text-2xl ">Modelo Atual:</label>
+        <label className="block text-gray-400 mb-2 text-2xl">Modelo Atual:</label>
         <div className="w-full bg-gray-300 h-10 rounded-lg flex justify-center items-center">
           <span className="text-black">XXXXXX</span>
         </div>
-
+      </div>
+      
       <div className="w-full max-w-2xl mb-4">
         <label className="block text-gray-400 mb-2 text-2xl">Modelo Anterior:</label>
         <div className="w-full bg-gray-300 h-10 rounded-lg flex justify-center items-center">
           <span className="text-black">XXXXXX</span>
         </div>
+      </div>
 
       <div className="w-full max-w-2xl mt-12 text-center">
         <p className="text-gray-400 text-2xl">Selecione qual modelo</p>
