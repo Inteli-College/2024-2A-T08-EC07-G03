@@ -58,41 +58,10 @@ async def process_data_datawarehouse(resultado_names: list, falhas_names: list, 
             
             file_content = file_content['content']
             
-            # print(f'{file_content}')
+            print(f'{file_content}')
             
-            with open('output_test.xlsx', 'wb') as f:
-                f.write(file_content)
-
             if file.endswith('.xlsx'):
-                # excel_data = pd.ExcelFile('output_test.xlsx')
-                
-                # print(excel_data)
-                # print(excel_data.sheet_names)
-                
-                # df = pd.read_excel('output_test.xlsx')
-                column_names = ['KNR', 'STATUS', 'DATA']
-                
-                excel_data = pd.ExcelFile('output_test.xlsx')
-    
-                df_list = []
-                
-                for i, sheet in enumerate(excel_data.sheet_names):
-                    print(f'Processing sheet {sheet}')
-                    # A primeira aba tem o cabeçalho correto
-                    if i == 0:
-                        df = pd.read_excel(excel_data, sheet_name=sheet, header=0)
-                    else:
-                        # Nas outras abas, ler os dados sem cabeçalho
-                        df = pd.read_excel(excel_data, sheet_name=sheet, header=None)
-                        # Renomear colunas para 'Unnamed: 1', 'Unnamed: 2', etc., e limpar
-                        df = pd.DataFrame(df[[1, 2, 3]])  # Selecionar as colunas certas
-                        df.columns = column_names  # Atribuir os nomes das colunas
-                        
-                    df_list.append(df)
-                    print(f'Processed {df.shape[0]} rows')
-                
-                print(f'Processed {len(df_list)} sheets')
-                df = pd.concat(df_list, ignore_index=True)
+                df = pd.read_excel(file_content)
             elif file.endswith('.csv'):
                 df = pd.read_csv(file_content.decode('utf-8'))
             else:
@@ -304,11 +273,11 @@ async def status_processing(df):
     ZP6 = ['M599', 'M591', 'M592', 'M593', 'M594', 'M595', 'M596', 'M643', 'M644', 'M647', 'M648', 'M651', 'M652', 'M655', 'M656', 'M673', 'M674', 'M677', 'M678', 'M681', 'M682']
     CAB = ['M619', 'M643', 'M644', 'M655', 'M656', 'M673', 'M674']
     
-        # Combine todas as listas em uma única lista
+    # Combine todas as listas em uma única lista
     all_stations = ZP7 + ZP5 + ZP5A + ZP6 + CAB
 
     # Filtrar o DataFrame para manter apenas as linhas cujo STATUS está em all_stations
-    df_tst = df_tst[df_tst['STATUS'].isin(all_stations)]
+    # df_tst = df_tst[df_tst['STATUS'].isin(all_stations)]
     
     # Lista de KNRs únicos no dataset
     knrs_unicos = df_tst['KNR'].unique()
