@@ -28,7 +28,7 @@ const ExcProgressPage = () => {
         const processPrediction = async () => {
             try {
                 // Faz a chamada para a predição no servidor
-                const response = await fetch('http://3.84.220.52:8000/api/predict', {
+                const response = await fetch('http://localhost:8000/api/model/predict', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
