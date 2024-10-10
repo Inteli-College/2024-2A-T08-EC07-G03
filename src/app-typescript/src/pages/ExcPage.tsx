@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 
 
 const predictKNR = async (knr: string) => {
-  const response = await fetch('http://localhost:8000/predict', {
+  const response = await fetch('http://localhost:8000/api/model/predict', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
