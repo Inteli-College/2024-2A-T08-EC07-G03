@@ -160,3 +160,83 @@ A seção de Requisitos Técnicos é fundamental para o sucesso de qualquer proj
 &emsp;&emsp;As instâncias EC2 da AWS são configuradas com um endereço IP público dinâmico, o que significa que o IP pode mudar sempre que a instância for reiniciada. Para garantir que o IP da instância permaneça o mesmo, evitando a necessidade de atualizar configurações após cada reinicialização, é necessário associar um Endereço IP Elástico. Esse recurso oferece um IP estático que pode ser vinculado à instância EC2 em execução, garantindo que o IP público seja constante e facilitando o acesso contínuo ao projeto implantado, mesmo após reinicializações ou alterações na instância. No caso deste projeto, o IP público fixo é 44.208.228.224, e o frontend pode ser acessado através da porta 7000, o health check pela porta 8009, e o backend pela porta 8000.
 
 &emsp;&emsp;O processo de deploy de uma aplicação hospedada no GitHub para uma instância EC2 da AWS oferece uma solução poderosa e flexível para a execução de projetos na nuvem. Com a configuração adequada, foi possível garantir que a aplicação esteja sempre disponível, com um IP estático e acesso simplificado. A integração do `docker-compose` facilita a execução e manutenção do projeto, enquanto a infraestrutura da AWS oferece escalabilidade e confiabilidade.
+
+## Proposta de Implementação de Testes
+
+O projeto possui um **frontend** que permite o upload de arquivos de dados. Esses arquivos são processados por um fluxo **ETL** (Extrair, Transformar, Carregar) e enviados para um **backend** que utiliza um modelo de **machine learning** para realizar previsões ou avaliações com base nos dados.
+
+### Tecnologias utilizadas no projeto:
+- Frontend: Desenvolvido em Vite.
+- Backend: Desenvolvido em FastAPI.
+- Modelo: Atualmente, o modelo utilisado é o LSTM.
+- Processo ETL: Responsável por transformar e preparar os dados antes de enviá-los ao backend.
+- Docker: imagens individuais para o frontend, backend, datalake e health check.
+
+## Testes propostos
+### 1. Testes de Upload de Arquivo
+#### Teste 1.1: Upload de Arquivo Válido
+- **Cenário**: O usuário faz upload de um arquivo com dados formatados corretamente.
+- **Passos**:
+  1. O usuário faz upload de um arquivo no formato XLSX.
+  2. O frontend envia o arquivo para o backend via uma requisição.
+  3. O backend aceita o arquivo e inicia o processamento.
+
+- **Resultado Esperado**: O backend retorna um status de sucesso (`200 OK`) e confirma o início do processamento dos dados.
+
+#### Teste 1.2: Upload de Arquivo Inválido
+- **Cenário**: O usuário tenta enviar um arquivo inválido (formato não suportado ou arquivo corrompido).
+
+- **Passos**:
+  1. O usuário faz upload de um arquivo inválido.
+  2. O frontend envia o arquivo para o backend.
+  3. O backend rejeita o arquivo.
+
+- **Resultado Esperado**: O backend retorna um status de erro (`400`) com uma mensagem explicando o motivo da rejeição.
+
+### 2. Testes de Processamento de Dados (ETL)
+
+#### Teste 2.1: Dados Válidos e Formatados
+- **Cenário**: O arquivo contém dados corretamente formatados, prontos para processamento.
+- **Passos**:
+  1. O processo ETL extrai, transforma e carrega os dados conforme esperado.
+  2. Verificar que os dados estejam prontos para serem enviados ao backend.
+- **Resultado Esperado**: O ETL processa e formata os dados corretamente, garantindo que o formato de saída seja adequado para o backend.
+#### Teste 2.2: Dados com Problemas
+- **Cenário**: O arquivo contém dados inconsistentes ou incompletos.
+- **Passos**:
+  1. O ETL processa os dados e lida com valores inconsistentes ou faltantes.
+  2. Avaliar o tratamento de erros durante o processo de transformação.
+- **Resultado Esperado**: O processo ETL detecta e trata as inconsistências (valores nulos, dados fora de intervalo) ou retorna um erro adequado.
+### 3. Testes de Previsão/Processamento de Dados (Modelo de Machine Learning)
+#### Teste 3.1: Resultado Positivo
+- **Cenário**: Os dados indicam um resultado positivo para a previsão ou avaliação.
+- **Passos**:
+  1. O backend processa os dados enviados pelo ETL e passa para o modelo de machine learning.
+  2. O modelo faz uma previsão ou avaliação correta.
+- **Resultado Esperado**: O backend retorna um resultado (previsão de falha ou detecção de anomalia).
+#### Teste 3.2: Resultado Negativo
+- **Cenário**: Os dados indicam um resultado negativo.
+- **Passos**:
+  1. O backend processa os dados enviados pelo ETL e passa para o modelo de machine learning.
+  2. O modelo faz uma previsão ou avaliação negativa.
+- **Resultado Esperado**: O backend retorna um resultado negativo (ausência de falha ou comportamento normal).
+### 4. Testes de API
+#### Teste 4.1: Validação de Resposta do backend
+- **Cenário**: O frontend envia uma requisição para o backend com os dados processados.
+- **Passos**:
+  1. O frontend faz uma requisição `POST` ou `GET` para o backend.
+  2. O backend responde com sucesso ou erro, dependendo da entrada.
+- **Resultado Esperado**: A API retorna respostas apropriadas (`200 OK` para sucesso ou `400` para erros).
+#### Teste 4.2: Tempo de Resposta da API
+- **Cenário**: Avaliar o tempo de resposta da API para garantir que o desempenho esteja dentro dos limites aceitáveis.
+- **Passos**:
+  1. Enviar requisições repetidas para a API e medir o tempo de resposta.
+- **Resultado Esperado**: O tempo de resposta deve ser inferior a um limite aceitável (2 segundos para operações simples).
+### 5. Testes de Frontend
+#### Teste 5.1: Exibição Correta dos Resultados
+- **Cenário**: O frontend deve exibir o resultado do processamento dos dados corretamente para o usuário.
+- **Passos**:
+  1. O usuário faz upload de um arquivo de dados.
+  2. O backend processa os dados e retorna o resultado para o frontend.
+  3. O frontend exibe o resultado da avaliação para o usuário.
+- **Resultado Esperado**: O frontend exibe corretamente os resultados da previsão ou avaliação (mensagem de falha detectada ou operação normal).
