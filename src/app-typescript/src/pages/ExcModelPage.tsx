@@ -11,11 +11,12 @@ interface LocationState {
 const ExcModelPage: React.FC = () => {
     const [isPopupVisible, setPopupVisible] = useState(false);
     
-    // Adiciona tipagem ao useLocation para garantir que os valores de estado estão corretos
-    const location = useLocation<{ state: LocationState }>();
+    // UseLocation sem o parâmetro de tipo e faça a tipagem manualmente
+    const location = useLocation();
+    const state = location.state as LocationState || {};  // Realizando o cast manual para 'LocationState'
     
     // Extrai os valores de estado de forma segura
-    const { result_atual, knr } = location.state || {};
+    const { result_atual, knr } = state;
     console.log(result_atual);
 
     const handleOpenPopup = () => {
