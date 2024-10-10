@@ -26,7 +26,7 @@ const TrainingProgressPage: React.FC = () => {
       <div className="border-2 border-dashed border-gray-600 rounded-lg mx-auto mt-10 p-10 w-96 h-60 flex items-center justify-center">
         <p className="text-gray-400">O modelo está sendo treinado.</p>
       </div>
-      <div className="w-11/12 mx-auto mt-10">
+      <div className="w-11/12 mx-auto mt-10 flex flex-col items-center">
         <ProgressBar progress={progress} />
         <p className="text-center text-gray-400 mt-2">Processando...</p>
       </div>
