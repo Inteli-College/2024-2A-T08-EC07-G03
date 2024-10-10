@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 
 
 const predictKNR = async (knr: string) => {
-  const response = await fetch('http://localhost:8000/predict', {
+  const response = await fetch('http://3.84.220.52:8000/api/model/predict', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -25,7 +25,7 @@ const uploadCSV = async (file: File) => {
   const formData = new FormData();
   formData.append('file', file);
 
-  const response = await fetch('http://localhost:8000/predict_batch', {
+  const response = await fetch('http://3.84.220.52:8000/predict_batch', {
     method: 'POST',
     body: formData,
   });
