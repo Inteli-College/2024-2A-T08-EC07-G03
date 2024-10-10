@@ -163,7 +163,7 @@ A seção de Requisitos Técnicos é fundamental para o sucesso de qualquer proj
 
 ## Proposta de Implementação de Testes
 
-O projeto possui um **frontend** que permite o upload de arquivos de dados. Esses arquivos são processados por um fluxo **ETL** (Extrair, Transformar, Carregar) e enviados para um **backend** que utiliza um modelo de **machine learning** para realizar previsões ou avaliações com base nos dados.
+&emsp;&emsp;O projeto possui um **frontend** que permite o upload de arquivos de dados. Esses arquivos são processados por um fluxo **ETL** (Extrair, Transformar, Carregar) e enviados para um **backend** que utiliza um modelo de **machine learning** para realizar previsões ou avaliações com base nos dados.
 
 ### Tecnologias utilizadas no projeto:
 - Frontend: Desenvolvido em Vite.
@@ -240,3 +240,16 @@ O projeto possui um **frontend** que permite o upload de arquivos de dados. Esse
   2. O backend processa os dados e retorna o resultado para o frontend.
   3. O frontend exibe o resultado da avaliação para o usuário.
 - **Resultado Esperado**: O frontend exibe corretamente os resultados da previsão ou avaliação (mensagem de falha detectada ou operação normal).
+
+# Conclusão
+
+&emsp;&emsp;O modelo de machine learning desenvolvido para a identificação de defeitos em veículos da Volkswagen representa um avanço significativo na indústria automotiva. Com uma precisão e recall excepcionais, o modelo demonstrou sua capacidade de detectar de forma eficaz problemas que poderiam comprometer a qualidade dos produtos finais. A solução, que combina um pipeline de dados robusto, um modelo de machine learning sofisticado e uma infraestrutura escalável, oferece um grande potencial para a otimização dos processos de produção e a melhoria da experiência do cliente.
+
+&emsp;&emsp;Além dos benefícios diretos para a Volkswagen, essa solução abre caminho para diversas outras aplicações em diferentes setores. A capacidade de identificar padrões e anomalias em grandes conjuntos de dados pode ser utilizada para otimizar processos, prever falhas em equipamentos, personalizar produtos e desenvolver novas soluções inovadoras. A implementação bem-sucedida deste projeto demonstra o poder da inteligência artificial em transformar a indústria e impulsionar a competitividade das empresas.
+
+&emsp;&emsp;Para o futuro, vislumbra-se a expansão dessa solução para outras áreas da fábrica, a integração com sistemas de gestão mais amplos e a exploração de técnicas de aprendizado de máquina mais avançadas. Também, a coleta contínua de dados e o monitoramento do desempenho do modelo são essenciais para garantir sua longevidade e adaptabilidade a um ambiente em constante evolução.
+
+
+
+
+
