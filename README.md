@@ -6,7 +6,7 @@
 
 # Grupo: Käfer
 
-Para acessar a documentação do projeto, basta clicar [aqui](https://inteli-college.github.io/2024-2A-T08-EC07-G03/docs/category/sprint-1). 
+Para acessar a documentação do projeto, basta clicar [aqui](https://inteli-college.github.io/2024-2A-T08-EC07-G03/docs/category/Intro). 
 
 ## :student: Integrantes:
 
@@ -39,11 +39,13 @@ Para acessar a documentação do projeto, basta clicar [aqui](https://inteli-col
 
 ## Problema
 
----
+A Volkswagen identificou a oportunidade de aprimorar a precisão das inspeções de veículos antes da fase de rodagem na fábrica. O processo atual poderia se beneficiar de uma priorização mais eficaz dos veículos com maior probabilidade de apresentar defeitos, o que resultaria em um uso mais eficiente do tempo e dos recursos durante os testes. Uma abordagem mais direcionada nas inspeções pode contribuir para uma maior eficiência e qualidade no processo produtivo, garantindo que os problemas sejam detectados e resolvidos de forma mais ágil.
+
 
 ## Solução
 
----
+A solução proposta é um modelo preditivo de classificação, com acurácia mínima de 95%, para identificar possíveis defeitos nos veículos durante a montagem. O modelo classifica os veículos em duas categorias de risco (classe 1 e classe 2), permitindo que os analistas da fábrica ajustem o processo de inspeção de acordo com os problemas mais prováveis. Além de aumentar a eficiência nas inspeções, o sistema será escalável, permitindo recalibrações mensais com novos dados de produção, o que aprimorará continuamente a assertividade das inspeções. Isso garantirá que o motorista inspetor saiba exatamente quais testes realizar em cada veículo, otimizando a fase de rodagem.
+
 
 ## 📁 Estrutura de pastas
 
@@ -52,11 +54,26 @@ Para acessar a documentação do projeto, basta clicar [aqui](https://inteli-col
 │   ├── docs
 │   ├── src
 │   ├── static
+├── notebooks
+│   ├── sprint2
+│   ├── sprint3
 ├── src
-│   ├── notebooks
+│   ├── app-typescript
+│   ├── backend
+│   ├── datalake
 ├── README.md
 ```
 
+
+## Tecnologias utilizadas
+
+**Front-end:** Typescript, React e TailwindCSS.
+
+**Back-end:** FastAPI
+
+**Banco de dados:** Supabase e PostgreSQL
+
+**Modelagem:** Metodologia CRISP-DM e Python
 
 ## Histórico de lançamentos
 
@@ -67,7 +84,40 @@ Para acessar a documentação do projeto, basta clicar [aqui](https://inteli-col
 - Requisitos de viabilidade técnica
 - Primeiro modelo de predição
 
+### Sprint 2
+
+- Aprimorar o modelo de predição
+- Implementação de API de interface
+- Rede Neural Recorrente implementada
+- Backend
+
+### Sprint 3
+
+- Dockerização da aplicação
+- Construção de um datalake para armazenamento dos dados
+- Melhoria da features
+- Frontend
+
+### Sprint 4
+
+- Fluxo de Retreino do modelo
+- Construção do processo de ETL
+- Pipeline de Treinamento do Modelo
+- Visualização dos dados através do frontend
+
+### Sprint 5
+
+- Melhoria do Frontend
+- Entrega da PoC (Prova de Conceito)
+
 ## Licença
 
 
 <p xmlns:cc="http://creativecommons.org/ns#" xmlns:dct="http://purl.org/dc/terms/"><span property="dct:title">Käfer</span> by <span property="cc:attributionName">Inteli - Laura Bueno, Luan de Mello, Lucas de Luccas, Isabelle Vasquez, Luiz Leão,Rodrigo Sales</span> is licensed under <a href="https://creativecommons.org/licenses/by/4.0/?ref=chooser-v1" target="_blank" rel="license noopener noreferrer" style="display:inline-block;">CC BY 4.0<img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1" alt=""><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1" alt=""></a></p>
+
+
+
+
+
+
+![Logo](docs/static/img/logo.png)
