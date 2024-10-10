@@ -13,7 +13,7 @@ const TrainedModelPage = () => {
   const fetchModelTrainingData = async () => {
     try {
       const response = await fetch(
-        "http://localhost:8000/api/analise/model-training"
+        "http://3.84.220.52:8000/api/analise/model-training"
       );
       const data = await response.json();
       setModelTrainingData(data);
